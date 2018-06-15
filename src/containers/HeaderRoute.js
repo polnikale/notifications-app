@@ -7,5 +7,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPageChange: (ref) => dispatch(setPageChange(ref.to));
+  onPageChange: (ref) => dispatch(setPageChange(ref))
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import NotificationCreate from '../NotificationCreate/NotificationCreate';
 import Notifications from '../Notifications/Notifications';
-import Header from '../Header/Header';
+import HeaderRoute from '../../containers/HeaderRoute';
 
 
 function Main(props) {
@@ -15,7 +15,7 @@ function Main(props) {
   }
   return(
     <Fragment>
-      <Header />
+      <HeaderRoute />
       <main>
         {pageToRender}
       </main>

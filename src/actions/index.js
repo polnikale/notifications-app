@@ -1,5 +1,4 @@
-export default function setPageChange(ref) {
-  let payload;
+export function setPageChange(ref) {
   if (ref.info) {
     return {
       page: {
@@ -11,6 +10,6 @@ export default function setPageChange(ref) {
   return {
     page: {
       name:ref.to
-    };
+    }
   };
 }

@@ -1,4 +1,4 @@
-const route = (state = 'NOTIFICATIONS' , action) => {
+const route = (state = {name: 'NOTIFICATIONS'} , action) => {
   switch(action.type) {
     case 'NOTIFICATION_CREATE':
       return {
@@ -7,7 +7,7 @@ const route = (state = 'NOTIFICATIONS' , action) => {
       }
     case 'NOTIFICATIONS':
       return {
-        name: 'NOTIFICATIONS'; //сюда вроде ничего не можна будет передать
+        name: 'NOTIFICATIONS' //сюда вроде ничего не можна будет передать
       }
     default:
       return state;
