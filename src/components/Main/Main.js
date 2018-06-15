@@ -6,9 +6,9 @@ import Header from '../Header/Header';
 
 function Main(props) {
   let pageToRender;
-  if (props.page === 'Notification_create') {
+  if (props.page === 'NOTIFICATION_CREATE') {
     pageToRender = <NotificationCreate /> 
-  } else if (props.page === 'Notifications') {
+  } else if (props.page === 'NOTIFICATIONS') {
     pageToRender = <Notifications />
   } else {
     pageToRender = <p>Sorry. I don't know what to do</p>
