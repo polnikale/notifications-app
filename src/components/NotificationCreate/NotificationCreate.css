@@ -2,17 +2,109 @@
   padding-top: 80px;
   padding-right: 310px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.new-notification {
+  text-align: center;
+  padding: 22px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px rgba(106, 117, 131, 0.16);
 }
 
 .new-notification h4 {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
+  margin: 11.5px 0;
   text-align: center;
   color: #afafaf;
 }
+
+.new-notification input, .new-notification textarea {
+  width: 420px;
+  border-radius: 10px;
+  background-color: rgba(240, 0, 71, 0);
+  border: solid 1px #d7d7d7;
+  text-align: center;
+  padding: 11px 15px;
+  font-family: 'Open Sans', sans-serif;
+  color: #000000;
+  outline: none;
+}
+
+.new-notification input:focus, .new-notification textarea:focus {
+  border-color: rgba(170,171,255, .3);
+}
+
+.new-notification input {
+  font-size: 16px;
+}
+.new-notification textarea {
+  resize: none;
+  position: relative;
+  font-size: 11.5px;
+  line-height: 1.57;
+  margin-bottom: 22px;
+}
+
+h4.photos {
+  position: relative;
+}
+
+h4.photos::before {
+  position: absolute;
+  content: '';
+  background-color: #282c37;
+  height: 2px;
+  width: 100%;
+  top: -16px;
+  left: 0;
+  opacity: 0.1;
+}
+
+.new-notification ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.new-notification li {
+  list-style-type: none;
+}
+
+.new-notification .photos li {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.new-notification .photos li:last-child {
+  background-color: #ffffff;
+  border: solid 1px rgba(106, 117, 131, 0.16);
+}
+
+.new-notification .default-svg {
+  object-fit: contain;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+  /* выравниваю по центру вертикально */
+}
+.new-notification .plus-svg {
+  background-image: url(./plus.svg);
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  object-fit: contain;
+  position: absolute;
+  right: -11px;
+  top: -11px;
+  cursor: pointer;
+}
+.new-notification input[type="file"] {
+  display: none;
+}
+
+
