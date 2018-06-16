@@ -4,7 +4,7 @@ import Main from '../Main/Main';
 
 function App() {
   return (
-    <div>
+    <div className="wrapper">
       <aside></aside>
       <Main page="default"/>
     </div>

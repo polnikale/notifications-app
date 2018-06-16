@@ -15,8 +15,8 @@ function Main(props) {
   }
   return(
     <Fragment>
-      <HeaderRoute />
       <main>
+        <HeaderRoute />
         {pageToRender}
       </main>
     </Fragment>
