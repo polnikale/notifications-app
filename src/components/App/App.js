@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="wrapper">
       <aside></aside>
-      <Main page="default"/>
+      <Main page="NOTIFICATION_CREATE"/>
     </div>
   );
 }
