@@ -78,6 +78,20 @@ h4.photos::before {
   width: 80px;
   height: 80px;
   position: relative;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.new-notification .photos li img {
+  height: 80px;
+  width: 80px;
+  opacity: 0.95;
+  border-radius: 5px;
+}
+
+.new-notification .photos li .default-svg {
+  height: auto;
+  width: auto;
 }
 
 .new-notification .photos li:last-child {

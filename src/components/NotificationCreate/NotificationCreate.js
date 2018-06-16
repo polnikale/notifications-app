@@ -10,6 +10,9 @@ class NotificationCreate extends React.Component {
     super(props);
 
     this.handleInput = this.handleInput.bind(this);
+    this.handleAddPhoto = this.handleAddPhoto.bind(this);
+    this.supportedImgFormat = ['jpg', 'JPG', 'png' ,'PNG' ,'jpeg' ,'JPEG', 'svg', 'SVG']; 
+
     if (props.info) {
       this.state = {
         heading: props.info.heading,
@@ -32,18 +35,31 @@ class NotificationCreate extends React.Component {
       [stateName]: input.value
     });
   }
+
+  handleAddPhoto(event) {
+    event.preventDefault();
+    const photo = event.target.files[0];
+    const url = window.URL.createObjectURL(photo);
+    const photoSrcDotArr = photo.name.split('.');
+    const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
+    if(!(this.supportedImgFormat.includes(photoSrcExt))) return; //решил сделать еще и тут проверку на тип файла. На всякий
+    this.setState((prevState) => {
+      return {pictures: [...prevState.pictures, url]};
+    });
+    console.log(this.state.pictures);
+  }
   render() {
     let photos = (
       <ul className="photos">
         {this.state.pictures.map((picture, index) => 
-          <li>
+          <li key={picture+index}>
             <img src={picture} alt={'picture-'+index}/>
           </li>
         )}
         <li>
           <img src={defaultSvg} className="default-svg" alt="defaultimg"/>
           <label src={plusSvg} alt="add new svg" htmlFor="newImg" className="plus-svg"/>
-          <input type="file" id="newImg" accept="image/x-png,image/gif,image/jpeg"/>
+          <input type="file" id="newImg" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleAddPhoto}/>
         </li>
       </ul>
     )
