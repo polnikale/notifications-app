@@ -12,11 +12,14 @@ class Main extends React.Component {
     super(props);
 
     this.handleSave = this.handleSave.bind(this);
+    this.handleEditNotification = this.handleEditNotification.bind(this);
   }
   renderMain() {
     const { page } = this.props;
     if (page === 'NOTIFICATIONS') {
-      return <Notifications notifications={this.props.notifications}/> 
+      return <Notifications 
+                notifications={this.props.notifications}
+                click={this.handleEditNotification}/> 
     } else if (page === 'NOTIFICATION_CREATE') {
       return <NotificationCreate />
     } else {
@@ -58,8 +61,12 @@ class Main extends React.Component {
       this.props.notificationSave(this.props.notification);
       this.props.back();
     } else { //в этом случае создаем новый
-      this.props.notifications();
+      this.props.toNotification();
     }
+  }
+
+  handleEditNotification() {
+
   }
 
   render() {

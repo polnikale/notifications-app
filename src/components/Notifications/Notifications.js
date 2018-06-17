@@ -6,7 +6,6 @@ function Notifications(props) {
   const { notifications } = props;
 
   const notificationsList = renderNotifications();
-  console.log(notificationsList);
 
   function renderNotifications() {
     return (
@@ -22,7 +21,7 @@ function Notifications(props) {
     const imgSrc = notification.pictures[0] || defaultSvg;
     return (
       <li key={notifications}>
-        <figure>
+        <figure onClick={props.click()}>
           <img src={imgSrc} alt={imgSrc} />
           <figcaption>
             <h5>{notification.heading}</h5>
