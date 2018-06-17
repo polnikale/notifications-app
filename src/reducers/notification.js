@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        picutres: newPictures
+        pictures: newPictures
       }
     case ADD_PHOTO:
       return {
