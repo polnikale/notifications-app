@@ -1,8 +1,6 @@
 import React from 'react';
 import './NotificationCreate.css';
 import defaultSvg from './default.svg';
-import rubbishSvg from './rubbish.svg';
-import plusSvg from './plus.svg';
 
 
 class NotificationCreate extends React.Component {
@@ -11,6 +9,7 @@ class NotificationCreate extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
+    this.removePicture = this.removePicture.bind(this);
     this.supportedImgFormat = ['jpg', 'JPG', 'png' ,'PNG' ,'jpeg' ,'JPEG', 'svg', 'SVG']; 
 
     if (props.info) {
@@ -46,19 +45,28 @@ class NotificationCreate extends React.Component {
     this.setState((prevState) => {
       return {pictures: [...prevState.pictures, url]};
     });
-    console.log(this.state.pictures);
+  }
+
+  removePicture(event) { // вместо event я передаю просто индекс
+    this.setState((prevState) => {
+      let prevPictures = [...prevState.pictures];
+      prevPictures.splice(event, 1);
+      return {pictures: prevPictures};
+    })
   }
   render() {
     let photos = (
       <ul className="photos">
         {this.state.pictures.map((picture, index) => 
-          <li key={picture+index}>
-            <img src={picture} alt={'picture-'+index}/>
+          <li key={picture}> 
+          {/* тут подразумевается, что не будет одинаковых картинок. Собственно, при добавлении фото уже есть такая проверка. Ибо тогда key рушится */}
+            <img src={picture} alt={picture} />
+            <span className="rubbish-svg" onClick={this.removePicture.bind(this, index)}/>
           </li>
         )}
         <li>
           <img src={defaultSvg} className="default-svg" alt="defaultimg"/>
-          <label src={plusSvg} alt="add new svg" htmlFor="newImg" className="plus-svg"/>
+          <label alt="add new svg" htmlFor="newImg" className="plus-svg"/>
           <input type="file" id="newImg" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleAddPhoto}/>
         </li>
       </ul>
