@@ -3,7 +3,7 @@ import defaultSvg from './default.svg';
 import './Phone.css';
 
 function Phone(props) {
-  const { heading, description, picture } = props;
+  const { heading, description, picture } = props.notifInfo;
   const pictureToDisplay = picture || defaultSvg;
   return (
     <div className="phone">
