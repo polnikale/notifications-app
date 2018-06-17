@@ -28,8 +28,8 @@ class NotificationCreate extends React.Component {
   }
 
   handleInput(event) {
-    let input = event.target; // обрабатываю и textarea, и input
-    let stateName = input.getAttribute('name');
+    const input = event.target; // обрабатываю и textarea, и input
+    const stateName = input.getAttribute('name');
     this.setState({
       [stateName]: input.value
     });
@@ -47,11 +47,13 @@ class NotificationCreate extends React.Component {
     });
   }
 
-  handleRemovePhoto(event) { // вместо event я передаю просто индекс
-    const photoSrcUrl = event.target.previousElementSibling.getAttribute('src');
+  handleRemovePhoto(pictureSrc) { // вместо event я передаю просто индекс
     this.setState((prevState) => {
-      let prevPictures = [...prevState.pictures];
-      prevPictures.splice(prevPictures.indexOf(photoSrcUrl), 1);
+      const prevPictures = prevState.pictures.filter((picture) => {
+        console.log(picture);
+        console.log(pictureSrc);
+        return !(picture === pictureSrc);
+      });
       return {pictures: prevPictures};
     })
   }
@@ -61,7 +63,7 @@ class NotificationCreate extends React.Component {
         {this.state.pictures.map((picture, index) => 
           <li key={picture}> 
             <img src={picture} alt={picture} />
-            <span className="rubbish-svg" onClick={this.handleRemovePhoto}/>
+            <span className="rubbish-svg" onClick={this.handleRemovePhoto.bind(this, picture)}/>
           </li>
         )}
         <li>
