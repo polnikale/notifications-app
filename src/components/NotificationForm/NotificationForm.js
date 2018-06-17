@@ -4,7 +4,7 @@ import './NotificationForm.css';
 
 function NotificationForm(props) {
   console.log(props);
-  const { heading, description, pictures } = props.notifInfo;
+  const { heading, description, pictures } = props;
   const photos = renderPhotos(pictures);
   function renderPhotos(pictures) {
     return (
@@ -26,7 +26,7 @@ function NotificationForm(props) {
         />
         <span 
           className="rubbish-svg" 
-          onClick={this.onRemovePhoto.bind(this, picture)}
+          onClick={() => props.onRemovePhoto(picture)}
         />
       </li>
     )

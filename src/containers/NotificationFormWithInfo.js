@@ -3,7 +3,9 @@ import { changeNotifInput, removePhoto, addPhoto } from '../actions'
 import NotificationForm from '../components/NotificationForm/NotificationForm';
 
 const mapStateToProps = (state) => ({
-  notifInfo: state.notification
+  heading: state.notification.heading,
+  description: state.notification.description,
+  pictures: state.notification.pictures
 });
 
 const mapDispatchToProps = (dispatch) => ({

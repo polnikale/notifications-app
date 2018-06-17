@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import Phone from '../components/Phone/Phone';
 
 const mapStateToProps = (state) => ({
-  notifInfo: state.notification
+  heading: state.notification.heading,
+  description: state.notification.description,
+  picture: state.notification.pictures[0]
 });
 
 export default connect(
