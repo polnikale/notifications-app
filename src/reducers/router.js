@@ -1,5 +1,6 @@
 const NOTIFICATION_CREATE = 'NOTIFICATION_CREATE';
 const RETURN_BACK = 'RETURN_BACK';
+const NOTIFICATIONS = 'NOTIFICATIONS';
 
 const initialState = {
   page: 'NOTIFICATION_CREATE'
@@ -10,12 +11,12 @@ const reducer = (state = initialState , action) => {
     case NOTIFICATION_CREATE:
       return {
         page: NOTIFICATION_CREATE,
-        notification: action.notification, //типа сюда, как вариант, может передаваться какой-то data по-типу ссылок, текста(если нужно отредачить уведомление)
+        currentNotification: action.notification,
       };
     case RETURN_BACK:
       return {
-        page: RETURN_BACK,
-        notification: {
+        page: NOTIFICATIONS,
+        currentNotification: {
           heading: '',
           description: '',
           pictures: []

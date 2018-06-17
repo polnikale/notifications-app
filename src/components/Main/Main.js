@@ -16,7 +16,7 @@ class Main extends React.Component {
   renderMain() {
     const { page } = this.props;
     if (page === 'NOTIFICATIONS') {
-      return <Notifications /> 
+      return <Notifications notifications={this.props.notifications}/> 
     } else if (page === 'NOTIFICATION_CREATE') {
       return <NotificationCreate />
     } else {
@@ -65,7 +65,6 @@ class Main extends React.Component {
   render() {
     const pageToRender = this.renderMain();
     const button = this.renderButton();
-    console.log(this.props.notifications);
     
     return(
       <main>
