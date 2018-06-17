@@ -33,11 +33,7 @@ export function removePhoto(pictureSrc) {
   }
 }
 
-export function addPhoto(event) {
-  const photo = event.target.files[0];
-  const pictureSrc = window.URL.createObjectURL(photo);
-  const photoSrcDotArr = photo.name.split('.');
-  const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
+export function addPhoto(pictureSrc) {
   return {
     type: 'ADD_PHOTO',
     pictureSrc

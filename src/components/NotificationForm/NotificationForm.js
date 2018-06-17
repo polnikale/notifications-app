@@ -16,6 +16,16 @@ function NotificationForm(props) {
     )
   }
 
+  function handleAddPhoto(event) {
+    const photo = event.target.files[0];
+    const pictureSrc = window.URL.createObjectURL(photo);
+    const photoSrcDotArr = photo.name.split('.');
+    const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
+    if (!SUPPORTED_IMAGE_FORMATS.includes(photoSrcExt)) return;
+    console.log(pictureSrc);
+    props.onAddPhoto(pictureSrc);
+  }
+
   function renderUserPhoto(picture) {
     return (
       <li key={picture}>
@@ -47,7 +57,7 @@ function NotificationForm(props) {
           type="file" 
           id="newImg" 
           accept="image/x-png,image/gif,image/jpeg" 
-          onChange={props.onAddPhoto}
+          onChange={handleAddPhoto}
         />
       </li>
     )
@@ -74,5 +84,7 @@ function NotificationForm(props) {
     </div>
   )
 }
+
+const SUPPORTED_IMAGE_FORMATS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'bmp', 'BMP', 'gif', 'GIF', 'svg', 'SVG', 'tiff', 'TIFF', 'png', 'PNG'];
 
 export default NotificationForm;

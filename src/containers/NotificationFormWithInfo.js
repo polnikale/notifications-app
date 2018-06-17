@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onInputChange: (event) => dispatch(changeNotifInput(event)),
   onRemovePhoto: (picture) => dispatch(removePhoto(picture)),
-  onAddPhoto: (event) => dispatch(addPhoto(event))
+  onAddPhoto: (picture) => dispatch(addPhoto(picture))
 });
 
 export default connect(
