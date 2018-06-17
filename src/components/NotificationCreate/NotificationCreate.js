@@ -9,7 +9,7 @@ class NotificationCreate extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
-    this.removePicture = this.removePicture.bind(this);
+    this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
     this.supportedImgFormat = ['jpg', 'JPG', 'png' ,'PNG' ,'jpeg' ,'JPEG', 'svg', 'SVG']; 
 
     if (props.info) {
@@ -47,10 +47,11 @@ class NotificationCreate extends React.Component {
     });
   }
 
-  removePicture(event) { // вместо event я передаю просто индекс
+  handleRemovePhoto(event) { // вместо event я передаю просто индекс
+    const photoSrcUrl = event.target.previousElementSibling.getAttribute('src');
     this.setState((prevState) => {
       let prevPictures = [...prevState.pictures];
-      prevPictures.splice(event, 1);
+      prevPictures.splice(prevPictures.indexOf(photoSrcUrl), 1);
       return {pictures: prevPictures};
     })
   }
@@ -59,9 +60,8 @@ class NotificationCreate extends React.Component {
       <ul className="photos">
         {this.state.pictures.map((picture, index) => 
           <li key={picture}> 
-          {/* тут подразумевается, что не будет одинаковых картинок. Собственно, при добавлении фото уже есть такая проверка. Ибо тогда key рушится */}
             <img src={picture} alt={picture} />
-            <span className="rubbish-svg" onClick={this.removePicture.bind(this, index)}/>
+            <span className="rubbish-svg" onClick={this.handleRemovePhoto}/>
           </li>
         )}
         <li>
