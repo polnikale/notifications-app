@@ -1,4 +1,4 @@
-export function toNotifications(notification) {
+export function toNotification(notification) {
   return {
     type: 'NOTIFICATION_CREATE',
     notification
@@ -11,6 +11,12 @@ export function returnBack() {
   }
 }
 
+export function addNotification(notification) {
+  return {
+    type: 'NOTIFICATION_ADD',
+    notification
+  };
+}
 
 export function changeNotifInput(event) {
   return {

@@ -3,7 +3,6 @@ import defaultSvg from './default.svg';
 import './NotificationForm.css';
 
 function NotificationForm(props) {
-  console.log(props);
   const { heading, description, pictures } = props;
   const photos = renderPhotos(pictures);
   function renderPhotos(pictures) {

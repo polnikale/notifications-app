@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
-import { returnBack, toNotifications } from '../actions'
+import { returnBack, toNotification, addNotification } from '../actions'
 import Main from '../components/Main/Main';
 
 const mapStateToProps = (state) => ({
-  heading: state.notification.heading,
-  page: state.page.page
+  notification: state.currentNotification,
+  page: state.page.page,
+  notifications: state.notifications,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   back: () => dispatch(returnBack()),
-  notifications: () => dispatch(toNotifications())
+  toNotification: () => dispatch(toNotification()),
+  notificationSave: (notification) => dispatch(addNotification(notification))
 });
 
 export default connect(

@@ -39,7 +39,8 @@ class Main extends React.Component {
   }
 
   isDisabled() {
-    const { page, heading  } = this.props;
+    const { page  } = this.props;
+    const { heading } = this.props.notification;
     if (page === 'NOTIFICATION_CREATE') {
       if (heading === '') {
         return true;
@@ -50,13 +51,21 @@ class Main extends React.Component {
     return 'something';
     //тут есть три варианта. Если возвращает true/false, значит кнопка вообще может быть disabled => это на создании уведомления. Если же она имеет не булевое значение - находится на "Уведомления"
   }
+
   handleSave() {
-    return false;
+    const disabled = this.isDisabled();
+    if (disabled === false) {// тогда сохраняем notification
+      this.props.notificationSave(this.props.notification);
+      this.props.back();
+    } else { //в этом случае создаем новый
+      this.props.notifications();
+    }
   }
 
   render() {
     const pageToRender = this.renderMain();
     const button = this.renderButton();
+    console.log(this.props.notifications);
     
     return(
       <main>
