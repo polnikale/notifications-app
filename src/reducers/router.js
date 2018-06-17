@@ -2,7 +2,7 @@ const NOTIFICATION_CREATE = 'NOTIFICATION_CREATE';
 const RETURN_BACK = 'RETURN_BACK';
 
 const initialState = {
-  page: 'NOTIFICATIONS'
+  page: 'NOTIFICATION_CREATE'
 }
 
 const reducer = (state = initialState , action) => {

@@ -1,0 +1,26 @@
+.new-btn, .save-btn {
+  padding: 5px 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-style: 13px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.new-btn span, .save-btn span {
+  margin: 0 5px;
+}
+
+.save-btn {
+  padding: 10px 30px;
+  background-color: #ff0047;
+  color: #ffffff;
+}
+
+.save-btn.disabled, .new-btn {
+  background-color: #ffffff;
+  color: #6c6c6c;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+}

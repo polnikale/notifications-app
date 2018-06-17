@@ -1,3 +1,15 @@
 main {
   padding-right: 310px;
+  background-color: #f3f3f3;
+  position: relative;
+}
+header::after {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 100%;
+  opacity: 0.1;
+  top: 80px;
+  left: 0;
+  background-color: #333333;
 }
