@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Main from '../Main/Main';
+import MainWithInfo from '../../containers/MainWithInfo';
 
 function App() {
   return (
     <div className="wrapper">
       <aside></aside>
-      <Main page="NOTIFICATION_CREATE"/>
+      <MainWithInfo/>
     </div>
   );
 }

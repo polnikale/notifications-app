@@ -1,18 +1,16 @@
-export function setPageChange(ref) {
-  if (ref.info) {
-    return {
-      page: {
-        name: ref.to,
-        payload: ref.info
-      }
-    };
-  }
+export function toNotifications(notification) {
   return {
-    page: {
-      name:ref.to
-    }
-  };
+    type: 'NOTIFICATION_CREATE',
+    notification
+  }
 }
+
+export function returnBack() {
+  return {
+    type: 'RETURN_BACK'
+  }
+}
+
 
 export function changeNotifInput(event) {
   return {

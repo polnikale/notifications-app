@@ -1,27 +1,45 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import NotificationCreate from '../NotificationCreate/NotificationCreate';
 import Notifications from '../Notifications/Notifications';
-import HeaderRoute from '../../containers/HeaderRoute';
+import Header from '../Header/Header';
 import './Main.css';
 
 
-function Main(props) {
-  let pageToRender;
-  if (props.page === 'NOTIFICATION_CREATE') {
-    pageToRender = <NotificationCreate /> 
-  } else if (props.page === 'NOTIFICATIONS') {
-    pageToRender = <Notifications />
-  } else {
-    pageToRender = <p>Sorry. I don't know what to do</p>
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
   }
-  return(
-    <Fragment>
+  renderMain(page) {
+    console.log(page);
+    if (page === 'NOTIFICATIONSs') {
+      return <NotificationCreate /> 
+    } else if (page === 'NOTIFICATIONS') {
+      return <NotificationCreate />
+    } else {
+      return <p>Sorry. I don't know what to do</p>
+    }
+  }
+
+  render() {
+    const { page } = this.props;
+
+    const pageToRender = this.renderMain(page);
+    
+    return(
       <main>
-        <HeaderRoute />
+        <Header
+          title='Уведомления'
+        >
+          <button>
+          sasas
+          </button>
+        </Header>
         {pageToRender}
       </main>
-    </Fragment>
-  );
+    );
+  }
 }
 
 export default Main;

@@ -1,20 +1,25 @@
 const NOTIFICATION_CREATE = 'NOTIFICATION_CREATE';
-const NOTIFICATIONS = 'NOTIFICATIONS';
+const RETURN_BACK = 'RETURN_BACK';
 
 const initialState = {
-  name: 'NOTIFICATIONS_CREATE'
+  page: 'NOTIFICATIONS'
 }
 
 const reducer = (state = initialState , action) => {
   switch(action.type) {
     case NOTIFICATION_CREATE:
       return {
-        name: NOTIFICATION_CREATE,
-        ...action.payload //типа сюда, как вариант, может передаваться какой-то data по-типу ссылок, текста(если нужно отредачить уведомление)
+        page: NOTIFICATION_CREATE,
+        notification: action.notification, //типа сюда, как вариант, может передаваться какой-то data по-типу ссылок, текста(если нужно отредачить уведомление)
       };
-    case NOTIFICATIONS:
+    case RETURN_BACK:
       return {
-        name: NOTIFICATIONS //сюда вроде ничего не можна будет передать
+        page: RETURN_BACK,
+        notification: {
+          heading: '',
+          description: '',
+          pictures: []
+        }
       };
     default:
       return state;
