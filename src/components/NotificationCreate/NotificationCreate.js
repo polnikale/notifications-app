@@ -1,6 +1,7 @@
 import React from 'react';
 import './NotificationCreate.css';
 import defaultSvg from './default.svg';
+import Phone from '../Phone/Phone';
 
 
 class NotificationCreate extends React.Component {
@@ -9,8 +10,6 @@ class NotificationCreate extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
-    this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
-    this.supportedImgFormat = ['jpg', 'JPG', 'png' ,'PNG' ,'jpeg' ,'JPEG', 'svg', 'SVG']; 
 
     if (props.info) {
       this.state = {
@@ -41,46 +40,96 @@ class NotificationCreate extends React.Component {
     const url = window.URL.createObjectURL(photo);
     const photoSrcDotArr = photo.name.split('.');
     const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
-    if(!(this.supportedImgFormat.includes(photoSrcExt))) return; //решил сделать еще и тут проверку на тип файла. На всякий
+    if(!(supportedImgFormat.includes(photoSrcExt))) return; //решил сделать еще и тут проверку на тип файла. На всякий
     this.setState((prevState) => {
       return {pictures: [...prevState.pictures, url]};
     });
   }
 
-  handleRemovePhoto(pictureSrc) { // вместо event я передаю просто индекс
+  handleRemovePhoto(pictureSrc) { 
     this.setState((prevState) => {
       const prevPictures = prevState.pictures.filter((picture) => {
-        console.log(picture);
-        console.log(pictureSrc);
         return !(picture === pictureSrc);
       });
       return {pictures: prevPictures};
     })
   }
-  render() {
-    let photos = (
+
+  renderPhotos(pictures) {
+    return (
       <ul className="photos">
-        {this.state.pictures.map((picture, index) => 
-          <li key={picture}> 
-            <img src={picture} alt={picture} />
-            <span className="rubbish-svg" onClick={this.handleRemovePhoto.bind(this, picture)}/>
-          </li>
-        )}
-        <li>
-          <img src={defaultSvg} className="default-svg" alt="defaultimg"/>
-          <label alt="add new svg" htmlFor="newImg" className="plus-svg"/>
-          <input type="file" id="newImg" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleAddPhoto}/>
-        </li>
+        {pictures.map((picture, index) => {
+          return this.renderUserPhoto(picture)
+        })}
+        {this.renderDefaultPhoto()}
       </ul>
     )
+  }
+
+  renderUserPhoto(picture) {
+    return (
+      <li key={picture}>
+        <img 
+          src={picture} 
+          alt={picture} 
+        />
+        <span 
+          className="rubbish-svg" 
+          onClick={this.handleRemovePhoto.bind(this, picture)}
+        />
+      </li>
+    )
+  }
+  renderDefaultPhoto() {
+    return (
+      <li>
+        <img 
+          src={defaultSvg} 
+          className="default-svg" 
+          alt="defaultimg"
+        />
+        <label 
+          alt="add new svg" 
+          htmlFor="newImg" 
+          className="plus-svg"
+        />
+        <input 
+          type="file" 
+          id="newImg" 
+          accept="image/x-png,image/gif,image/jpeg" 
+          onChange={this.handleAddPhoto}
+        />
+      </li>
+    )
+  }
+
+  render() {
+    const { pictures, heading, description } = this.state;
+
+    let photos = this.renderPhotos(pictures);
     return(
       <div className="notifCreate-wrapper">
-        <div className="phone" >sasas</div>
+        <Phone 
+          picture={pictures[0]} 
+          heading={heading}
+          description={description} 
+        />
         <div className="new-notification">
           <h4>Заголовок</h4>
-          <input type="text" name="heading" value={this.state.heading} onInput={this.handleInput} />
+          <input 
+            type="text" 
+            name="heading" 
+            value={this.state.heading} 
+            onInput={this.handleInput} 
+          />
           <h4>Описание</h4>
-          <textarea type="text" rows="6" name="description" value={this.state.description} onInput={this.handleInput} />
+          <textarea 
+            type="text" 
+            rows="6" 
+            name="description" 
+            value={this.state.description} 
+            onInput={this.handleInput} 
+          />
           <h4 className="photos">Фотографии</h4>
           {photos}
         </div>
@@ -88,5 +137,7 @@ class NotificationCreate extends React.Component {
     )
   }
 }
+
+const supportedImgFormat = ['jpg', 'JPG', 'png' ,'PNG' ,'jpeg' ,'JPEG', 'svg', 'SVG']; 
 
 export default NotificationCreate;

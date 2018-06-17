@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import NotificationCreate from '../NotificationCreate/NotificationCreate';
 import Notifications from '../Notifications/Notifications';
 import HeaderRoute from '../../containers/HeaderRoute';
+import './Main.css';
 
 
 function Main(props) {

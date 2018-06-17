@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="272" height="525" viewBox="0 0 272 525">
+    <defs>
+        <path id="b" d="M28.188 0C13.227 0 1.084 12.143 1.084 27.104v30.898c-.449 0-.813 2.242-.813 5v8.431c0 2.761.813 5 .813 5v22.225C.485 98.658 0 100.89 0 103.667v4.076c0 2.766 1.084 5.009 1.084 5.009v14.094c-.599 0-1.084 2.233-1.084 5.008v4.077c0 2.766 1.084 5.009 1.084 5.009v312.236c0 14.96 12.143 27.103 27.104 27.103h175.633c14.96 0 27.103-12.142 27.103-27.103V27.104C230.924 12.143 218.782 0 203.821 0H28.188z"/>
+        <filter id="a" width="145%" height="121.7%" x="-22.5%" y="-7.5%" filterUnits="objectBoundingBox">
+            <feOffset dy="13" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="10.5"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0750962409 0"/>
+            <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter2"/>
+            <feGaussianBlur in="shadowOffsetOuter2" result="shadowBlurOuter2" stdDeviation="7"/>
+            <feColorMatrix in="shadowBlurOuter2" result="shadowMatrixOuter2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0698879076 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="shadowMatrixOuter2"/>
+            </feMerge>
+        </filter>
+        <path id="c" d="M16.099 419h201V60h-201z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(21 11)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#FFF" xlink:href="#b"/>
+        </g>
+        <path fill="#FDFDFD" stroke="#F1F1F1" d="M136.771 37.863a4.35 4.35 0 0 1-4.338-4.338 4.35 4.35 0 0 1 4.338-4.338 4.35 4.35 0 0 1 4.338 4.338 4.35 4.35 0 0 1-4.338 4.338zM109.66 51.42a2.72 2.72 0 0 1-2.712-2.712 2.72 2.72 0 0 1 2.712-2.712 2.72 2.72 0 0 1 2.711 2.712 2.72 2.72 0 0 1-2.711 2.712zm10.848-5.424h32.528a2.716 2.716 0 0 1 2.715 2.712 2.715 2.715 0 0 1-2.715 2.711h-32.528a2.716 2.716 0 0 1-2.715-2.711 2.715 2.715 0 0 1 2.715-2.712zm16.264 394.49c10.493 0 18.979 8.486 18.979 18.979 0 10.492-8.486 18.979-18.979 18.979-10.492 0-18.979-8.487-18.979-18.98 0-10.492 8.487-18.978 18.98-18.978z"/>
+        <path stroke="#F0F0F0" d="M36.599 430.5v-360h202v360h-202z"/>
+    </g>
+</svg>

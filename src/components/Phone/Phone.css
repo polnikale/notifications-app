@@ -1,0 +1,35 @@
+.phone {
+  background-image: url('./phone.svg');
+  object-fit: contain;
+  width: 231px;
+  height: 481px;
+  padding: 20px;
+}
+
+.notification img {
+  width: 178px;
+  opacity: 0.95;
+}
+
+.notification {
+  border-radius: 5px;
+  margin: 80px 25px;
+}
+.notification figcaption {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.57), #ffffff), linear-gradient(rgba(255, 255, 255, 0.81), rgba(255, 255, 255, 0.81));
+  box-shadow: 0 -10px 15px 0 rgba(0, 0, 0, 0.09), inset 0 2px 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.notification h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.notification p {
+  font-size: 8px;
+  color: #9e9e9e;
+}
