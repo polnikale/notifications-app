@@ -18,6 +18,14 @@ export function addNotification(notification) {
   };
 }
 
+export function editExistedNotification(prevNotification, notification) {
+  return {
+    type: 'NOTIFICATION_EDIT_EXISTED',
+    prevNotification,
+    notification
+  };
+}
+
 export function changeNotifInput(event) {
   return {
     type: 'CHANGE_NOTIFICATION_INPUT',

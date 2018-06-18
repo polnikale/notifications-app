@@ -65,16 +65,25 @@ class Main extends React.Component {
   }
 
   checkForIdentity(notif1, notif2) {
-    let picturesAreEqual = notif1.pictures.filter((elem, index) => {
-      return notif1.pictures[index] !== notif2.pictures[index];
-    }).length === 0;
+    let picturesAreEqual;
+    if (notif1.pictures.length !== notif2.pictures.length) {
+      picturesAreEqual = false;
+    } else {
+      picturesAreEqual = notif1.pictures.filter((elem, index) => {
+        return notif1.pictures[index] !== notif2.pictures[index];
+      }).length === 0;
+    }
     if (notif1.heading === notif2.heading && notif1.description === notif2.description && picturesAreEqual) return true;
   }
 
   handleSave() {
     const disabled = this.isDisabled();
     if (disabled === false) {// тогда сохраняем notification
-      this.props.notificationSave(this.props.notification);
+      if (this.props.previousNotification.heading !== undefined) {
+        this.props.notificationEditExisted(this.props.previousNotification, this.props.notification);
+      } else {
+        this.props.notificationSave(this.props.notification);
+      }
       this.props.clearNotification();
       this.props.prevNotificationRemove();
       this.props.back();
@@ -83,9 +92,9 @@ class Main extends React.Component {
     }
   }
 
-  handleEditNotification(notification) {
+  handleEditNotification(notification, index) {
     this.props.addNotificationInfoToEdit(notification);
-    this.props.setPreviousNotification(notification);
+    this.props.setPreviousNotification({...notification, index});
     this.props.toNotification();
   }
 

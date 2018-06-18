@@ -21,7 +21,7 @@ function Notifications(props) {
   function renderNotificationCard(notification, index) {
     const imgSrc = notification.pictures[0] || defaultSvg;
     return (
-      <li key={index} onClick={() => props.click(notification)}>
+      <li key={index} onClick={() => props.click(notification, index)}>
         <figure>
           <img src={imgSrc} alt={imgSrc} />
           <figcaption>
