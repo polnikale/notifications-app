@@ -12,7 +12,7 @@ function Button(props) {
 
   function handleClick() {
     if (disabled === true) return false;
-    props.onPress();
+    onPress();
   }
 
   const classes = computeClasses();

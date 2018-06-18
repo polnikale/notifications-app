@@ -13,13 +13,15 @@ class Main extends React.Component {
 
     this.handleSave = this.handleSave.bind(this);
     this.handleEditNotification = this.handleEditNotification.bind(this);
+    this.handleNewCard = this.handleNewCard.bind(this);
   }
   renderMain() {
     const { page } = this.props;
     if (page === 'NOTIFICATIONS') {
       return <Notifications 
                 notifications={this.props.notifications}
-                click={this.handleEditNotification}/> 
+                click={this.handleEditNotification}
+                defaultCardClick={this.handleNewCard}/> 
     } else if (page === 'NOTIFICATION_CREATE') {
       return <NotificationCreate />
     } else {
@@ -42,7 +44,6 @@ class Main extends React.Component {
   }
 
   isNotSaveable() {
-    console.log('PROP', this.props.previousNotification);
     if (this.props.previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
       return this.checkForIdentity(this.props.previousNotification, this.props.notification) || this.props.notification.heading === '';
     } else {
@@ -52,7 +53,6 @@ class Main extends React.Component {
 
   isDisabled() {
     const { page  } = this.props;
-    const { heading } = this.props.notification;
     if (page === 'NOTIFICATION_CREATE') {
       if (this.isNotSaveable()) {
         return true;
@@ -90,6 +90,10 @@ class Main extends React.Component {
     } else { //в этом случае создаем новый
       this.props.toNotification();
     }
+  }
+
+  handleNewCard() {
+    this.props.toNotification();
   }
 
   handleEditNotification(notification, index) {

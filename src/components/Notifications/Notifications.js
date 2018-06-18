@@ -1,5 +1,6 @@
 import React from 'react';
 import defaultSvg from './picture.svg';
+import plusSvg from './plus.svg';
 import './Notifications.css';
 
 function Notifications(props) {
@@ -33,7 +34,15 @@ function Notifications(props) {
   }
 
   function renderCreateNewCard() {
-
+    return (
+    <li className="plus" onClick={() => props.defaultCardClick()}>
+      <figure>
+      <img src={plusSvg} alt="newNotification" />
+        <figcaption>
+        <h6>Создать еще одну рассылку</h6>
+        </figcaption>
+      </figure>
+    </li>)
   }
   
   return (
