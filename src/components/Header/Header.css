@@ -12,3 +12,13 @@ header h2 {
   margin-left: 20px;
 }
 
+header .back {
+  height: 100%;
+  cursor: pointer;
+  padding-right: 30px;
+  padding-left: 30px;
+  opacity: 0.5;
+  background-color: #ffffff;
+  border: none;
+}
+

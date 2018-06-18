@@ -14,6 +14,7 @@ class Main extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleEditNotification = this.handleEditNotification.bind(this);
     this.handleNewCard = this.handleNewCard.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
   renderMain() {
     const { page } = this.props;
@@ -40,6 +41,19 @@ class Main extends React.Component {
       )
     } else if (page === 'NOTIFICATION_CREATE') {
       return 'Сохранить';
+    } 
+  }
+
+  renderHeaderText() {
+    const { page } = this.props;
+    if (page === 'NOTIFICATIONS') {
+      return 'УВЕДОМЛЕНИЯ'
+    } else if (page === 'NOTIFICATION_CREATE') {
+      if (this.props.previousNotification.heading !== undefined) {
+        return 'Редактирование';
+      } else {
+        return 'Новое';
+      }
     } 
   }
 
@@ -84,12 +98,16 @@ class Main extends React.Component {
       } else {
         this.props.notificationSave(this.props.notification);
       }
-      this.props.clearNotification();
-      this.props.prevNotificationRemove();
-      this.props.back();
+      this.goBack();
     } else { //в этом случае создаем новый
       this.props.toNotification();
     }
+  }
+
+  goBack() {
+    this.props.clearNotification();
+    this.props.prevNotificationRemove();
+    this.props.back();
   }
 
   handleNewCard() {
@@ -105,11 +123,13 @@ class Main extends React.Component {
   render() {
     const pageToRender = this.renderMain();
     const button = this.renderButton();
+    const headerTitle = this.renderHeaderText();
     
     return(
       <main>
         <Header
-          title='Уведомления'
+          title={headerTitle}
+          onBack={this.goBack}
         >
           <Button 
             disabled={this.isDisabled()}
