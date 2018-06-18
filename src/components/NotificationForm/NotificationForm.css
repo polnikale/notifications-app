@@ -102,7 +102,13 @@ h4.photos::before {
   cursor: pointer;
 }
 
+
+
 .new-notification .rubbish-svg {
+  width: 23px;
+  height: 23px;
+  right: -11.5px;
+  top: -11.5px;
   background-image: url(./rubbish.svg);
   z-index: 10;
 }
