@@ -13,3 +13,23 @@ header::after {
   left: 0;
   background-color: #333333;
 }
+
+@media (max-width: 1180px) {
+  main {
+    padding-right: 120px;
+  }
+}
+
+@media (max-width: 960px) {
+  main {
+    padding-right: 70px;
+  }
+}
+
+@media (max-width: 680px) {
+  main {
+    padding-right: 20px;
+  }
+}
+
+
