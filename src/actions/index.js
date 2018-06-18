@@ -1,6 +1,6 @@
 export function toNotification(notification) {
   return {
-    type: 'NOTIFICATION_CREATE',
+    type: 'NOTIFICATION_EDIT',
     notification
   }
 }
@@ -26,6 +26,13 @@ export function changeNotifInput(event) {
   };
 }
 
+export function addNotificationInfo(notification) {
+  return {
+    type: 'ADD_NOTIFICATION_INFO',
+    notification
+  }
+}
+
 export function removePhoto(pictureSrc) {
   return {
     type: 'REMOVE_PHOTO',
@@ -44,4 +51,17 @@ export function clearNotification() {
   return {
     type: 'CLEAR_NOTIFICATION'
   };
+}
+
+export function removePreviousNotification() {
+  return {
+    type: 'REMOVE_PREVIOUS_NOTIFICATION'
+  }
+}
+
+export function setPreviousNotification(notification) {
+  return {
+    type: 'SET_PREVIOUS_NOTIFICATION',
+    notification
+  }
 }

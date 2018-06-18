@@ -8,6 +8,7 @@ const CHANGE_NOTIFICATION_INPUT = 'CHANGE_NOTIFICATION_INPUT';
 const REMOVE_PHOTO = 'REMOVE_PHOTO';
 const ADD_PHOTO = 'ADD_PHOTO';
 const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
+const ADD_NOTIFICATION_INFO = 'ADD_NOTIFICATION_INFO';
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
@@ -32,6 +33,8 @@ const reducer = (state = initialState, action) => {
       }
     case CLEAR_NOTIFICATION:
       return initialState;
+    case ADD_NOTIFICATION_INFO:
+      return action.notification;
     default:
       return state;
   }

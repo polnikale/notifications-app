@@ -9,7 +9,7 @@ function NotificationForm(props) {
     return (
       <ul className="photos">
         {pictures.map((picture, index) => {
-          return renderUserPhoto(picture)
+          return renderUserPhoto(picture, index)
         })}
         {renderDefaultPhoto()}
       </ul>
@@ -25,7 +25,7 @@ function NotificationForm(props) {
     props.onAddPhoto(pictureSrc);
   }
 
-  function renderUserPhoto(picture) {
+  function renderUserPhoto(picture, index) {
     return (
       <li key={picture}>
         <img 
@@ -63,6 +63,7 @@ function NotificationForm(props) {
   }
   return (
     <div className="new-notification">
+      {props.heading}
       <h4>Заголовок</h4>
       <input 
         type="text" 

@@ -41,11 +41,17 @@ class Main extends React.Component {
     } 
   }
 
+  isNotSaveable() {
+    if (this.props.currentNotification) {//тогда нужно проверить, не является ли он тем же самым
+
+    }
+  }
+
   isDisabled() {
     const { page  } = this.props;
     const { heading } = this.props.notification;
     if (page === 'NOTIFICATION_CREATE') {
-      if (heading === '') {
+      if (this.isNotSaveable()) {
         return true;
       } else {
         return false
@@ -60,19 +66,23 @@ class Main extends React.Component {
     if (disabled === false) {// тогда сохраняем notification
       this.props.notificationSave(this.props.notification);
       this.props.clearNotification();
+      this.props.prevNotificationRemove();
       this.props.back();
     } else { //в этом случае создаем новый
       this.props.toNotification();
     }
   }
 
-  handleEditNotification() {
-
+  handleEditNotification(notification) {
+    this.props.toNotification();
+    this.props.addNotificationInfoToEdit(notification);
+    this.props.setPreviousNotification(notification);
   }
 
   render() {
     const pageToRender = this.renderMain();
     const button = this.renderButton();
+    console.log(this.props);
     
     return(
       <main>

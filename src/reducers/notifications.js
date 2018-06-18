@@ -8,7 +8,7 @@ const reducer = (state = initialState, action) => {
       return [...state, action.notification]
     default:
       return state;  
-  };
+  }
 }
 
 export default reducer;
