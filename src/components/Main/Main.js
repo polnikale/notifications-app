@@ -59,6 +59,7 @@ class Main extends React.Component {
     const disabled = this.isDisabled();
     if (disabled === false) {// тогда сохраняем notification
       this.props.notificationSave(this.props.notification);
+      this.props.clearNotification();
       this.props.back();
     } else { //в этом случае создаем новый
       this.props.toNotification();

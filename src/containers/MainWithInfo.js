@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { returnBack, toNotification, addNotification } from '../actions'
+import { returnBack, toNotification, addNotification, clearNotification } from '../actions'
 import Main from '../components/Main/Main';
 
 const mapStateToProps = (state) => ({
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   back: () => dispatch(returnBack()),
   toNotification: () => dispatch(toNotification()),
-  notificationSave: (notification) => dispatch(addNotification(notification))
+  notificationSave: (notification) => dispatch(addNotification(notification)),
+  clearNotification: () => dispatch(clearNotification())
 });
 
 export default connect(

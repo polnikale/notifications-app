@@ -7,6 +7,7 @@ const initialState = {
 const CHANGE_NOTIFICATION_INPUT = 'CHANGE_NOTIFICATION_INPUT';
 const REMOVE_PHOTO = 'REMOVE_PHOTO';
 const ADD_PHOTO = 'ADD_PHOTO';
+const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
@@ -29,6 +30,8 @@ const reducer = (state = initialState, action) => {
         description: state.description,
         pictures: [...state.pictures, action.pictureSrc]
       }
+    case CLEAR_NOTIFICATION:
+      return initialState;
     default:
       return state;
   }

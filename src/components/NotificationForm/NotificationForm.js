@@ -22,7 +22,6 @@ function NotificationForm(props) {
     const photoSrcDotArr = photo.name.split('.');
     const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
     if (!SUPPORTED_IMAGE_FORMATS.includes(photoSrcExt)) return;
-    console.log(pictureSrc);
     props.onAddPhoto(pictureSrc);
   }
 

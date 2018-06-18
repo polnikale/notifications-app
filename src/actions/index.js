@@ -39,3 +39,9 @@ export function addPhoto(pictureSrc) {
     pictureSrc
   };
 }
+
+export function clearNotification() {
+  return {
+    type: 'CLEAR_NOTIFICATION'
+  };
+}
