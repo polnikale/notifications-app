@@ -69,7 +69,7 @@ function NotificationForm(props) {
         type="text" 
         name="heading" 
         value={heading} 
-        onInput={props.onInputChange} 
+        onChange={props.onInputChange} 
       />
       <h4>Описание</h4>
       <textarea 
@@ -77,7 +77,7 @@ function NotificationForm(props) {
         rows="6" 
         name="description" 
         value={description} 
-        onInput={props.onInputChange} 
+        onChange={props.onInputChange} 
       />
       <h4 className="photos">Фотографии</h4>
         {photos}

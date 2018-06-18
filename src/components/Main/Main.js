@@ -42,8 +42,11 @@ class Main extends React.Component {
   }
 
   isNotSaveable() {
-    if (this.props.currentNotification) {//тогда нужно проверить, не является ли он тем же самым
-
+    console.log('PROP', this.props.previousNotification);
+    if (this.props.previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
+      return this.checkForIdentity(this.props.previousNotification, this.props.notification) || this.props.notification.heading === '';
+    } else {
+      return this.props.notification.heading === '';
     }
   }
 
@@ -61,6 +64,13 @@ class Main extends React.Component {
     //тут есть три варианта. Если возвращает true/false, значит кнопка вообще может быть disabled => это на создании уведомления. Если же она имеет не булевое значение - находится на "Уведомления"
   }
 
+  checkForIdentity(notif1, notif2) {
+    let picturesAreEqual = notif1.pictures.filter((elem, index) => {
+      return notif1.pictures[index] !== notif2.pictures[index];
+    }).length === 0;
+    if (notif1.heading === notif2.heading && notif1.description === notif2.description && picturesAreEqual) return true;
+  }
+
   handleSave() {
     const disabled = this.isDisabled();
     if (disabled === false) {// тогда сохраняем notification
@@ -74,15 +84,14 @@ class Main extends React.Component {
   }
 
   handleEditNotification(notification) {
-    this.props.toNotification();
     this.props.addNotificationInfoToEdit(notification);
     this.props.setPreviousNotification(notification);
+    this.props.toNotification();
   }
 
   render() {
     const pageToRender = this.renderMain();
     const button = this.renderButton();
-    console.log(this.props);
     
     return(
       <main>
