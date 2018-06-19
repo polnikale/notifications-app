@@ -40,7 +40,7 @@ class Main extends React.Component {
         </Fragment>
       )
     } else if (page === 'NOTIFICATION_CREATE') {
-      return 'Сохранить';
+      return <span>Сохранить</span>;
     } 
   }
 

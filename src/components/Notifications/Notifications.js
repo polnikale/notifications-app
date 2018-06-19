@@ -24,13 +24,25 @@ function Notifications(props) {
     return (
       <li key={index} onClick={() => props.click(notification, index)}>
         <figure>
-          <img src={imgSrc} alt={imgSrc} />
+          {renderPicture(notification.pictures[0])}
           <figcaption>
             <h5>{notification.heading}</h5>
           </figcaption>
         </figure>
       </li>
     );
+  }
+
+  function renderPicture(picture) {
+    return picture ? (
+      <div className="img">
+        <img src={picture} alt={picture}/>
+      </div>
+    ) : (
+      <div className="img defaultImg">
+        <img src={defaultSvg} alt={defaultSvg}/>
+      </div>
+    )
   }
 
   function renderCreateNewCard() {

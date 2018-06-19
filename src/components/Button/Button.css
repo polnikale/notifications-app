@@ -3,24 +3,31 @@
   border-radius: 4px;
   display: flex;
   align-items: center;
-  font-style: 13px;
+  font-size: 13px;
   cursor: pointer;
   outline: none;
   border: none;
+  box-sizing: border-box;
 }
 
-.new-btn span, .save-btn span {
+.new-btn span{
   margin: 0 5px;
 }
 
+.save-btn span {
+  margin: 0 auto;
+}
+
 .save-btn {
-  padding: 10px 30px;
+  width: 140px;
+  height: 34.5px;
   background-color: #ff0047;
   color: #ffffff;
 }
 
 .save-btn.disabled, .new-btn {
   background-color: #ffffff;
+  opacity: 0.8;
   color: #6c6c6c;
   border: solid 1px rgba(0, 0, 0, 0.1);
 }

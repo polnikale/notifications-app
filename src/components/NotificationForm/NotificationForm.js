@@ -64,7 +64,6 @@ function NotificationForm(props) {
   }
   return (
     <div className="new-notification">
-      {props.heading}
       <h4>Заголовок</h4>
       <input 
         type="text" 
