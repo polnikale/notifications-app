@@ -47,7 +47,7 @@ h4.photos::before {
   position: absolute;
   content: '';
   background-color: #282c37;
-  height: 2px;
+  height: 1px;
   width: 100%;
   top: -16px;
   left: 0;
