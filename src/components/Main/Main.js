@@ -59,10 +59,11 @@ class Main extends React.Component {
   }
 
   isNotSaveable() {
-    if (this.props.previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
-      return this.checkForIdentity(this.props.previousNotification, this.props.notification) || this.props.notification.heading === '';
+    const { previousNotification, notification } = this.props;
+    if (previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
+      return this.checkForIdentity(previousNotification, notification) || notification.heading === '';
     } else {
-      return this.props.notification.heading === '';
+      return notification.heading === '';
     }
   }
 
@@ -92,12 +93,14 @@ class Main extends React.Component {
   }
 
   handleSave() {
+    const { previousNotification, notification, notificationEditExisted, notificationSave, toNotification } = this.props;
+
     const disabled = this.isDisabled();
     if (disabled === false) {// тогда сохраняем notification
-      if (this.props.previousNotification.heading !== undefined) {
-        this.props.notificationEditExisted(this.props.previousNotification, this.props.notification);
+      if (previousNotification.heading !== undefined) {
+        notificationEditExisted(previousNotification, notification);
       } else {
-        this.props.notificationSave(this.props.notification);
+        notificationSave(notification);
       }
       this.goBack();
     } else { //в этом случае создаем новый
@@ -106,19 +109,25 @@ class Main extends React.Component {
   }
 
   goBack() {
-    this.props.clearNotification();
-    this.props.prevNotificationRemove();
-    this.props.back();
+    const { clearNotification, previousNotificationRemove, back } = this.props;
+
+    clearNotification();
+    prevNotificationRemove();
+    back();
   }
 
   handleNewCard() {
-    this.props.toNotification();
+    const { toNotification } = this.props;
+
+    toNotification();
   }
 
   handleEditNotification(notification, index) {
-    this.props.addNotificationInfoToEdit(notification);
-    this.props.setPreviousNotification({...notification, index});
-    this.props.toNotification();
+    const { addNotificationInfoToEdit, setPreviousNotification, toNotification } = this.props;
+
+    addNotificationInfoToEdit(notification);
+    setPreviousNotification({...notification, index});
+    toNotification();
   }
 
   render() {

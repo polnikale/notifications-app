@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   addNotificationInfoToEdit: (notification) => dispatch(addNotificationInfo(notification)),
   
-  prevNotificationRemove: () => dispatch(removePreviousNotification()),
+  previousNotificationRemove: () => dispatch(removePreviousNotification()),
   setPreviousNotification: (notification) => dispatch(setPreviousNotification(notification)),
 });
 

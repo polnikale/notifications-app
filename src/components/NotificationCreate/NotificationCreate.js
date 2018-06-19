@@ -8,7 +8,7 @@ import Notification from '../../containers/Notification';
 class NotificationCreate extends React.Component {
   render() {
     return(
-      <div className="notifCreate-wrapper">
+      <div className="notificationCreate-wrapper">
         <Phone/>
         <Notification />
       </div>

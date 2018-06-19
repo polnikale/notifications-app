@@ -54,18 +54,18 @@
 
 
 
-.notifications .img {
+.notifications .image {
   width: 100%;
   height: 160px;
   box-sizing: border-box;
   border-bottom: solid 1px rgba(106, 117, 131, 0.16);
 }
 
-.notifications .defaultImg {
+.notifications .defaultImage {
   padding: 28px 0;
 }
 
-.notifications .defaultImg img {
+.notifications .defaultImage img {
   display: block;
   margin: auto;
   width: 146px;

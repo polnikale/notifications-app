@@ -26,11 +26,11 @@ class NotificationForm extends React.Component {
 
     const photo = event.target.files[0];
     if (!photo) return;
-    const pictureSrc = window.URL.createObjectURL(photo);
-    const photoSrcDotArr = photo.name.split('.');
-    const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
-    if (!SUPPORTED_IMAGE_FORMATS.includes(photoSrcExt)) return;
-    onAddPhoto(pictureSrc);
+    const pictureSource = window.URL.createObjectURL(photo);
+    const photoSourceDotArr = photo.name.split('.');
+    const photoSourceExt = photoSourceDotArr[photoSourceDotArr.length - 1];
+    if (!SUPPORTED_IMAGE_FORMATS.includes(photoSourceExt)) return;
+    onAddPhoto(pictureSource);
   }
 
   renderUserPhoto(picture) {
@@ -55,16 +55,16 @@ class NotificationForm extends React.Component {
         <img 
           src={defaultSvg} 
           className="default-svg" 
-          alt="defaultimg"
+          alt="default image"
         />
         <label 
           alt="add new svg" 
-          htmlFor="newImg" 
+          htmlFor="newImage" 
           className="plus-svg"
         />
         <input 
           type="file" 
-          id="newImg" 
+          id="newImage" 
           accept="image/x-png,image/gif,image/jpeg" 
           onChange={this.handleAddPhoto}
         />
