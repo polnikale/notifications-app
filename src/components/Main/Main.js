@@ -112,7 +112,7 @@ class Main extends React.Component {
     const { clearNotification, previousNotificationRemove, back } = this.props;
 
     clearNotification();
-    prevNotificationRemove();
+    previousNotificationRemove();
     back();
   }
 
