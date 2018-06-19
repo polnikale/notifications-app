@@ -1,6 +1,5 @@
 header {
   height: 80px;
-  font-family: 'Open Sans', sans-serif;
   display: flex;
   justify-content: space-between;
   padding-right: 10px;
@@ -15,8 +14,7 @@ header h2 {
 header .back {
   height: 100%;
   cursor: pointer;
-  padding-right: 30px;
-  padding-left: 30px;
+  width: 73px;
   opacity: 0.5;
   background-color: #ffffff;
   border: none;
