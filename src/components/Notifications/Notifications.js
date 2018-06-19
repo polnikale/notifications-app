@@ -1,4 +1,5 @@
 import React from 'react';
+
 import defaultSvg from './picture.svg';
 import plusSvg from './plus.svg';
 import './Notifications.css';

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import defaultSvg from './default.svg';
 import './NotificationForm.css';
 
