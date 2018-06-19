@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import MainWithInfo from '../../containers/MainWithInfo';
+import Main from '../../containers/Main';
 
 class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
         <aside/>
-        <MainWithInfo/>
+        <Main/>
       </div>
     );
   }

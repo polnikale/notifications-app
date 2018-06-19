@@ -1,15 +1,15 @@
 import React from 'react';
 import './NotificationCreate.css';
-import PhoneWithInfo from '../../containers/PhoneWithInfo';
-import NotificationFormWithInfo from '../../containers/NotificationFormWithInfo';
+import Phone from '../../containers/Phone';
+import Notification from '../../containers/Notification';
 
 
 class NotificationCreate extends React.Component {
   render() {
     return(
       <div className="notifCreate-wrapper">
-        <PhoneWithInfo/>
-        <NotificationFormWithInfo />
+        <Phone/>
+        <Notification />
       </div>
     )
   }
