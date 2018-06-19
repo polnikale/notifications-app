@@ -2,11 +2,9 @@ import React from 'react';
 import './Header.css';
 import leftArrow from './leftArrow.svg';
 
-function Header(props) {
-  const { title, children, onBack } = props;
-  const leftSide = renderLeft();
+class Header extends React.Component {
 
-  function renderLeft() {
+  renderLeft(title, onBack) {
     if (title !== 'УВЕДОМЛЕНИЯ') {
       return (
         <div className="left">
@@ -20,12 +18,17 @@ function Header(props) {
       return <h2>{title}</h2>;
     }
   }
-  return (
-    <header>
-      {leftSide}
-      {children}
-    </header>
-  );
+  render() {
+    const { title, children, onBack } = this.props;
+    const leftSide = this.renderLeft(title, onBack);
+
+    return (
+      <header>
+        {leftSide}
+        {children}
+      </header>
+    );
+  }
 }
 
 export default Header;

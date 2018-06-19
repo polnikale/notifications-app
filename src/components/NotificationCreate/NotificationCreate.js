@@ -4,13 +4,15 @@ import PhoneWithInfo from '../../containers/PhoneWithInfo';
 import NotificationFormWithInfo from '../../containers/NotificationFormWithInfo';
 
 
-function NotificationCreate() {
-  return(
-    <div className="notifCreate-wrapper">
-      <PhoneWithInfo/>
-      <NotificationFormWithInfo />
-    </div>
-  )
+class NotificationCreate extends React.Component {
+  render() {
+    return(
+      <div className="notifCreate-wrapper">
+        <PhoneWithInfo/>
+        <NotificationFormWithInfo />
+      </div>
+    )
+  }
 }
 
 

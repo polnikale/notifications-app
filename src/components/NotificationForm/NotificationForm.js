@@ -2,31 +2,39 @@ import React from 'react';
 import defaultSvg from './default.svg';
 import './NotificationForm.css';
 
-function NotificationForm(props) {
-  const { heading, description, pictures } = props;
-  const photos = renderPhotos(pictures);
-  function renderPhotos(pictures) {
+class NotificationForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleAddPhoto = this.handleAddPhoto.bind(this);
+  }
+
+  renderPhotos(pictures) {
     return (
       <ul className="photos">
         {pictures.map((picture, index) => {
-          return renderUserPhoto(picture, index)
+          return this.renderUserPhoto(picture, index)
         })}
-        {renderDefaultPhoto()}
+        {this.renderDefaultPhoto()}
       </ul>
     )
   }
 
-  function handleAddPhoto(event) {
+  handleAddPhoto(event) {
+    const { onAddPhoto } = this.props;
+
     const photo = event.target.files[0];
     if (!photo) return;
     const pictureSrc = window.URL.createObjectURL(photo);
     const photoSrcDotArr = photo.name.split('.');
     const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
     if (!SUPPORTED_IMAGE_FORMATS.includes(photoSrcExt)) return;
-    props.onAddPhoto(pictureSrc);
+    onAddPhoto(pictureSrc);
   }
 
-  function renderUserPhoto(picture, index) {
+  renderUserPhoto(picture) {
+    const { onRemovePhoto } = this.props;
+
     return (
       <li key={picture}>
         <img 
@@ -35,12 +43,12 @@ function NotificationForm(props) {
         />
         <span 
           className="rubbish-svg" 
-          onClick={() => props.onRemovePhoto(picture)}
+          onClick={() => onRemovePhoto(picture)}
         />
       </li>
     )
   }
-  function renderDefaultPhoto() {
+  renderDefaultPhoto() {
     return (
       <li>
         <img 
@@ -57,32 +65,36 @@ function NotificationForm(props) {
           type="file" 
           id="newImg" 
           accept="image/x-png,image/gif,image/jpeg" 
-          onChange={handleAddPhoto}
+          onChange={this.handleAddPhoto}
         />
       </li>
     )
   }
-  return (
-    <div className="new-notification">
-      <h4>Заголовок</h4>
-      <input 
-        type="text" 
-        name="heading" 
-        value={heading} 
-        onChange={props.onInputChange} 
-      />
-      <h4>Описание</h4>
-      <textarea 
-        type="text" 
-        rows="6" 
-        name="description" 
-        value={description} 
-        onChange={props.onInputChange} 
-      />
-      <h4 className="photos">Фотографии</h4>
-        {photos}
-    </div>
-  )
+  render() {
+    const { heading, description, pictures, onInputChange } = this.props;
+    const photos = this.renderPhotos(pictures);
+    return (
+      <div className="new-notification">
+        <h4>Заголовок</h4>
+        <input 
+          type="text" 
+          name="heading" 
+          value={heading} 
+          onChange={onInputChange} 
+        />
+        <h4>Описание</h4>
+        <textarea 
+          type="text" 
+          rows="6" 
+          name="description" 
+          value={description} 
+          onChange={onInputChange} 
+        />
+        <h4 className="photos">Фотографии</h4>
+          {photos}
+      </div>
+    )
+  }
 }
 
 const SUPPORTED_IMAGE_FORMATS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'bmp', 'BMP', 'gif', 'GIF', 'svg', 'SVG', 'tiff', 'TIFF', 'png', 'PNG'];
