@@ -4,21 +4,25 @@ import leftArrow from './leftArrow.svg';
 
 function Header(props) {
   const { title, children, onBack } = props;
-  const backBtn = renderBack();
+  const leftSide = renderLeft();
 
-  function renderBack() {
+  function renderLeft() {
     if (title !== 'УВЕДОМЛЕНИЯ') {
       return (
-        <button onClick={onBack} className="back">
-          <img src={leftArrow} alt="back" />
-        </button>
+        <div className="left">
+          <button onClick={onBack} className="back">
+            <img src={leftArrow} alt="back" />
+          </button>
+          <h2>{title}</h2>
+        </div>
       )
+    } else {
+      return <h2>{title}</h2>;
     }
   }
   return (
     <header>
-      {backBtn}
-      <h2>{title}</h2>
+      {leftSide}
       {children}
     </header>
   );
