@@ -5,7 +5,6 @@ import plusSvg from './plus.svg';
 import './Notifications.css';
 
 class Notifications extends React.Component {
-
   renderNotifications() {
     const { notifications } = this.props;
     

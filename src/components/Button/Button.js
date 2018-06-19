@@ -2,29 +2,41 @@ import React from 'react';
 
 import './Button.css';
 
-function Button(props) {
-  const { disabled, onPress, children } = props;
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
 
-  function computeClasses() {
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  computeClasses() {
+    const { disabled } = this.props;
+
     if (disabled === true) return 'save-btn disabled';
     else if (disabled === false ) return 'save-btn';
     else return 'new-btn';
   }
 
-  function handleClick() {
+  handleClick() {
+    const { disabled, onPress } = this.props;
+
     if (disabled === true) return false;
     onPress();
   }
 
-  const classes = computeClasses();
-  return (
-    <button 
-      className={classes} 
-      onClick={handleClick}
-    >
-      {children}
-    </button>
-  )
+  render() {
+    const { children } = this.props;
+
+    const classes = this.computeClasses();
+    return (
+      <button 
+        className={classes} 
+        onClick={this.handleClick}
+      >
+        {children}
+      </button>
+    )
+  }
 }
 
 export default Button;

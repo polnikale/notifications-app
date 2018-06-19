@@ -4,7 +4,6 @@ import './Header.css';
 import leftArrow from './leftArrow.svg';
 
 class Header extends React.Component {
-
   renderLeft(title, onBack) {
     if (title !== 'УВЕДОМЛЕНИЯ') {
       return (

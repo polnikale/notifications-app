@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
     case REMOVE_PHOTO:
       return {
         ...state,
-        pictures: state.pictures.filter((picture) => picture !== action.pictureSrc);
+        pictures: state.pictures.filter((picture) => picture !== action.pictureSrc),
       }
     case ADD_PHOTO:
       return {
