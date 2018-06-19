@@ -17,13 +17,13 @@ class Main extends React.Component {
     this.goBack = this.goBack.bind(this);
   }
   renderMain() {
-    const { page } = this.props;
-    if (page === 'NOTIFICATIONS') {
+    const { router } = this.props;
+    if (router === 'NOTIFICATIONS') {
       return <Notifications 
                 notifications={this.props.notifications}
                 click={this.handleEditNotification}
                 defaultCardClick={this.handleNewCard}/> 
-    } else if (page === 'NOTIFICATION_CREATE') {
+    } else if (router === 'NOTIFICATION_CREATE') {
       return <NotificationCreate />
     } else {
       return <p>Sorry. I don't know what to do</p>
@@ -31,24 +31,24 @@ class Main extends React.Component {
   }
 
   renderButton() {
-    const { page } = this.props;
-    if (page === 'NOTIFICATIONS') {
+    const { router } = this.props;
+    if (router === 'NOTIFICATIONS') {
       return (
         <Fragment>
           <img src={plus} alt="plus" /> 
           <span>Создать</span>
         </Fragment>
       )
-    } else if (page === 'NOTIFICATION_CREATE') {
+    } else if (router === 'NOTIFICATION_CREATE') {
       return <span>Сохранить</span>;
     } 
   }
 
   renderHeaderText() {
-    const { page } = this.props;
-    if (page === 'NOTIFICATIONS') {
+    const { router } = this.props;
+    if (router === 'NOTIFICATIONS') {
       return 'УВЕДОМЛЕНИЯ'
-    } else if (page === 'NOTIFICATION_CREATE') {
+    } else if (router === 'NOTIFICATION_CREATE') {
       if (this.props.previousNotification.heading !== undefined) {
         return 'Редактирование';
       } else {
@@ -66,8 +66,8 @@ class Main extends React.Component {
   }
 
   isDisabled() {
-    const { page  } = this.props;
-    if (page === 'NOTIFICATION_CREATE') {
+    const { router  } = this.props;
+    if (router === 'NOTIFICATION_CREATE') {
       if (this.isNotSaveable()) {
         return true;
       } else {

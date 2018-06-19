@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
-import {returnBack, 
-        toNotification, 
-        addNotification, 
-        clearNotification, 
-        addNotificationInfo, 
-        removePreviousNotification, 
-        setPreviousNotification, 
-        editExistedNotification 
-       } from '../actions'
+import {
+  returnBack, 
+  toNotification, 
+  addNotification, 
+  clearNotification, 
+  addNotificationInfo, 
+  removePreviousNotification, 
+  setPreviousNotification, 
+  editExistedNotification 
+} from '../actions'
 import Main from '../components/Main/Main';
 
 const mapStateToProps = (state) => ({
   notification: state.currentNotification,
-  page: state.page.page,
+  router: state.router,
   notifications: state.notifications,
   previousNotification: state.previousNotification
 });
