@@ -18,6 +18,7 @@ function NotificationForm(props) {
 
   function handleAddPhoto(event) {
     const photo = event.target.files[0];
+    if (!photo) return;
     const pictureSrc = window.URL.createObjectURL(photo);
     const photoSrcDotArr = photo.name.split('.');
     const photoSrcExt = photoSrcDotArr[photoSrcDotArr.length - 1];
