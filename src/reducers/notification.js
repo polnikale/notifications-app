@@ -24,8 +24,7 @@ const reducer = (state = initialState, action) => {
       }
     case ADD_PHOTO:
       return {
-        heading: state.heading,
-        description: state.description,
+        ...state,
         pictures: [...state.pictures, action.pictureSrc]
       }
     case CLEAR_NOTIFICATION:
