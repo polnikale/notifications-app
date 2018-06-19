@@ -8,18 +8,10 @@ const reducer = (state = initialState, action) => {
     case NOTIFICATION_ADD:
       return [...state, action.notification]
     case NOTIFICATION_EDIT_EXISTED:
-      const editedNotification = action.notification;
-      const newNotifications = state.map((notification, index) => {
-        if (index === action.prevNotification.index) {
-          return {
-            heading: editedNotification.heading,
-            description: editedNotification.description,
-            pictures: editedNotification.pictures
-          }
-        }
-        return notification;
-      });
-      return newNotifications;
+        return state.map((notification, index) => 
+          index === action.prevNotification.index 
+            ? action.notification
+            : notification);
     default:
       return state;  
   }

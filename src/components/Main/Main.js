@@ -104,7 +104,7 @@ class Main extends React.Component {
       }
       this.goBack();
     } else { //в этом случае создаем новый
-      this.props.toNotification();
+      toNotification();
     }
   }
 

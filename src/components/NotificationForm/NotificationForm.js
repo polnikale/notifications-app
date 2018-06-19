@@ -55,7 +55,7 @@ class NotificationForm extends React.Component {
         <img 
           src={defaultSvg} 
           className="default-svg" 
-          alt="default image"
+          alt="default"
         />
         <label 
           alt="add new svg" 
