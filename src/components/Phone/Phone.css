@@ -3,6 +3,7 @@
   object-fit: contain;
   width: 231px;
   height: 481px;
+  overflow: hidden;
   padding: 20px;
 }
 
