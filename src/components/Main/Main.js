@@ -51,14 +51,16 @@ class Main extends React.Component {
   }
 
   handleSave() {
-    const { heading, current, index, notificationEditExisted, notificationSave } = this.props;
+    const { current, save, index } = this.props;
 
-    if (heading !== undefined) {
-      notificationEditExisted(current, index);
-    } else {
-      notificationSave(current);
-    }
-    this.goBack();
+    save(current, index);
+
+    // if (heading !== undefined) {
+    //   notificationEditExisted(current, index);
+    // } else {
+    //   notificationSave(current);
+    // }
+    // this.goBack();
   }
 
   goBack() {

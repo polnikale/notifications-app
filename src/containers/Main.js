@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import {
   returnBack, 
   toNotification, 
-  addNotification, 
+  saveNotification,
   addNotificationInfo,
-  editExistedNotification 
 } from '../actions'
 import Main from '../components/Main/Main';
 import * as notificationSelectors from '../reducers/notification';
@@ -28,8 +27,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   back: () => dispatch(returnBack()),
   toNotification: (notification) => dispatch(toNotification(notification)),
-  notificationSave: (notification) => dispatch(addNotification(notification)),
-  notificationEditExisted: (notification, index) => dispatch(editExistedNotification(notification, index)),
+  save: (notification, index) => dispatch(saveNotification(notification, index)),
 
   addNotificationInfoToEdit: (notification, index) => dispatch(addNotificationInfo(notification, index)),
 });

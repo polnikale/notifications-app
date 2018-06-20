@@ -36,19 +36,26 @@ export function addPhoto(pictureSrc) {
   };
 }
 
-export function addNotification(notification) {
-  return {
-    type: types.notifications.NOTIFICATION_ADD,
-    notification
-  };
-}
+// export function addNotification(notification) {
+//   return {
+//     type: types.notifications.NOTIFICATION_ADD,
+//     notification
+//   };
+// }
 
-export function editExistedNotification(notification, index) {
+// export function editExistedNotification(notification, index) {
+//   return {
+//     type: types.notifications.NOTIFICATION_EDIT_EXISTED,
+//     notification,
+//     index
+//   };
+// }
+export function saveNotification(notification, index) {
   return {
-    type: types.notifications.NOTIFICATION_EDIT_EXISTED,
+    type: types.common.NOTIFICATION_SAVE,
     notification,
     index
-  };
+  }
 }
 
 export function toNotification(notification) {
