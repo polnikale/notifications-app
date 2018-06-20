@@ -1,13 +1,16 @@
 .new-btn, .save-btn {
   padding: 5px 15px;
   border-radius: 4px;
-  display: flex;
-  align-items: center;
   font-size: 13px;
   cursor: pointer;
   outline: none;
   border: none;
   box-sizing: border-box;
+}
+
+.new-btn {
+  display: flex;
+  align-items: center;
 }
 
 .new-btn span{
