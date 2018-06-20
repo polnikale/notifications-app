@@ -13,8 +13,7 @@ export const reducer = (state = initialState , action) => {
   }
 }
 
-export const getIsBackAvailable = (state) => {
-  return state.router.length !== 0
-    ? true
-    : false;
-};
+
+export const getRouter = (state) => {
+  return state.router;
+}

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import defaultSvg from './picture.svg';
+import Page from '../Page/Page';
+import Button from '../Button/Button';
 import plusSvg from './plus.svg';
+import defaultSvg from './picture.svg';
+import plusBigSvg from './plusBig.svg';
 import strings from '../../strings';
 import './Notifications.css';
 
@@ -20,10 +23,10 @@ class Notifications extends React.Component {
   }
 
   renderNotificationCard(notification, index) {
-    const { click } = this.props;
+    const { editCardClick } = this.props;
 
     return (
-      <li key={index} onClick={() => click(notification, index)}>
+      <li key={index} onClick={() => editCardClick(notification, index)}>
         <figure>
           {this.renderPicture(notification.pictures[0])}
           <figcaption>
@@ -50,9 +53,9 @@ class Notifications extends React.Component {
     const { defaultCardClick } = this.props;
 
     return (
-      <li className="plus" onClick={() => defaultCardClick()}>
+      <li className="plus" onClick={defaultCardClick}>
         <figure>
-        <img src={plusSvg} alt="newNotification" />
+        <img src={plusBigSvg} alt="newNotification" />
           <figcaption>
             <h6>{strings.notifications.newNotification}</h6>
           </figcaption>
@@ -62,12 +65,27 @@ class Notifications extends React.Component {
   }
 
   render() {
+    const { defaultCardClick } = this.props;
+
     const notificationsList = this.renderNotifications();
 
     return (
-      <div className="notifications">
-        {notificationsList}
-      </div>
+      <Page render={(Elem) => {
+        return (
+          <Elem title={strings.header.mainTitle}>
+            <Button type="new-btn" onPress={defaultCardClick}>
+              <Fragment>
+                <img src={plusSvg} alt="plus" /> 
+                <span>Создать</span>
+              </Fragment>
+            </Button>
+          </Elem>
+        )
+      }}>
+        <div className="notifications">
+          {notificationsList}
+        </div>
+      </Page>
     )
   }
 }

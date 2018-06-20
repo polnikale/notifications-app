@@ -10,11 +10,14 @@ class Button extends React.Component {
   }
 
   computeClasses() {
-    const { disabled } = this.props;
+    const { disabled, type } = this.props;
 
-    if (disabled === true) return 'save-btn disabled';
-    else if (disabled === false ) return 'save-btn';
-    else return 'new-btn';
+    let className = type;
+    if (disabled === true) {
+      className += ' disabled';
+    }
+
+    return className;
   }
 
   handleClick() {
@@ -28,6 +31,7 @@ class Button extends React.Component {
     const { children } = this.props;
 
     const classes = this.computeClasses();
+    console.log(classes);
     return (
       <button 
         className={classes} 

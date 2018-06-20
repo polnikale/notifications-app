@@ -1,11 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import NotificationCreate from '../NotificationCreate/NotificationCreate';
 import Notifications from '../Notifications/Notifications';
-import Header from '../Header/Header';
-import Button from '../Button/Button';
-import strings from '../../strings';
-import plus from './plus.svg';
 import './Main.css';
 
 
@@ -19,67 +15,50 @@ class Main extends React.Component {
     this.goBack = this.goBack.bind(this);
   }
   renderMain() {
-    const { isBackAvailable } = this.props;
-    
-    if (isBackAvailable) {
-      return <NotificationCreate />
-    } else {
-      return <Notifications 
-              notifications={this.props.notifications}
+    const { 
+      router,
+      notifications,
+      heading,
+      description,
+      pictures,
+      index,
+      valid,
+      changed
+     } = this.props;
+
+    switch(router.toString()) {
+      case '':
+        return <Notifications 
+              notifications={notifications}
               click={this.handleEditNotification}
-              defaultCardClick={this.handleNewCard}/> 
-    } 
-  }
-
-  renderButton() {
-    const { isBackAvailable } = this.props;
-
-    if (isBackAvailable) {
-      return 'Сохранить';
-    } else {
-      return (
-        <Fragment>
-          <img src={plus} alt="plus" /> 
-          <span>Создать</span>
-        </Fragment>
-      );
-    } 
-  }
-
-  renderHeaderText() {
-    const { isBackAvailable, heading } = this.props;
-
-    if (!isBackAvailable) {
-      return strings.header.mainTitle;
-    } else {
-      if (heading !== undefined) {
-        return strings.header.editTitle;
-      } else {
-        return strings.header.newTitle;
-      }
-    } 
-  }
-
-  notSavable() {
-    const { valid, changed } = this.props;
-
-    return !(valid && changed);
+              defaultCardClick={this.handleNewCard}
+              editCardClick={this.handleEditNotification}
+              />
+      case 'modify':
+        return <NotificationCreate
+              heading={heading}
+              description={description}
+              pictures={pictures}
+              index={index}
+              valid={valid}
+              changed={changed}
+              onBack={this.goBack}
+              onSave={this.handleSave}
+        />
+      default:
+        return <p>Sorry i don't know what to do</p>
+    }
   }
 
   handleSave() {
     const { heading, current, index, notificationEditExisted, notificationSave } = this.props;
 
-    const disabled = this.notAavable();
-    if (disabled === false) {// тогда сохраняем notification
-      if (heading !== undefined) {
-        notificationEditExisted(current, index);
-      } else {
-        notificationSave(current);
-      }
-      this.goBack();
-    } else { //в этом случае создаем новый
-      this.handleNewCard();
+    if (heading !== undefined) {
+      notificationEditExisted(current, index);
+    } else {
+      notificationSave(current);
     }
+    this.goBack();
   }
 
   goBack() {
@@ -102,24 +81,10 @@ class Main extends React.Component {
   }
 
   render() {
-    const { isBackAvailable } = this.props;
-
     const pageToRender = this.renderMain();
-    const button = this.renderButton();
-    const headerTitle = this.renderHeaderText();
     
     return(
       <main>
-        <Header
-          title={headerTitle}
-          onBack={isBackAvailable && this.goBack}
-        >
-          <Button 
-            disabled={this.notSavable()}
-            onPress={this.handleSave}>
-            {button}
-          </Button>
-        </Header>
         {pageToRender}
       </main>
     );

@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
   pictures: notificationSelectors.getPreviousPictures(state),
   current: notificationSelectors.getCurrentNotification(state),
   index: notificationSelectors.getPreviousIndex(state),
-  isBackAvailable: routerSelectors.getIsBackAvailable(state),
+  router: routerSelectors.getRouter(state),
   notifications: notificationsSelectors.getAllNotifications(state),
   valid: notificationSelectors.getIsValid(state),
   changed: notificationSelectors.getIsChanged(state),
