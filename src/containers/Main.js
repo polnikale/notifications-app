@@ -1,34 +1,35 @@
 import { connect } from 'react-redux';
+
 import {
   returnBack, 
   toNotification, 
   addNotification, 
   clearNotification, 
-  addNotificationInfo, 
-  removePreviousNotification, 
-  setPreviousNotification, 
+  addNotificationInfo,
   editExistedNotification 
 } from '../actions'
 import Main from '../components/Main/Main';
-
+import * as notificationSelectors from '../reducers/notification';
 const mapStateToProps = (state) => ({
-  notification: state.currentNotification,
+  heading: state.modifyNotification.heading,
+  description: state.modifyNotification.description,
+  pictures: state.modifyNotification.pictures,
+  current: state.modifyNotification.current,
+  index: state.modifyNotification.index,
   router: state.router,
   notifications: state.notifications,
-  previousNotification: state.previousNotification
+  valid: notificationSelectors.getIsValid(state),
+  changed: notificationSelectors.getIsChanged(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   back: () => dispatch(returnBack()),
   toNotification: (notification) => dispatch(toNotification(notification)),
   notificationSave: (notification) => dispatch(addNotification(notification)),
-  notificationEditExisted: (prevNotification, notification) => dispatch(editExistedNotification(prevNotification, notification)),
+  notificationEditExisted: (notification, index) => dispatch(editExistedNotification(notification, index)),
   clearNotification: () => dispatch(clearNotification()),
 
-  addNotificationInfoToEdit: (notification) => dispatch(addNotificationInfo(notification)),
-  
-  previousNotificationRemove: () => dispatch(removePreviousNotification()),
-  setPreviousNotification: (notification) => dispatch(setPreviousNotification(notification)),
+  addNotificationInfoToEdit: (notification, index) => dispatch(addNotificationInfo(notification, index)),
 });
 
 export default connect(

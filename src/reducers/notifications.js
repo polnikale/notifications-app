@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
       return [...state, action.notification]
     case NOTIFICATION_EDIT_EXISTED:
         return state.map((notification, index) => 
-          index === action.prevNotification.index 
+          index === action.index 
             ? action.notification
             : notification);
     default:

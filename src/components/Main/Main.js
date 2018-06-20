@@ -46,11 +46,11 @@ class Main extends React.Component {
   }
 
   renderHeaderText() {
-    const { router } = this.props;
+    const { router, heading } = this.props;
     if (router === 'NOTIFICATIONS') {
       return 'УВЕДОМЛЕНИЯ'
     } else if (router === 'NOTIFICATION_CREATE') {
-      if (this.props.previousNotification.heading !== undefined) {
+      if (heading !== undefined) {
         return 'Редактирование';
       } else {
         return 'Новое';
@@ -59,48 +59,35 @@ class Main extends React.Component {
   }
 
   isNotSaveable() {
-    const { previousNotification, notification } = this.props;
-    if (previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
-      return this.checkForIdentity(previousNotification, notification) || notification.heading === '';
-    } else {
-      return notification.heading === '';
-    }
+    const { valid, changed } = this.props;
+    console.log('changed',changed);
+    console.log('valid', valid);
+    // if (previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
+    //   return this.checkForIdentity(previousNotification, notification) || notification.heading === '';
+    // } else {
+    //   return notification.heading === '';
+    // }
+    return valid && changed;
   }
 
   isDisabled() {
     const { router  } = this.props;
     if (router === 'NOTIFICATION_CREATE') {
-      if (this.isNotSaveable()) {
-        return true;
-      } else {
-        return false
-      }
+      return !this.isNotSaveable();
     }
     return 'something';
     //тут есть три варианта. Если возвращает true/false, значит кнопка вообще может быть disabled => это на создании уведомления. Если же она имеет не булевое значение - находится на "Уведомления"
   }
 
-  checkForIdentity(notif1, notif2) {
-    let picturesAreEqual;
-    if (notif1.pictures.length !== notif2.pictures.length) {
-      picturesAreEqual = false;
-    } else {
-      picturesAreEqual = notif1.pictures.filter((elem, index) => {
-        return notif1.pictures[index] !== notif2.pictures[index];
-      }).length === 0;
-    }
-    if (notif1.heading === notif2.heading && notif1.description === notif2.description && picturesAreEqual) return true;
-  }
-
   handleSave() {
-    const { previousNotification, notification, notificationEditExisted, notificationSave, toNotification } = this.props;
+    const { heading, current, index, notificationEditExisted, notificationSave, toNotification } = this.props;
 
     const disabled = this.isDisabled();
     if (disabled === false) {// тогда сохраняем notification
-      if (previousNotification.heading !== undefined) {
-        notificationEditExisted(previousNotification, notification);
+      if (heading !== undefined) {
+        notificationEditExisted(current, index);
       } else {
-        notificationSave(notification);
+        notificationSave(current);
       }
       this.goBack();
     } else { //в этом случае создаем новый
@@ -109,10 +96,9 @@ class Main extends React.Component {
   }
 
   goBack() {
-    const { clearNotification, previousNotificationRemove, back } = this.props;
+    const { clearNotification, back } = this.props;
 
     clearNotification();
-    previousNotificationRemove();
     back();
   }
 
@@ -123,10 +109,9 @@ class Main extends React.Component {
   }
 
   handleEditNotification(notification, index) {
-    const { addNotificationInfoToEdit, setPreviousNotification, toNotification } = this.props;
+    const { addNotificationInfoToEdit, toNotification } = this.props;
 
-    addNotificationInfoToEdit(notification);
-    setPreviousNotification({...notification, index});
+    addNotificationInfoToEdit(notification, index);
     toNotification();
   }
 

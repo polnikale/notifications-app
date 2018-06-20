@@ -18,15 +18,15 @@ export function addNotification(notification) {
   };
 }
 
-export function editExistedNotification(prevNotification, notification) {
+export function editExistedNotification(notification, index) {
   return {
     type: 'NOTIFICATION_EDIT_EXISTED',
-    prevNotification,
-    notification
+    notification,
+    index
   };
 }
 
-export function changeNotifInput(event) {
+export function changeNotificationInput(event) {
   return {
     type: 'CHANGE_NOTIFICATION_INPUT',
     input: [event.target.getAttribute('name')],
@@ -34,10 +34,11 @@ export function changeNotifInput(event) {
   };
 }
 
-export function addNotificationInfo(notification) {
+export function addNotificationInfo(notification, index) {
   return {
     type: 'ADD_NOTIFICATION_INFO',
-    notification
+    notification,
+    index
   }
 }
 
