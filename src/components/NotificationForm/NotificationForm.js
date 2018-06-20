@@ -1,5 +1,6 @@
 import React from 'react';
 
+import strings from '../../strings';
 import defaultSvg from './default.svg';
 import './NotificationForm.css';
 
@@ -75,18 +76,18 @@ class NotificationForm extends React.Component {
     const { currentNotification, onInputChange } = this.props;
     
     const { heading, description, pictures } = currentNotification;
-    
+
     const photos = this.renderPhotos(pictures);
     return (
       <div className="new-notification">
-        <h4>Заголовок</h4>
+        <h4>{strings.notificationForm.heading}</h4>
         <input 
           type="text" 
           name="heading" 
           value={heading} 
           onChange={onInputChange} 
         />
-        <h4>Описание</h4>
+        <h4>{strings.notificationForm.description}</h4>
         <textarea 
           type="text" 
           rows="6" 
@@ -94,7 +95,7 @@ class NotificationForm extends React.Component {
           value={description} 
           onChange={onInputChange} 
         />
-        <h4 className="photos">Фотографии</h4>
+        <h4 className="photos">{strings.notificationForm.pictures}</h4>
           {photos}
       </div>
     )

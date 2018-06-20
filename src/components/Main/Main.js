@@ -4,6 +4,7 @@ import NotificationCreate from '../NotificationCreate/NotificationCreate';
 import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
+import strings from '../../strings';
 import plus from './plus.svg';
 import './Main.css';
 
@@ -46,12 +47,12 @@ class Main extends React.Component {
   renderHeaderText() {
     const { isBackAvailable, heading } = this.props;
     if (!isBackAvailable) {
-      return 'УВЕДОМЛЕНИЯ'
+      return strings.header.mainTitle;
     } else {
       if (heading !== undefined) {
-        return 'Редактирование';
+        return strings.header.editTitle;
       } else {
-        return 'Новое';
+        return strings.header.newTitle;
       }
     } 
   }

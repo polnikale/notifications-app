@@ -2,6 +2,7 @@ import React from 'react';
 
 import defaultSvg from './picture.svg';
 import plusSvg from './plus.svg';
+import strings from '../../strings';
 import './Notifications.css';
 
 class Notifications extends React.Component {
@@ -53,7 +54,7 @@ class Notifications extends React.Component {
         <figure>
         <img src={plusSvg} alt="newNotification" />
           <figcaption>
-            <h6>Создать еще одну рассылку</h6>
+            <h6>{strings.notifications.newNotification}</h6>
           </figcaption>
         </figure>
       </li>

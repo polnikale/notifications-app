@@ -9,9 +9,9 @@ class Phone extends React.Component {
   }
 
   render() {
-    const { heading, description, picture } = this.props.currentNotification;
+    const { heading, description, pictures } = this.props.currentNotification;
 
-    const pictureToDisplay = picture || defaultSvg;
+    const pictureToDisplay = pictures[0] || defaultSvg;
     const newDescription = this.renderText(description);
 
     return (
@@ -19,7 +19,7 @@ class Phone extends React.Component {
         <figure className="notification">
           <img 
             src={pictureToDisplay} 
-            alt={picture} 
+            alt={pictureToDisplay} 
           />
           <figcaption>
             <h4>{heading}</h4>

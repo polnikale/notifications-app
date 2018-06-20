@@ -1,4 +1,4 @@
-import types from '../action/types';
+import types from '../actions/types';
 
 const initialState = {
   current: {
@@ -7,12 +7,6 @@ const initialState = {
     pictures: []
   },
 };
-
-const CHANGE_NOTIFICATION_INPUT = 'CHANGE_NOTIFICATION_INPUT';
-const REMOVE_PHOTO = 'REMOVE_PHOTO';
-const ADD_PHOTO = 'ADD_PHOTO';
-const RETURN_BACK = 'RETURN_BACK';
-const ADD_NOTIFICATION_INFO = 'ADD_NOTIFICATION_INFO';
 
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
