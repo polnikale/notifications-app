@@ -18,6 +18,15 @@ export function addNotification(notification) {
   };
 }
 
+export function saveNotification(current, index, heading) {
+  return {
+    type: 'NOTIFICATION_SAVE',
+    current,
+    index,
+    heading
+  };
+}
+
 export function editExistedNotification(notification, index) {
   return {
     type: 'NOTIFICATION_EDIT_EXISTED',
@@ -53,12 +62,6 @@ export function addPhoto(pictureSrc) {
   return {
     type: 'ADD_PHOTO',
     pictureSrc
-  };
-}
-
-export function clearNotification() {
-  return {
-    type: 'CLEAR_NOTIFICATION'
   };
 }
 

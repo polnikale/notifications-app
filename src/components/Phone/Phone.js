@@ -9,7 +9,7 @@ class Phone extends React.Component {
   }
 
   render() {
-    const { heading, description, picture } = this.props;
+    const { heading, description, picture } = this.props.currentNotification;
 
     const pictureToDisplay = picture || defaultSvg;
     const newDescription = this.renderText(description);

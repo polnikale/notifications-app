@@ -4,22 +4,23 @@ import {
   returnBack, 
   toNotification, 
   addNotification, 
-  clearNotification, 
   addNotificationInfo,
   editExistedNotification 
 } from '../actions'
 import Main from '../components/Main/Main';
 import * as notificationSelectors from '../reducers/notification';
 import * as routerSelectors from '../reducers/router';
+import * as notificationsSelectors from '../reducers/notifications';
+
 
 const mapStateToProps = (state) => ({
-  heading: state.modifyNotification.heading,
-  description: state.modifyNotification.description,
-  pictures: state.modifyNotification.pictures,
-  current: state.modifyNotification.current,
-  index: state.modifyNotification.index,
+  heading: notificationSelectors.getPreviousHeading(state),
+  description: notificationSelectors.getPreviousDescription(state),
+  pictures: notificationSelectors.getPreviousPictures(state),
+  current: notificationSelectors.getCurrentNotification(state),
+  index: notificationSelectors.getPreviousIndex(state),
   isBackAvailable: routerSelectors.getIsBackAvailable(state),
-  notifications: state.notifications,
+  notifications: notificationsSelectors.getAllNotifications(state),
   valid: notificationSelectors.getIsValid(state),
   changed: notificationSelectors.getIsChanged(state),
 });
@@ -29,7 +30,6 @@ const mapDispatchToProps = (dispatch) => ({
   toNotification: (notification) => dispatch(toNotification(notification)),
   notificationSave: (notification) => dispatch(addNotification(notification)),
   notificationEditExisted: (notification, index) => dispatch(editExistedNotification(notification, index)),
-  clearNotification: () => dispatch(clearNotification()),
 
   addNotificationInfoToEdit: (notification, index) => dispatch(addNotificationInfo(notification, index)),
 });

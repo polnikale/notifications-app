@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { changeNotificationInput, removePhoto, addPhoto } from '../actions'
 import NotificationForm from '../components/NotificationForm/NotificationForm';
 
+import { getCurrentNotification } from '../reducers/notification';
+
 const mapStateToProps = (state) => ({
-  heading: state.modifyNotification.current.heading,
-  description: state.modifyNotification.current.description,
-  pictures: state.modifyNotification.current.pictures
+  currentNotification: getCurrentNotification(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

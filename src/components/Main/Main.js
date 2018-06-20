@@ -70,7 +70,7 @@ class Main extends React.Component {
   }
 
   handleSave() {
-    const { heading, current, index, notificationEditExisted, notificationSave, toNotification } = this.props;
+    const { heading, current, index, notificationEditExisted, notificationSave } = this.props;
 
     const disabled = this.isDisabled();
     if (disabled === false) {// тогда сохраняем notification
@@ -81,14 +81,13 @@ class Main extends React.Component {
       }
       this.goBack();
     } else { //в этом случае создаем новый
-      toNotification();
+      this.handleNewCard();
     }
   }
 
   goBack() {
-    const { clearNotification, back } = this.props;
-
-    clearNotification();
+    const { back } = this.props;
+    
     back();
   }
 

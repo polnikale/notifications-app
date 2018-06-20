@@ -72,7 +72,10 @@ class NotificationForm extends React.Component {
     )
   }
   render() {
-    const { heading, description, pictures, onInputChange } = this.props;
+    const { currentNotification, onInputChange } = this.props;
+    
+    const { heading, description, pictures } = currentNotification;
+    
     const photos = this.renderPhotos(pictures);
     return (
       <div className="new-notification">
