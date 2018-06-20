@@ -18,38 +18,36 @@ class Main extends React.Component {
     this.goBack = this.goBack.bind(this);
   }
   renderMain() {
-    const { router } = this.props;
-    if (router === 'NOTIFICATIONS') {
-      return <Notifications 
-                notifications={this.props.notifications}
-                click={this.handleEditNotification}
-                defaultCardClick={this.handleNewCard}/> 
-    } else if (router === 'NOTIFICATION_CREATE') {
+    const { isBackAvailable } = this.props;
+    if (isBackAvailable) {
       return <NotificationCreate />
     } else {
-      return <p>Sorry. I don't know what to do</p>
-    }
+      return <Notifications 
+              notifications={this.props.notifications}
+              click={this.handleEditNotification}
+              defaultCardClick={this.handleNewCard}/> 
+    } 
   }
 
   renderButton() {
-    const { router } = this.props;
-    if (router === 'NOTIFICATIONS') {
+    const { isBackAvailable } = this.props;
+    if (isBackAvailable) {
+      return 'Сохранить';
+    } else {
       return (
         <Fragment>
           <img src={plus} alt="plus" /> 
           <span>Создать</span>
         </Fragment>
-      )
-    } else if (router === 'NOTIFICATION_CREATE') {
-      return <span>Сохранить</span>;
+      );
     } 
   }
 
   renderHeaderText() {
-    const { router, heading } = this.props;
-    if (router === 'NOTIFICATIONS') {
+    const { isBackAvailable, heading } = this.props;
+    if (!isBackAvailable) {
       return 'УВЕДОМЛЕНИЯ'
-    } else if (router === 'NOTIFICATION_CREATE') {
+    } else {
       if (heading !== undefined) {
         return 'Редактирование';
       } else {
@@ -60,22 +58,14 @@ class Main extends React.Component {
 
   isNotSaveable() {
     const { valid, changed } = this.props;
-    console.log('changed',changed);
-    console.log('valid', valid);
-    // if (previousNotification.heading !== undefined) {//тогда нужно проверить, не является ли он тем же самым
-    //   return this.checkForIdentity(previousNotification, notification) || notification.heading === '';
-    // } else {
-    //   return notification.heading === '';
-    // }
     return valid && changed;
   }
 
   isDisabled() {
-    const { router  } = this.props;
-    if (router === 'NOTIFICATION_CREATE') {
+    const { isBackAvailable  } = this.props;
+    if (isBackAvailable) {
       return !this.isNotSaveable();
     }
-    return 'something';
     //тут есть три варианта. Если возвращает true/false, значит кнопка вообще может быть disabled => это на создании уведомления. Если же она имеет не булевое значение - находится на "Уведомления"
   }
 
@@ -116,6 +106,8 @@ class Main extends React.Component {
   }
 
   render() {
+    const { isBackAvailable } = this.props;
+
     const pageToRender = this.renderMain();
     const button = this.renderButton();
     const headerTitle = this.renderHeaderText();
@@ -124,7 +116,7 @@ class Main extends React.Component {
       <main>
         <Header
           title={headerTitle}
-          onBack={this.goBack}
+          onBack={isBackAvailable && this.goBack}
         >
           <Button 
             disabled={this.isDisabled()}

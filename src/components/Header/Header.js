@@ -5,7 +5,7 @@ import leftArrow from './leftArrow.svg';
 
 class Header extends React.Component {
   renderLeft(title, onBack) {
-    if (title !== 'УВЕДОМЛЕНИЯ') {
+    if (onBack) {
       return (
         <div className="left">
           <button onClick={onBack} className="back">

@@ -10,13 +10,15 @@ import {
 } from '../actions'
 import Main from '../components/Main/Main';
 import * as notificationSelectors from '../reducers/notification';
+import * as routerSelectors from '../reducers/router';
+
 const mapStateToProps = (state) => ({
   heading: state.modifyNotification.heading,
   description: state.modifyNotification.description,
   pictures: state.modifyNotification.pictures,
   current: state.modifyNotification.current,
   index: state.modifyNotification.index,
-  router: state.router,
+  isBackAvailable: routerSelectors.getIsBackAvailable(state),
   notifications: state.notifications,
   valid: notificationSelectors.getIsValid(state),
   changed: notificationSelectors.getIsChanged(state),

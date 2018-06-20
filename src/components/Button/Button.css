@@ -14,14 +14,11 @@
   margin: 0 5px;
 }
 
-.save-btn span {
-  margin: 0 auto;
-}
-
 .save-btn {
   width: 140px;
   height: 34.5px;
   background-color: #ff0047;
+  text-align: center;
   color: #ffffff;
 }
 
