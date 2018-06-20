@@ -4,27 +4,26 @@ import './Header.css';
 import leftArrow from './leftArrow.svg';
 
 class Header extends React.Component {
-  renderLeft(title, onBack) {
-    if (onBack) {
-      return (
-        <div className="left">
-          <button onClick={onBack} className="back">
-            <img src={leftArrow} alt="back" />
-          </button>
-          <h2>{title}</h2>
-        </div>
-      )
-    } else {
-      return <h2>{title}</h2>;
-    }
+  renderButton() {
+    const { onBack } = this.props;
+
+    return onBack && 
+    <button onClick={onBack} className="back">
+      <img src={leftArrow} alt="back" />
+    </button>
   }
+
   render() {
-    const { title, children, onBack } = this.props;
-    const leftSide = this.renderLeft(title, onBack);
+    const { title, children } = this.props;
+    
+    const button = this.renderButton();
 
     return (
       <header>
-        {leftSide}
+        <div className="left">
+          {button}
+          <h2>{title}</h2>
+        </div>
         {children}
       </header>
     );
