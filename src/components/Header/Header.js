@@ -4,7 +4,7 @@ import './Header.css';
 import leftArrow from './leftArrow.svg';
 
 class Header extends React.Component {
-  renderButton() {
+  renderControls() {
     const { onBack } = this.props;
 
     return onBack && 
@@ -15,8 +15,8 @@ class Header extends React.Component {
 
   render() {
     const { title, children } = this.props;
-    
-    const button = this.renderButton();
+
+    const button = this.renderControls();
 
     return (
       <header>

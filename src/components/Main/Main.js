@@ -20,6 +20,7 @@ class Main extends React.Component {
   }
   renderMain() {
     const { isBackAvailable } = this.props;
+    
     if (isBackAvailable) {
       return <NotificationCreate />
     } else {
@@ -32,6 +33,7 @@ class Main extends React.Component {
 
   renderButton() {
     const { isBackAvailable } = this.props;
+
     if (isBackAvailable) {
       return 'Сохранить';
     } else {
@@ -46,6 +48,7 @@ class Main extends React.Component {
 
   renderHeaderText() {
     const { isBackAvailable, heading } = this.props;
+
     if (!isBackAvailable) {
       return strings.header.mainTitle;
     } else {
@@ -57,23 +60,16 @@ class Main extends React.Component {
     } 
   }
 
-  isNotSaveable() {
+  notSavable() {
     const { valid, changed } = this.props;
-    return valid && changed;
-  }
 
-  isDisabled() {
-    const { isBackAvailable  } = this.props;
-    if (isBackAvailable) {
-      return !this.isNotSaveable();
-    }
-    //тут есть три варианта. Если возвращает true/false, значит кнопка вообще может быть disabled => это на создании уведомления. Если же она имеет не булевое значение - находится на "Уведомления"
+    return !(valid && changed);
   }
 
   handleSave() {
     const { heading, current, index, notificationEditExisted, notificationSave } = this.props;
 
-    const disabled = this.isDisabled();
+    const disabled = this.notAavable();
     if (disabled === false) {// тогда сохраняем notification
       if (heading !== undefined) {
         notificationEditExisted(current, index);
@@ -119,7 +115,7 @@ class Main extends React.Component {
           onBack={isBackAvailable && this.goBack}
         >
           <Button 
-            disabled={this.isDisabled()}
+            disabled={this.notSavable()}
             onPress={this.handleSave}>
             {button}
           </Button>
