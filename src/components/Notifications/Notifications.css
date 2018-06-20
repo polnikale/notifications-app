@@ -1,8 +1,8 @@
 .notifications ul {
   list-style: none;
-  padding: 0;
+  padding: 0 0 0 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px,270px));
+  grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
   grid-gap: 20px;
 }
 
@@ -29,6 +29,7 @@
 
 .notifications img {
   width: 100%;
+  object-fit: contain;
   margin: 0 auto;
 }
 

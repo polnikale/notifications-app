@@ -75,6 +75,7 @@ h4.photos::before {
 .new-notification .photos li img {
   height: 80px;
   width: 80px;
+  object-fit: cover;
   opacity: 0.95;
   border-radius: 5px;
 }
