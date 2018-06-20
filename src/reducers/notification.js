@@ -1,3 +1,5 @@
+import types from '../action/types';
+
 const initialState = {
   current: {
     heading: '',
@@ -14,7 +16,7 @@ const ADD_NOTIFICATION_INFO = 'ADD_NOTIFICATION_INFO';
 
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case CHANGE_NOTIFICATION_INPUT:
+    case types.notification.CHANGE_NOTIFICATION_INPUT:
       return {
         ...state,
         current: {
@@ -22,7 +24,7 @@ export const reducer = (state = initialState, action) => {
           [action.input]: action.value
         },
       };
-    case REMOVE_PHOTO:
+    case types.notification.REMOVE_PHOTO:
       return {
         ...state,
         current: {
@@ -30,7 +32,7 @@ export const reducer = (state = initialState, action) => {
           pictures: state.current.pictures.filter((picture) => picture !== action.pictureSrc),
         }
       }
-    case ADD_PHOTO:
+    case types.notification.ADD_PHOTO:
       return {
         ...state,
         current: {
@@ -38,9 +40,9 @@ export const reducer = (state = initialState, action) => {
           pictures: [...state.current.pictures, action.pictureSrc]
         }
       }
-    case RETURN_BACK:
+    case types.common.RETURN_BACK:
       return initialState;
-    case ADD_NOTIFICATION_INFO:
+    case types.notification.ADD_NOTIFICATION_INFO:
       return {
         ...action.notification,
         index: action.index,
@@ -51,11 +53,11 @@ export const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export const getIsValid = (state) => {
   return state.modifyNotification.current.heading !== '';
-}
+};
 
 export const getIsChanged = (state) => {
   const { modifyNotification } = state;
@@ -66,7 +68,7 @@ export const getIsChanged = (state) => {
       pictures: modifyNotification.pictures,
     }, modifyNotification.current)
     : true
-}
+};
 
 export const checkForIdentity = (notif1, notif2) => {
   let picturesAreEqual;
@@ -78,7 +80,7 @@ export const checkForIdentity = (notif1, notif2) => {
     }).length === 0;
   }
   return notif1.heading === notif2.heading && notif1.description === notif2.description && picturesAreEqual;
-}
+};
 
 export const getPreviousHeading = (state) => {
   return state.modifyNotification.heading;
@@ -95,4 +97,4 @@ export const getPreviousIndex = (state) => {
 
 export const getCurrentNotification = (state) => {
   return state.modifyNotification.current
-}
+};

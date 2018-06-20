@@ -1,43 +1,14 @@
-export function toNotification(notification) {
-  return {
-    type: 'NOTIFICATION_EDIT',
-    notification
-  }
-}
+import types from './types';
 
 export function returnBack() {
   return {
-    type: 'RETURN_BACK'
+    type: types.common.RETURN_BACK
   }
-}
-
-export function addNotification(notification) {
-  return {
-    type: 'NOTIFICATION_ADD',
-    notification
-  };
-}
-
-export function saveNotification(current, index, heading) {
-  return {
-    type: 'NOTIFICATION_SAVE',
-    current,
-    index,
-    heading
-  };
-}
-
-export function editExistedNotification(notification, index) {
-  return {
-    type: 'NOTIFICATION_EDIT_EXISTED',
-    notification,
-    index
-  };
 }
 
 export function changeNotificationInput(event) {
   return {
-    type: 'CHANGE_NOTIFICATION_INPUT',
+    type: types.notification.CHANGE_NOTIFICATION_INPUT,
     input: [event.target.getAttribute('name')],
     value: event.target.value
   };
@@ -45,7 +16,7 @@ export function changeNotificationInput(event) {
 
 export function addNotificationInfo(notification, index) {
   return {
-    type: 'ADD_NOTIFICATION_INFO',
+    type: types.notification.ADD_NOTIFICATION_INFO,
     notification,
     index
   }
@@ -53,27 +24,36 @@ export function addNotificationInfo(notification, index) {
 
 export function removePhoto(pictureSrc) {
   return {
-    type: 'REMOVE_PHOTO',
+    type: types.notification.REMOVE_PHOTO,
     pictureSrc
   }
 }
 
 export function addPhoto(pictureSrc) {
   return {
-    type: 'ADD_PHOTO',
+    type: types.notification.ADD_PHOTO,
     pictureSrc
   };
 }
 
-export function removePreviousNotification() {
+export function addNotification(notification) {
   return {
-    type: 'REMOVE_PREVIOUS_NOTIFICATION'
-  }
+    type: types.notifications.NOTIFICATION_ADD,
+    notification
+  };
 }
 
-export function setPreviousNotification(notification) {
+export function editExistedNotification(notification, index) {
   return {
-    type: 'SET_PREVIOUS_NOTIFICATION',
+    type: types.notifications.NOTIFICATION_EDIT_EXISTED,
+    notification,
+    index
+  };
+}
+
+export function toNotification(notification) {
+  return {
+    type: types.router.NOTIFICATION_EDIT,
     notification
   }
 }
