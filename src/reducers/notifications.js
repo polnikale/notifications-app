@@ -12,13 +12,6 @@ export const reducer = (state = initialState, action) => {
           ? action.notification
           : notification)
       : [...state, action.notification];
-    // case types.notifications.NOTIFICATION_ADD:
-    //   return [...state, action.notification]
-    // case types.notifications.NOTIFICATION_EDIT_EXISTED:
-    //     return state.map((notification, index) => 
-    //       index === action.index 
-    //         ? action.notification
-    //         : notification);
     default:
       return state;  
   }
