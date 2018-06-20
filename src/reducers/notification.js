@@ -35,6 +35,7 @@ export const reducer = (state = initialState, action) => {
         }
       }
     case types.common.RETURN_BACK:
+    case types.common.NOTIFICATION_SAVE:
       return initialState;
     case types.notification.ADD_NOTIFICATION_INFO:
       return {
