@@ -11,9 +11,9 @@ class Main extends React.Component {
     const { currentRoute, loading } = this.props;
     console.log(loading);
 
-    // if (loading) {
-    //   return <h1>Wait a second, please </h1>
-    // } else {
+    if (loading) {
+      return <h1>Wait a second, please </h1>
+    } else {
       switch(currentRoute) {
         case '':
           return <Notifications />
@@ -22,11 +22,12 @@ class Main extends React.Component {
         default:
           return <p>Sorry i don't know what to do</p>
       }
+    }
   }
 
-  // componentDidMount() {
-  //   this.props.dispatch(notificationActions.fetchNotifications());
-  // }
+  componentDidMount() {
+    this.props.dispatch(notificationActions.fetchNotifications());
+  }
 
   render() {
     const pageToRender = this.renderMain();

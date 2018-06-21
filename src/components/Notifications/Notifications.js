@@ -31,6 +31,7 @@ class Notifications extends React.Component {
 
   renderNotifications() {
     const { notifications } = this.props;
+    console.log(notifications);
     
     return (
       <ul>

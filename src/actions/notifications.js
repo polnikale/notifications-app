@@ -4,7 +4,8 @@ import { saveNotification } from './common';
 
 export const FETCH_NOTIFICATIONS = '@@/notifcations/FETCH_NOTIFICATIONS';
 
-function getNotifications(notifications) {
+function setNotifications(notifications) {
+  console.log(notifications);
   return {
     type: FETCH_NOTIFICATIONS,
     notifications
@@ -13,7 +14,7 @@ function getNotifications(notifications) {
 
 export function modifyNotifications(notification, index) {
   return async (dispatch) => {
-    if (index) {
+    if (typeof index === 'number') {
       dispatch(editNotification(notification, index));
     } else {
       dispatch(appendNotification(notification));
@@ -24,9 +25,9 @@ export function modifyNotifications(notification, index) {
 export function fetchNotifications() {
   return async (dispatch) => {
     try {
-      dispatch(loader.setLoading())
-      const notifications = localStorageService.getNotifications();
-      dispatch(getNotifications(notifications)); 
+      dispatch(loader.setLoading());
+      const notifications = await localStorageService.getNotifications();
+      dispatch(setNotifications(notifications)); 
       dispatch(loader.setLoaded()); 
     } catch(error) {
       dispatch(loader.setLoaded());
@@ -39,7 +40,6 @@ export function appendNotification(notification) {
   return async (dispatch) => {
     try {
       dispatch(loader.setLoading());
-      console.log(localStorageService);
       await localStorageService.appendNotification(notification);
       dispatch(saveNotification(notification));
       dispatch(loader.setLoaded());
@@ -50,8 +50,17 @@ export function appendNotification(notification) {
   }
 }
 
-export function editNotification(notification) {
+export function editNotification(notification, index) {
   return async (dispatch) => {
-
+    try {
+      console.log(index);
+      dispatch(loader.setLoading());
+      await localStorageService.editNotification(notification, index);
+      dispatch(saveNotification(notification, index));
+      dispatch(loader.setLoaded());
+    } catch(error) {
+      dispatch(loader.setLoaded());
+      console.log(error);
+    }
   }
 }

@@ -1,23 +1,25 @@
 class LocalStorageService {
+  timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   async getNotifications() {
-    const notifications = await setTimeout(() => {
-      return JSON.parse(localStorage.getItem('notifications'));
-    }, 1000);
+    await this.timeout(1000);
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
     return notifications;
   }
 
   async appendNotification(notification) {
-    await setTimeout(() => {
-      const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-      localStorage.setItem('notifications', JSON.stringify([...notifications, notification]));
-    }, 1000);
+    await this.timeout(1000)
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    localStorage.setItem('notifications', JSON.stringify([...notifications, notification]));
   }
 
   async editNotification(notification, index) {
-    await setTimeout(() => {
-      const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-      this._appendToStorage( [ notifications.slice(0, index), notification, notifications.slice(index + 1) ] );
-    }, 1000);
+    console.log(index);
+    await this.timeout(1000);
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    console.log([notifications.slice(0, index), notifications, notifications.slice(index+1)]);
+    this._appendToStorage( [ ...notifications.slice(0, index), notification, ...notifications.slice(index + 1) ] );
   }
 
   _appendToStorage(notifications) {
