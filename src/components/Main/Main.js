@@ -2,14 +2,12 @@ import React from 'react';
 
 import NotificationModify from '../../containers/NotificationModify';
 import Notifications from '../../containers/Notifications';
-import * as notificationActions from '../../actions/notifications';
 import './Main.css';
 
 
 class Main extends React.Component {
   renderMain() {
     const { currentRoute, loading } = this.props;
-    console.log(loading);
 
     if (loading) {
       return <h1>Wait a second, please </h1>
@@ -26,7 +24,11 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(notificationActions.fetchNotifications());
+    const { fetchData } = this.props;
+    
+    console.log(fetchData);
+
+    fetchData();
   }
 
   render() {
