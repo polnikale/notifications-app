@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { returnBack } from '../actions/index';
+import { returnBack } from '../actions/common';
 
 import Page from '../components/Page/Page';
 import { getIsBackAvailable } from '../reducers/router';

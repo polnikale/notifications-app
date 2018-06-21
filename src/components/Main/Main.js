@@ -7,16 +7,28 @@ import './Main.css';
 
 class Main extends React.Component {
   renderMain() {
-    const { currentRoute } = this.props;
+    const { currentRoute, loading } = this.props;
 
-    switch(currentRoute) {
-      case '':
-        return <Notifications />
-      case 'modify':
-        return <NotificationModify />
-      default:
-        return <p>Sorry i don't know what to do</p>
+    if (loading) {
+      return <h1>Wait a second</h1>
+    } else {
+      switch(currentRoute) {
+        case '':
+          return <Notifications />
+        case 'modify':
+          return <NotificationModify />
+        default:
+          return <p>Sorry i don't know what to do</p>
+      }
     }
+
+    
+  }
+
+  componentDidMount() {
+    const { fetchData } = this.props;
+
+    fetchData();
   }
 
   render() {

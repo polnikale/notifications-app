@@ -1,9 +1,6 @@
 class LocalStorageService {
-    timeout(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
     async getNotifications() {
-      await this.timeout(1000);
+      await timeout(1000);
       const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
       return notifications;
     }
@@ -25,6 +22,9 @@ class LocalStorageService {
     _appendToStorage(notifications) {
       localStorage.setItem('notifications', JSON.stringify(notifications));
     }
+  }
+  function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
   
   export default new LocalStorageService();
