@@ -15,7 +15,6 @@ function* fetchNotifications() {
 }
 
 function* addNotification(notification) {
-  console.log('NOTIFICATION', notification);
   try {
     yield call(() => localStorageService.appendNotification(notification));
     yield put(saveNotification(notification));
