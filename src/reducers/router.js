@@ -6,7 +6,7 @@ export const reducer = (state = initialState , action) => {
   switch(action.type) {
     case types.common.RETURN_BACK:
     case types.common.NOTIFICATION_SAVE:
-      return [];
+      return state.slice(0, state.length-1);
     case types.router.NOTIFICATION_EDIT:
       return ['modify'];
     default:
