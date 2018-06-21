@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { saveNotification } from '../actions/common'
+import { asyncModifyNotification } from '../actions/notifications'
 import NotificationModify from '../components/NotificationModify/NotificationModify';
 import * as notificationSelectors from '../reducers/notification';
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  save: (notification, index) => dispatch(saveNotification(notification, index)),
+  save: (notification, index) => dispatch(asyncModifyNotification(notification, index)),
 });
 
 export default connect(
