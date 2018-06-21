@@ -18,3 +18,7 @@ export const reducer = (state = initialState , action) => {
 export const getRouter = (state) => {
   return state.router;
 }
+
+export const getCurrentRoute = (state) => {
+  return state.router[state.router.length - 1] || '';
+};

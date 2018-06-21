@@ -1,7 +1,7 @@
 import React from 'react';
 
-import NotificationCreate from '../NotificationCreate/NotificationCreate';
-import Notifications from '../Notifications/Notifications';
+import NotificationModify from '../../containers/NotificationModify';
+import Notifications from '../../containers/Notifications';
 import './Main.css';
 
 
@@ -15,8 +15,8 @@ class Main extends React.Component {
     this.goBack = this.goBack.bind(this);
   }
   renderMain() {
-    const { 
-      router,
+    const {
+      currentRoute,
       notifications,
       heading,
       description,
@@ -25,26 +25,13 @@ class Main extends React.Component {
       valid,
       changed
      } = this.props;
+     console.log(currentRoute);
 
-    switch(router.toString()) {
+    switch(currentRoute) {
       case '':
-        return <Notifications 
-              notifications={notifications}
-              click={this.handleEditNotification}
-              defaultCardClick={this.handleNewCard}
-              editCardClick={this.handleEditNotification}
-              />
+        return <Notifications />
       case 'modify':
-        return <NotificationCreate
-              heading={heading}
-              description={description}
-              pictures={pictures}
-              index={index}
-              valid={valid}
-              changed={changed}
-              onBack={this.goBack}
-              onSave={this.handleSave}
-        />
+        return <NotificationModify />
       default:
         return <p>Sorry i don't know what to do</p>
     }
