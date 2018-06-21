@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Page from '../Page/Page';
-import './NotificationCreate.css';
+import Page from '../../containers/Page';
+import './NotificationModify.css';
 import Phone from '../../containers/Phone';
 import Button from '../Button/Button';
 import strings from '../../strings';
@@ -9,8 +9,15 @@ import NotificationForm from '../../containers/NotificationForm';
 
 
 class NotificationCreate extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSave = this.handleSave.bind(this);
+  }
+
   renderHeaderText() {
     const { heading } = this.props;
+
     if (heading === undefined) {
       return strings.header.newTitle;
     } else {
@@ -24,20 +31,27 @@ class NotificationCreate extends React.Component {
     return !(valid && changed);
   }
 
-  render() {
-    const { onBack, onSave } = this.props;
+  handleSave() {
+    const { current, save, index } = this.props;
 
+    save(current, index);
+  }
+
+  render() {
     const headerTitle = this.renderHeaderText();
     const buttonDisabled = this.disabled();
 
     return(
-      <Page render={(Elem) => {
-        return (
-          <Elem title={headerTitle} onBack={onBack}>
-            <Button type="save-btn" onPress={onSave} disabled={buttonDisabled}>Сохранить</Button>
-          </Elem>
-        )
-      }}>
+      <Page 
+        renderControls={() => {
+          return (
+            <div className="controls">
+              <Button type="save-btn" onPress={this.handleSave} disabled={buttonDisabled}>Сохранить</Button>
+            </div>
+          )
+        }} 
+        title={headerTitle}
+      >
         <div className="notificationCreate-wrapper">
           <Phone/>
           <NotificationForm />

@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import Page from '../Page/Page';
+import Page from '../../containers/Page';
 import Button from '../Button/Button';
 import plusSvg from './plus.svg';
 import defaultSvg from './picture.svg';
@@ -9,6 +9,26 @@ import strings from '../../strings';
 import './Notifications.css';
 
 class Notifications extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleNewCard = this.handleNewCard.bind(this);
+    this.handleEditNotification = this.handleEditNotification.bind(this);
+  }
+
+  handleNewCard() {
+    const { toNotification } = this.props;
+
+    toNotification();
+  }
+
+  handleEditNotification(notification, index) {
+    const { addNotificationInfoToEdit, toNotification } = this.props;
+
+    addNotificationInfoToEdit(notification, index);
+    toNotification();
+  }
+
   renderNotifications() {
     const { notifications } = this.props;
     
@@ -23,10 +43,8 @@ class Notifications extends React.Component {
   }
 
   renderNotificationCard(notification, index) {
-    const { editCardClick } = this.props;
-
     return (
-      <li key={index} onClick={() => editCardClick(notification, index)}>
+      <li key={index} onClick={() => this.handleEditNotification(notification, index)}>
         <figure>
           {this.renderPicture(notification.pictures[0])}
           <figcaption>
@@ -50,10 +68,8 @@ class Notifications extends React.Component {
   }
 
   renderCreateNewCard() {
-    const { defaultCardClick } = this.props;
-
     return (
-      <li className="plus" onClick={defaultCardClick}>
+      <li className="plus" onClick={this.handleNewCard}>
         <figure>
         <img src={plusBigSvg} alt="newNotification" />
           <figcaption>
@@ -65,23 +81,22 @@ class Notifications extends React.Component {
   }
 
   render() {
-    const { defaultCardClick } = this.props;
-
     const notificationsList = this.renderNotifications();
 
     return (
-      <Page render={(Elem) => {
-        return (
-          <Elem title={strings.header.mainTitle}>
-            <Button type="new-btn" onPress={defaultCardClick}>
-              <Fragment>
+      <Page 
+        renderControls={() => {
+          return (
+            <div className="controls">
+              <Button type="new-btn" onPress={this.handleNewCard}>
                 <img src={plusSvg} alt="plus" /> 
                 <span>Создать</span>
-              </Fragment>
-            </Button>
-          </Elem>
-        )
-      }}>
+              </Button>
+            </div>
+          )
+        }}
+        title={strings.header.mainTitle}
+      >
         <div className="notifications">
           {notificationsList}
         </div>

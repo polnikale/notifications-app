@@ -6,6 +6,7 @@ import leftArrow from './leftArrow.svg';
 class Header extends React.Component {
   renderControls() {
     const { onBack } = this.props;
+    console.log(onBack);
 
     return onBack && 
     <button onClick={onBack} className="back">
@@ -16,12 +17,12 @@ class Header extends React.Component {
   render() {
     const { title, children } = this.props;
 
-    const button = this.renderControls();
+    const backButton = this.renderControls();
 
     return (
       <header>
         <div className="left">
-          {button}
+          {backButton}
           <h2>{title}</h2>
         </div>
         {children}

@@ -22,3 +22,7 @@ export const getRouter = (state) => {
 export const getCurrentRoute = (state) => {
   return state.router[state.router.length - 1] || '';
 };
+
+export const getIsBackAvailable = (state) => {
+  return state.router.length !== 0;
+}

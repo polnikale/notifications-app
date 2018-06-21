@@ -3,12 +3,31 @@ import React, { Fragment } from 'react';
 import Header from '../Header/Header';
 
 class Page extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleBack = this.handleBack.bind(this);
+  }
+
+
+  handleBack() {
+    const { back } = this.props;
+    
+    back();
+  }
+
   render() {
-    const { children, render } = this.props;
+    const { children, renderControls, title, backAvailable } = this.props;
+    console.log('paaage', this.props);
 
     return(
       <Fragment>
-        {render(Header)}
+        <Header 
+          title={title}
+          onBack={backAvailable && this.handleBack}
+        >
+          {renderControls()}
+        </Header>
 
         {children}
       </Fragment>
