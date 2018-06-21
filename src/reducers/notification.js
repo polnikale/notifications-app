@@ -1,4 +1,11 @@
-import types from '../actions/types';
+import {
+  CHANGE_NOTIFICATION_INPUT,
+  REMOVE_PHOTO,
+  ADD_PHOTO,
+  ADD_NOTIFICATION_INFO
+} from '../actions/notification';
+
+import { RETURN_BACK, NOTIFICATION_SAVE } from '../actions/common';
 
 const initialState = {
   current: {
@@ -10,7 +17,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case types.notification.CHANGE_NOTIFICATION_INPUT:
+    case CHANGE_NOTIFICATION_INPUT:
       return {
         ...state,
         current: {
@@ -18,7 +25,7 @@ export const reducer = (state = initialState, action) => {
           [action.input]: action.value
         },
       };
-    case types.notification.REMOVE_PHOTO:
+    case REMOVE_PHOTO:
       return {
         ...state,
         current: {
@@ -26,7 +33,7 @@ export const reducer = (state = initialState, action) => {
           pictures: state.current.pictures.filter((picture) => picture !== action.pictureSrc),
         }
       }
-    case types.notification.ADD_PHOTO:
+    case ADD_PHOTO:
       return {
         ...state,
         current: {
@@ -34,10 +41,10 @@ export const reducer = (state = initialState, action) => {
           pictures: [...state.current.pictures, action.pictureSrc]
         }
       }
-    case types.common.RETURN_BACK:
-    case types.common.NOTIFICATION_SAVE:
+    case RETURN_BACK:
+    case NOTIFICATION_SAVE:
       return initialState;
-    case types.notification.ADD_NOTIFICATION_INFO:
+    case ADD_NOTIFICATION_INFO:
       return {
         ...action.notification,
         index: action.index,

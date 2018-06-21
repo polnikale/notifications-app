@@ -1,11 +1,10 @@
-import types from '../actions/types';
+import { NOTIFICATION_SAVE } from '../actions/common';
 
 const initialState = [];
 
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case types.common.NOTIFICATION_SAVE:
-    console.log(typeof action.index);
+    case NOTIFICATION_SAVE:
       return (typeof action.index === 'number')
       ? state.map((notification, index) => 
         index === action.index 

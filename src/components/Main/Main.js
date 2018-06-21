@@ -6,10 +6,6 @@ import './Main.css';
 
 
 class Main extends React.Component {
-  constructor(props) { //не знаю вообще, есть ли у меня тут смысл использования statefull компонента, ведь state-а самого у меня нет, но при этом компонент достаточно нагружен
-    super(props);
-  }
-
   renderMain() {
     const { currentRoute } = this.props;
 

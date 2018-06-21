@@ -18,7 +18,6 @@ class Page extends React.Component {
 
   render() {
     const { children, renderControls, title, backAvailable } = this.props;
-    console.log('paaage', this.props);
 
     return(
       <Fragment>

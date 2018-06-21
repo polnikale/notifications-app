@@ -1,13 +1,14 @@
-import types from '../actions/types';
+import { RETURN_BACK, NOTIFICATION_SAVE } from '../actions/common';
+import { NOTIFICATION_EDIT } from '../actions/router';
 
 const initialState = [];
 
 export const reducer = (state = initialState , action) => {
   switch(action.type) {
-    case types.common.RETURN_BACK:
-    case types.common.NOTIFICATION_SAVE:
+    case RETURN_BACK:
+    case NOTIFICATION_SAVE:
       return state.slice(0, state.length-1);
-    case types.router.NOTIFICATION_EDIT:
+    case NOTIFICATION_EDIT:
       return ['modify'];
     default:
       return state;

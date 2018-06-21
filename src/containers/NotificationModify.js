@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 
-import {
-  saveNotification,
-} from '../actions'
+import { saveNotification } from '../actions/common'
 import NotificationModify from '../components/NotificationModify/NotificationModify';
 import * as notificationSelectors from '../reducers/notification';
 

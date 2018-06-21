@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { changeNotificationInput, removePhoto, addPhoto } from '../actions'
+import { changeNotificationInput, removePhoto, addPhoto } from '../actions/notification'
 import NotificationForm from '../components/NotificationForm/NotificationForm';
 
 import { getCurrentNotification } from '../reducers/notification';
