@@ -1,11 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Page from '../../containers/Page';
-import './NotificationModify.css';
 import Phone from '../../containers/Phone';
 import Button from '../Button/Button';
 import strings from '../../strings';
 import NotificationForm from '../../containers/NotificationForm';
+
+const NotificationModifyWrapper = styled.div`
+  padding-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
 
 
 class NotificationCreate extends React.Component {
@@ -52,10 +59,10 @@ class NotificationCreate extends React.Component {
         }} 
         title={headerTitle}
       >
-        <div className="notificationCreate-wrapper">
+        <NotificationModifyWrapper>
           <Phone/>
           <NotificationForm />
-        </div>
+        </NotificationModifyWrapper>
       </Page>
     )
   }
