@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { goBack } from 'react-router';
 
 import Header from '../Header/Header';
 

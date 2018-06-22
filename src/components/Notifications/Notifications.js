@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 
 import Page from '../Page/Page';
 import Button from '../Button/Button';
@@ -22,10 +22,11 @@ class Notifications extends React.Component {
   }
 
   handleEditNotification(notification, index) {
-    const { addNotificationInfoToEdit, toNotification } = this.props;
+    const { addNotificationInfoToEdit } = this.props;
 
     addNotificationInfoToEdit(notification, index);
-    toNotification();
+    browserHistory.push('modify');
+    console.log(browserHistory);
   }
 
   renderNotifications() {
@@ -81,7 +82,6 @@ class Notifications extends React.Component {
 
   render() {
     const notificationsList = this.renderNotifications();
-    console.log(this);
 
     return (
       <div className="wrapper">
@@ -91,18 +91,16 @@ class Notifications extends React.Component {
             renderControls={() => {
               return (
                 <div className="controls">
-                  <Link to="/modify">
-                    <Button type="new-btn" onPress={this.handleNewCard}>
-                      <img src={plusSvg} alt="plus" /> 
-                      <span>Создать</span>
-                    </Button>
-                  </Link>
+                  <Button type="new-btn" onPress={this.handleNewCard}>
+                    <img src={plusSvg} alt="plus" /> 
+                    <span>Создать</span>
+                  </Button>
                 </div>
               )
             }}
             title={strings.header.mainTitle}
             route={this.props.route.path}
-            back={this.props.router.goBack}
+            back={browserHistory.goBack}
           >
             <div className="notifications">
               {notificationsList}

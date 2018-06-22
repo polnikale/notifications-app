@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import Page from '../Page/Page';
 import './NotificationModify.css';
@@ -35,12 +36,12 @@ class NotificationCreate extends React.Component {
     const { current, save, index } = this.props;
 
     save(current, index);
+    browserHistory.push('/');
   }
 
   render() {
     const headerTitle = this.renderHeaderText();
     const buttonDisabled = this.disabled();
-    console.log(this);
 
     return(
       <div className="wrapper">
@@ -56,7 +57,7 @@ class NotificationCreate extends React.Component {
             }} 
             title={headerTitle}
             route={this.props.route.path}
-            back={this.props.router.goBack}
+            back={browserHistory.goBack}
           >
             <div className="notificationCreate-wrapper">
               <Phone/>
