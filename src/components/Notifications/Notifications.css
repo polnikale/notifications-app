@@ -1,3 +1,50 @@
+aside {
+  flex-basis: 240px;
+  background-color: #2c0515;
+  min-height: 100%;
+}
+.wrapper {
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+main {
+  flex-basis: calc(100% - 240px);
+  padding-right: 310px;
+  background-color: #f3f3f3;
+  position: relative;
+}
+
+header::after {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 100%;
+  opacity: 0.1;
+  top: 80px;
+  left: 0;
+  background-color: #333333;
+}
+
+@media (max-width: 1180px) {
+  main {
+    padding-right: 150px;
+  }
+}
+
+@media (max-width: 960px) {
+  main {
+    padding-right: 70px;
+  }
+}
+
+@media (max-width: 680px) {
+  main {
+    padding-right: 20px;
+  }
+}
+
 .notifications ul {
   list-style: none;
   padding: 0 0 0 10px;

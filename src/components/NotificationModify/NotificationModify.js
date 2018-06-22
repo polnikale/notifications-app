@@ -42,21 +42,26 @@ class NotificationCreate extends React.Component {
     const buttonDisabled = this.disabled();
 
     return(
-      <Page 
-        renderControls={() => {
-          return (
-            <div className="controls">
-              <Button type="save-btn" onPress={this.handleSave} disabled={buttonDisabled}>Сохранить</Button>
+      <div className="wrapper">
+        <aside/>
+        <main>
+          <Page 
+            renderControls={() => {
+              return (
+                <div className="controls">
+                  <Button type="save-btn" onPress={this.handleSave} disabled={buttonDisabled}>Сохранить</Button>
+                </div>
+              )
+            }} 
+            title={headerTitle}
+          >
+            <div className="notificationCreate-wrapper">
+              <Phone/>
+              <NotificationForm />
             </div>
-          )
-        }} 
-        title={headerTitle}
-      >
-        <div className="notificationCreate-wrapper">
-          <Phone/>
-          <NotificationForm />
-        </div>
-      </Page>
+          </Page>
+        </main>
+      </div>
     )
   }
 }
