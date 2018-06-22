@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { goBack } from 'react-router';
 
 import Header from '../Header/Header';
 
@@ -12,18 +13,18 @@ class Page extends React.Component {
 
   handleBack() {
     const { back } = this.props;
-    
+
     back();
   }
 
   render() {
-    const { children, renderControls, title, backAvailable } = this.props;
+    const { children, renderControls, title, route } = this.props;
 
     return(
       <Fragment>
         <Header 
           title={title}
-          onBack={backAvailable && this.handleBack}
+          onBack={route !== '/' && this.handleBack}
         >
           {renderControls()}
         </Header>

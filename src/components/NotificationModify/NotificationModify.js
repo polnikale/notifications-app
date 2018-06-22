@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page from '../../containers/Page';
+import Page from '../Page/Page';
 import './NotificationModify.css';
 import Phone from '../../containers/Phone';
 import Button from '../Button/Button';
@@ -40,6 +40,7 @@ class NotificationCreate extends React.Component {
   render() {
     const headerTitle = this.renderHeaderText();
     const buttonDisabled = this.disabled();
+    console.log(this);
 
     return(
       <div className="wrapper">
@@ -54,6 +55,8 @@ class NotificationCreate extends React.Component {
               )
             }} 
             title={headerTitle}
+            route={this.props.route.path}
+            back={this.props.router.goBack}
           >
             <div className="notificationCreate-wrapper">
               <Phone/>

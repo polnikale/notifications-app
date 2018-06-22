@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { routerMiddleware, syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 
 import reducers from './reducers/index';
@@ -12,12 +12,15 @@ import Notifications from './containers/Notifications';
 import NotificationModify from './containers/NotificationModify';
 import registerServiceWorker from './registerServiceWorker';
 
+const middleware = routerMiddleware(browserHistory)
 
-let store = createStore(
+
+const store = createStore(
   combineReducers({
     ...reducers,
     routing: routerReducer
-  })
+  }),
+  applyMiddleware(middleware)
 );
 
 const history = syncHistoryWithStore(browserHistory, store);

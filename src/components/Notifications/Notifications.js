@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router'
 
-import Page from '../../containers/Page';
+import Page from '../Page/Page';
 import Button from '../Button/Button';
 import plusSvg from './plus.svg';
 import defaultSvg from './picture.svg';
@@ -81,6 +81,7 @@ class Notifications extends React.Component {
 
   render() {
     const notificationsList = this.renderNotifications();
+    console.log(this);
 
     return (
       <div className="wrapper">
@@ -100,6 +101,8 @@ class Notifications extends React.Component {
               )
             }}
             title={strings.header.mainTitle}
+            route={this.props.route.path}
+            back={this.props.router.goBack}
           >
             <div className="notifications">
               {notificationsList}
