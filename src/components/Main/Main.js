@@ -8,6 +8,7 @@ const MainWrapper = styled.main`
   padding-right: 310px;
   background-color: #f3f3f3;
   position: relative;
+  flex-basis: calc(100% - 240px);
 
   @media (max-width: 1180px) {
     padding-right: 150px;
