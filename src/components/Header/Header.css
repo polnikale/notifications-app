@@ -7,6 +7,17 @@ header {
   border-right: 2px solid rgba(40,44,55, .1);
 }
 
+header::after {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 100%;
+  opacity: 0.1;
+  top: 80px;
+  left: 0;
+  background-color: #333333;
+}
+
 header h2 {
   margin-left: 20px;
   display: inline-block;

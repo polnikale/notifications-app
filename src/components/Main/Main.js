@@ -1,8 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import NotificationModify from '../../containers/NotificationModify';
 import Notifications from '../../containers/Notifications';
-import './Main.css';
+
+const MainWrapper = styled.main`
+  padding-right: 310px;
+  background-color: #f3f3f3;
+  position: relative;
+
+  @media (max-width: 1180px) {
+    padding-right: 150px;
+  }
+
+  @media (max-width: 960px) {
+    padding-right: 70px;
+  }
+  
+  @media (max-width: 680px) {
+    padding-right: 20px;
+  }
+`;
 
 
 class Main extends React.Component {
@@ -23,9 +41,9 @@ class Main extends React.Component {
     const pageToRender = this.renderMain();
     
     return(
-      <main>
+      <MainWrapper>
         {pageToRender}
-      </main>
+      </MainWrapper>
     );
   }
 }
