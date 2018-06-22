@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Page from '../../containers/Page';
 import Button from '../Button/Button';
@@ -6,7 +7,77 @@ import plusSvg from './plus.svg';
 import defaultSvg from './picture.svg';
 import plusBigSvg from './plusBig.svg';
 import strings from '../../strings';
-import './Notifications.css';
+
+const NotificationsWrapper = styled.ul`
+  list-style: none;
+  padding: 0 0 0 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
+  grid-gap: 20px;
+`;
+
+const NotificationsFigure = styled.figure`
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: solid 1px rgba(106, 117, 131, 0.16);
+  border-radius: 4px;
+  transition: all .3s;
+  padding: 0;
+
+  &:hover {
+    box-shadow: 0 11px 10px 0 rgba(0, 0, 0, 0.07), 0 4px 6px 0 rgba(0, 0, 0, 0.08);
+  }
+`;
+
+const Heading = styled.h5`
+  margin: 15px;
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+`;
+
+const PlusHeading = styled.h6`
+  font-size: 14px;
+  opacity: 0.2;
+  text-align: center;
+  font-style: italic;
+  color: #000000;
+`;
+
+const PlusImage = styled.img`
+  margin: 70px auto 30px auto;
+  display: block;
+  width: 80px;
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 160px;
+  box-sizing: border-box;
+  border-bottom: solid 1px rgba(106, 117, 131, 0.16);
+
+  &.default-image {
+    padding: 28px 0;
+  }
+`;
+
+const DefaultImage = styled.img`
+  display: block;
+  margin: auto;
+  width: 146px;
+  height: 103px;
+  object-fit: contain;
+`;
+
+
+
+
 
 class Notifications extends React.Component {
   constructor(props) {
@@ -33,49 +104,49 @@ class Notifications extends React.Component {
     const { notifications } = this.props;
     
     return (
-      <ul>
+      <NotificationsWrapper>
         {notifications.map((element, index) => {
           return this.renderNotificationCard(element, index) // может быть тут стоило создать еще один компонент notificationCard, но он, по сути, не дублируется, и тогда пришлось бы спускать еще на одну ступень данные/события
         })}
         {this.renderCreateNewCard()}
-      </ul>
+      </NotificationsWrapper>
     )
   }
 
   renderNotificationCard(notification, index) {
     return (
       <li key={index} onClick={() => this.handleEditNotification(notification, index)}>
-        <figure>
+        <NotificationsFigure>
           {this.renderPicture(notification.pictures[0])}
           <figcaption>
-            <h5>{notification.heading}</h5>
+            <Heading>{notification.heading}</Heading>
           </figcaption>
-        </figure>
+        </NotificationsFigure>
       </li>
     );
   }
 
   renderPicture(picture) {
     return picture ? (
-      <div className="image">
-        <img src={picture} alt={picture}/>
-      </div>
+      <ImageWrapper>
+        <Image src={picture} alt={picture}/>
+      </ImageWrapper>
     ) : (
-      <div className="image defaultImage">
-        <img src={defaultSvg} alt={defaultSvg}/>
-      </div>
+      <ImageWrapper className="default-image">
+        <DefaultImage src={defaultSvg} alt={defaultSvg}/>
+      </ImageWrapper>
     )
   }
 
   renderCreateNewCard() {
     return (
-      <li className="plus" onClick={this.handleNewCard}>
-        <figure>
-        <img src={plusBigSvg} alt="newNotification" />
+      <li onClick={this.handleNewCard}>
+        <NotificationsFigure>
+        <PlusImage src={plusBigSvg} alt="newNotification" />
           <figcaption>
-            <h6>{strings.notifications.newNotification}</h6>
+            <PlusHeading>{strings.notifications.newNotification}</PlusHeading>
           </figcaption>
-        </figure>
+        </NotificationsFigure>
       </li>
     )
   }
@@ -97,7 +168,7 @@ class Notifications extends React.Component {
         }}
         title={strings.header.mainTitle}
       >
-        <div className="notifications">
+        <div>
           {notificationsList}
         </div>
       </Page>
