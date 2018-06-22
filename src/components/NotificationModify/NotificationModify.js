@@ -53,7 +53,7 @@ class NotificationCreate extends React.Component {
         renderControls={() => {
           return (
             <div className="controls">
-              <Button type="save-btn" onPress={this.handleSave} disabled={buttonDisabled}>Сохранить</Button>
+              <Button type="save-button" onPress={this.handleSave} disabled={buttonDisabled}>Сохранить</Button>
             </div>
           )
         }} 
