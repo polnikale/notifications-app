@@ -40,17 +40,9 @@ function* modifyNotification(action) {
   }
 }
 
-
-function* watchModifyNotification() {
-  yield takeLatest(notificationsActions.ASYNC_MODIFY_NOTIFICATION, modifyNotification);
-}
-function* watchFetchNotifications() {
-  yield takeLatest(notificationsActions.ASYNC_FETCH_NOTIFICATIONS, fetchNotifications);
-}
-
 export default function* rootSaga() {
   yield all([
-      watchFetchNotifications(),
-      watchModifyNotification(),
+    takeLatest(notificationsActions.ASYNC_MODIFY_NOTIFICATION, modifyNotification),
+    takeLatest(notificationsActions.ASYNC_FETCH_NOTIFICATIONS, fetchNotifications)
   ])
 }
