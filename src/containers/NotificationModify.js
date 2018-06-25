@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  save: (notification, index) => dispatch(asyncModifyNotification(notification, index)),
+  save: (notification, index) => dispatch(asyncModifyNotification(notification)),
 });
 
 export default connect(

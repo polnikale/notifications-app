@@ -16,25 +16,26 @@ function* fetchNotifications() {
 
 function* addNotification(notification) {
   try {
-    yield call(() => localStorageService.appendNotification(notification));
+    const newNotification = yield call(() => localStorageService.appendNotification(notification));
+    yield put(saveNotification(newNotification));
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+function* editNotification(notification) {
+  try {
+    yield call(() => localStorageService.editNotification(notification));
     yield put(saveNotification(notification));
   } catch(error) {
     console.log(error);
   }
 }
 
-function* editNotification(notification, index) {
-  try {
-    yield call(() => localStorageService.editNotification(notification, index));
-    yield put(saveNotification(notification, index));
-  } catch(error) {
-    console.log(error);
-  }
-}
-
 function* modifyNotification(action) {
-  if (typeof action.index === 'number') {
-    yield call(() => editNotification(action.notification, action.index));
+  console.log(action.notification);
+  if (typeof action.notification.id === 'number') { // id создается на локалхосте, так что на данный момент, если создается новый, его нект
+    yield call(() => editNotification(action.notification));
   } else {
     yield call(() => addNotification(action.notification));
   }
