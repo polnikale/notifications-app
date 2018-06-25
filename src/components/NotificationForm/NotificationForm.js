@@ -37,11 +37,14 @@ class NotificationForm extends React.Component {
 
   handleAddPhoto(event) {
     const photo = event.target.files[0];
+
+    this.addPhoto(photo);
   }
 
 
   handleDragOver(event) {
     event.preventDefault();
+
   }
 
   handleDrop(event) {
