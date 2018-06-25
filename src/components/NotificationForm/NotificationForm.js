@@ -9,6 +9,8 @@ class NotificationForm extends React.Component {
     super(props);
 
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
   }
 
   renderPhotos(pictures) {
@@ -22,16 +24,29 @@ class NotificationForm extends React.Component {
     )
   }
 
-  handleAddPhoto(event) {
+  addPhoto(photo) {
     const { onAddPhoto } = this.props;
 
-    const photo = event.target.files[0];
     if (!photo) return;
     const pictureSource = window.URL.createObjectURL(photo);
     const photoSourceDotArr = photo.name.split('.');
     const photoSourceExt = photoSourceDotArr[photoSourceDotArr.length - 1];
     if (!SUPPORTED_IMAGE_FORMATS.includes(photoSourceExt)) return;
     onAddPhoto(pictureSource);
+  }
+
+  handleAddPhoto(event) {
+    const photo = event.target.files[0];
+  }
+
+
+  handleDragOver(event) {
+    event.preventDefault();
+  }
+
+  handleDrop(event) {
+    event.preventDefault();
+    this.addPhoto(event.dataTransfer.files[0]);
   }
 
   renderUserPhoto(picture) {
@@ -52,7 +67,10 @@ class NotificationForm extends React.Component {
   }
   renderDefaultPhoto() {
     return (
-      <li>
+      <li 
+        onDragOver={this.handleDragOver}
+        onDrop={this.handleDrop}
+      >
         <img 
           src={defaultSvg} 
           className="default-svg" 
