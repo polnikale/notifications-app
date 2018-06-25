@@ -55,6 +55,10 @@
   border-bottom: solid 1px rgba(106, 117, 131, 0.16);
 }
 
+.chosenImage {
+  background-size: cover;
+}
+
 .notifications .defaultImage {
   padding: 28px 0;
 }
