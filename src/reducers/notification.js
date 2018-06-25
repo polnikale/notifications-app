@@ -1,61 +1,109 @@
-import {
-  CHANGE_NOTIFICATION_INPUT,
-  REMOVE_PHOTO,
-  ADD_PHOTO,
-  ADD_NOTIFICATION_INFO
-} from '../actions/notification';
+import { createAction } from 'redux-act';
 
-import { RETURN_BACK, NOTIFICATION_SAVE } from '../actions/common';
+import * as actions from './common';
 
-const initialState = {
-  current: {
-    heading: '',
-    description: '',
-    pictures: []
-  },
+export const changeNotificationInput = createAction(
+  'Change input\'s info', 
+  (input, value) => ({input, value})
+);
+
+export const addNotificationInfo = createAction(
+  'Add input\'s info',
+  (notification, index) => ({notification, index})
+);
+
+export const removePhoto = createAction('Remove input\'s photo');
+export const addPhoto = createAction('removeInput\'s photo');
+
+
+export const reducer = {
+  [changeNotificationInput]: (state, payload) => ({
+      ...state,
+      current: {
+        ...state.current,
+        [payload.input]: payload.value
+      }
+  }),
+
+  [addNotificationInfo]: (_, payload) => ({
+    ...payload.notification,
+    index: payload.index,
+    current: {
+      ...payload.notification
+    }
+  }),
+
+  [removePhoto]: (state, payload) => ({
+    ...state,
+    current: {
+      ...state.current,
+      pictures: state.current.pictures.filter((picture) => picture !== payload.pictureSrc)
+    },
+  }),
+
+  [addPhoto]: (state, payload) => ({
+    ...state,
+    current: {
+      ...state.current,
+      pictures: [...state.current, payload.pictureSrc]
+    },
+  }),
+
+  [actions.saveNotification]: () => ({
+    current: {
+      heading: '',
+      description: '',
+      pictures: []
+    },
+  }),
+  [actions.returnBack]: () => ({
+    current: {
+      heading: '',
+      description: '',
+      pictures: []
+    },
+  }),
 };
 
-export const reducer = (state = initialState, action) => {
-  switch(action.type) {
-    case CHANGE_NOTIFICATION_INPUT:
-      return {
-        ...state,
-        current: {
-          ...state.current,
-          [action.input]: action.value
-        },
-      };
-    case REMOVE_PHOTO:
-      return {
-        ...state,
-        current: {
-          ...state.current,
-          pictures: state.current.pictures.filter((picture) => picture !== action.pictureSrc),
-        }
-      }
-    case ADD_PHOTO:
-      return {
-        ...state,
-        current: {
-          ...state.current,
-          pictures: [...state.current.pictures, action.pictureSrc]
-        }
-      }
-    case RETURN_BACK:
-    case NOTIFICATION_SAVE:
-      return initialState;
-    case ADD_NOTIFICATION_INFO:
-      return {
-        ...action.notification,
-        index: action.index,
-        current: {
-          ...action.notification
-        }
-      }
-    default:
-      return state;
-  }
-};
+// switch(action.type) {
+//   case CHANGE_NOTIFICATION_INPUT:
+//     return {
+//       ...state,
+//       current: {
+//         ...state.current,
+//         [action.input]: action.value
+//       },
+//     };
+//   case REMOVE_PHOTO:
+//     return {
+//       ...state,
+//       current: {
+//         ...state.current,
+//         pictures: state.current.pictures.filter((picture) => picture !== action.pictureSrc),
+//       }
+//     }
+//   case ADD_PHOTO:
+//     return {
+//       ...state,
+//       current: {
+//         ...state.current,
+//         pictures: [...state.current.pictures, action.pictureSrc]
+//       }
+//     }
+//   case RETURN_BACK:
+//   case NOTIFICATION_SAVE:
+//     return initialState;
+//   case ADD_NOTIFICATION_INFO:
+//     return {
+//       ...action.notification,
+//       index: action.index,
+//       current: {
+//         ...action.notification
+//       }
+//     }
+//   default:
+//     return state;
+// }
 
 export const getIsValid = (state) => {
   return state.modifyNotification.current.heading !== '';

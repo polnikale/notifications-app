@@ -1,19 +1,24 @@
-import { RETURN_BACK, NOTIFICATION_SAVE } from '../actions/common';
-import { NOTIFICATION_EDIT } from '../actions/router';
+import { createAction } from 'redux-act';
 
-const initialState = [];
+import * as actions from './common';
 
-export const reducer = (state = initialState , action) => {
-  switch(action.type) {
-    case RETURN_BACK:
-    case NOTIFICATION_SAVE:
-      return state.slice(0, state.length-1);
-    case NOTIFICATION_EDIT:
-      return ['modify'];
-    default:
-      return state;
-  }
-}
+export const toNotification = createAction('Move to notification');
+
+export const reducer =  {
+  [toNotification]: () => ['modify'],
+  [actions.saveNotification]: (state) => state.slice(0, state.length - 1),
+  [actions.returnBack]: (state) => state.slice(0, state.length - 1),
+};
+
+// switch(action.type) {
+//   case RETURN_BACK:
+//   case NOTIFICATION_SAVE:
+//     return state.slice(0, state.length-1);
+//   case NOTIFICATION_EDIT:
+//     return ['modify'];
+//   default:
+//     return state;
+// }
 
 
 export const getRouter = (state) => {
