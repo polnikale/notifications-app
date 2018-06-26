@@ -5715,7 +5715,15 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-act@^1.7.4:
+redux-act-async@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/redux-act-async/-/redux-act-async-1.7.0.tgz#4fed2df56117d9d4ef4b9fb003daad9607464f9d"
+  dependencies:
+    babel-runtime "^6.18.0"
+    object-assign "^4.1.1"
+    redux-act "^1.1.0"
+
+redux-act@^1.1.0, redux-act@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/redux-act/-/redux-act-1.7.4.tgz#0dd7c6daaca98649540a3d42c259814b048bd8e1"
 

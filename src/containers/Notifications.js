@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toNotification } from '../actions/router';
+import { toNotification } from '../reducers/router';
 import { addNotificationInfo } from '../actions/notification';
 import Notifications from '../components/Notifications/Notifications';
 import { getAllNotifications } from '../reducers/notifications';

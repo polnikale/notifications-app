@@ -1,12 +1,14 @@
-import { createAction } from 'redux-act';
+import { createAction, createReducer } from 'redux-act';
 
 export const setLoading = createAction('Start loading');
 export const setLoaded = createAction('Finish loading');
 
-export const reducer = {
+const initialState = false;
+
+export const reducer = createReducer({
   [setLoading]: () => true,
   [setLoaded]: () => false,
-};
+}, initialState);
 
 // switch(action.type) {
 //   case SET_LOADING:

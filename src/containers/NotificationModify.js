@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 
-import { modifyNotifications } from '../actions/notifications'
+import { modifyNotifications } from '../reducers/notifications'
 import NotificationModify from '../components/NotificationModify/NotificationModify';
-import * as notificationSelectors from '../reducers/notification';
+import * as notification from '../reducers/notification';
 
 
 const mapStateToProps = (state) => ({
-  heading: notificationSelectors.getPreviousHeading(state),
-  current: notificationSelectors.getCurrentNotification(state),
-  index: notificationSelectors.getPreviousIndex(state),
-  valid: notificationSelectors.getIsValid(state),
-  changed: notificationSelectors.getIsChanged(state),
+  heading: notification.getPreviousHeading(state),
+  current: notification.getCurrentNotification(state),
+  index: notification.getPreviousIndex(state),
+  valid: notification.getIsValid(state),
+  changed: notification.getIsChanged(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

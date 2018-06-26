@@ -1,14 +1,16 @@
-import { createAction } from 'redux-act';
+import { createAction, createReducer } from 'redux-act';
 
 import * as actions from './common';
 
+const initialState = [];
+
 export const toNotification = createAction('Move to notification');
 
-export const reducer =  {
+export const reducer =  createReducer({
   [toNotification]: () => ['modify'],
   [actions.saveNotification]: (state) => state.slice(0, state.length - 1),
   [actions.returnBack]: (state) => state.slice(0, state.length - 1),
-};
+}, initialState);
 
 // switch(action.type) {
 //   case RETURN_BACK:

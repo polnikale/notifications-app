@@ -1,11 +1,8 @@
-import { createAction } from 'redux-act';
+import { createAction, createReducer } from 'redux-act';
 
 import * as actions from './common';
 
-export const changeNotificationInput = createAction(
-  'Change input\'s info', 
-  (input, value) => ({input, value})
-);
+export const changeNotificationInput = createAction('Change input\'s info');
 
 export const addNotificationInfo = createAction(
   'Add input\'s info',
@@ -15,13 +12,21 @@ export const addNotificationInfo = createAction(
 export const removePhoto = createAction('Remove input\'s photo');
 export const addPhoto = createAction('removeInput\'s photo');
 
+const initialState = {
+  current: {
+    heading: '',
+    description: '',
+    pictures: []
+  }
+};
 
-export const reducer = {
+
+export const reducer = createReducer({
   [changeNotificationInput]: (state, payload) => ({
       ...state,
       current: {
         ...state.current,
-        [payload.input]: payload.value
+        [payload.type]: payload.value
       }
   }),
 
@@ -29,7 +34,7 @@ export const reducer = {
     ...payload.notification,
     index: payload.index,
     current: {
-      ...payload.notification
+      ...payload
     }
   }),
 
@@ -37,7 +42,7 @@ export const reducer = {
     ...state,
     current: {
       ...state.current,
-      pictures: state.current.pictures.filter((picture) => picture !== payload.pictureSrc)
+      pictures: state.current.pictures.filter((picture) => picture !== payload)
     },
   }),
 
@@ -45,25 +50,12 @@ export const reducer = {
     ...state,
     current: {
       ...state.current,
-      pictures: [...state.current, payload.pictureSrc]
+      pictures: [...state.current, payload]
     },
   }),
-
-  [actions.saveNotification]: () => ({
-    current: {
-      heading: '',
-      description: '',
-      pictures: []
-    },
-  }),
-  [actions.returnBack]: () => ({
-    current: {
-      heading: '',
-      description: '',
-      pictures: []
-    },
-  }),
-};
+  [actions.saveNotification]: () => initialState,
+  [actions.returnBack]: () => initialState,
+}, initialState);
 
 // switch(action.type) {
 //   case CHANGE_NOTIFICATION_INPUT:
