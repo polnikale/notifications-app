@@ -7,9 +7,11 @@ class LocalStorageService {
   }
 
   async appendNotification(notification) {
+    console.log('APPEND', notification);
     await timeout(1000)
     const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
     localStorage.setItem('notifications', JSON.stringify([...notifications, notification]));
+    return notification;
   }
 
   async editNotification(notification, index) {

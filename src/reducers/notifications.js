@@ -20,6 +20,7 @@ export const fetchNotifications = createActionAsync('FETCH_NOTIFICATIONS', local
   ok: {
     callback: (dispatch, getState, ...args) => {
       dispatch(loading.setLoaded());
+      console.log('FETCH',args);
       dispatch(setNotifications(...args))
     }
   },
@@ -39,7 +40,8 @@ export const appendNotification = createActionAsync('APPEND_NOTIFICATION', local
   ok: {
     callback: (dispatch, getState, ...args) => {
       dispatch(loading.setLoaded());
-      dispatch(saveNotification(...args))
+      console.log('info', args);
+      dispatch(saveNotification({notification:args[0]}));
     }
   },
   error: {
@@ -89,6 +91,12 @@ export function modifyNotifications(notification, index) {
 
 export const reducer = createReducer({
   [setNotifications]: (state, payload) => payload,
+  [saveNotification]: (state, payload) => (typeof payload.index === 'number')
+                              ? state.map((notification, index) => 
+                                index === payload === index
+                                  ? payload.notification
+                                  : notification)
+                              : [...state, payload.notification]
 }, initialState);
 console.dir('reduuuucer', reducer);
 
