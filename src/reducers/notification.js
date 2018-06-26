@@ -34,7 +34,7 @@ export const reducer = createReducer({
     ...payload.notification,
     index: payload.index,
     current: {
-      ...payload
+      ...payload.notification
     }
   }),
 
@@ -102,6 +102,7 @@ export const getIsValid = (state) => {
 };
 
 export const getIsChanged = (state) => {
+  console.log('CHANGED', state);
   const { modifyNotification } = state;
   return modifyNotification.heading !== undefined 
     ? !checkForIdentity({
@@ -113,6 +114,8 @@ export const getIsChanged = (state) => {
 };
 
 export const checkForIdentity = (notif1, notif2) => {
+  console.log(notif1);
+  console.log(notif2);
   let picturesAreEqual;
   if (notif1.pictures.length !== notif2.pictures.length) {
     picturesAreEqual = false;

@@ -38,10 +38,11 @@ export const appendNotification = createActionAsync('APPEND_NOTIFICATION', local
     }
   },
   ok: {
-    callback: (dispatch, getState, ...args) => {
+    callback: (dispatch, getState, ...args) => { // !!!!вот тут у меня почему-то приходит массив из двух одинаковых объектов(notification). Я никакую инфу по нему найти не смог. ...args возвращает массив, в котором на первом месте то, что вернул ассинхронный метод, а на втором - то, что мы сами передали?
+                                                 // !!! как я понял, не всегда приходит массив из двух одинаковых объектов. На первом месте - то, что я возвращаю из ассинхронного, а дальше - то, что я кидал собственно в сам метод
       dispatch(loading.setLoaded());
       console.log('info', args);
-      dispatch(saveNotification({notification:args[0]}));
+      dispatch(saveNotification({ notification:args[0] }));
     }
   },
   error: {
@@ -59,8 +60,9 @@ export const editNotification = createActionAsync('EDIT_NOTIFICATION', localStor
   },
   ok: {
     callback: (dispatch, getState, ...args) => {
+      console.log('EDIT', args[0]);
       dispatch(loading.setLoaded());
-      dispatch(saveNotification(...args))
+      dispatch(saveNotification(args[0]))
     }
   },
   error: {
@@ -93,7 +95,7 @@ export const reducer = createReducer({
   [setNotifications]: (state, payload) => payload,
   [saveNotification]: (state, payload) => (typeof payload.index === 'number')
                               ? state.map((notification, index) => 
-                                index === payload === index
+                                index === payload.index
                                   ? payload.notification
                                   : notification)
                               : [...state, payload.notification]

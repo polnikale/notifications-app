@@ -15,15 +15,12 @@ class LocalStorageService {
   }
 
   async editNotification(notification, index) {
-    console.log(index);
-    await this.timeout(1000);
+    await timeout(1000);
+    console.log('EDIT', {notification, index})
     const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
     console.log([notifications.slice(0, index), notifications, notifications.slice(index+1)]);
-    this._appendToStorage( [ ...notifications.slice(0, index), notification, ...notifications.slice(index + 1) ] );
-  }
-
-  _appendToStorage(notifications) {
-    localStorage.setItem('notifications', JSON.stringify(notifications));
+    localStorage.setItem('notifications', JSON.stringify([ ...notifications.slice(0, index), notification, ...notifications.slice(index + 1) ]) );
+    return {notification, index};
   }
 }
 
