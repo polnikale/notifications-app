@@ -4,10 +4,10 @@ import * as actions from './common';
 
 const initialState = [];
 
-export const toNotification = createAction('Move to notification');
+export const toNotifications = createAction('Move to notifications');
 
 export const reducer =  createReducer({
-  [toNotification]: () => ['modify'],
+  [toNotifications]: () => ['modify'],
   [actions.saveNotification]: (state) => state.slice(0, state.length - 1),
   [actions.returnBack]: (state) => state.slice(0, state.length - 1),
 }, initialState);

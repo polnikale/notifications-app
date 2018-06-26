@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import { createAction, createReducer } from 'redux-act';
 import { createActionAsync, createReducerAsync } from 'redux-act-async';
+import { saveNotification } from './common';
 
 import localStorageService from '../service/localStorage';
+import { toNotifications } from './router';
 import * as loading from './loading';
 
 const initialState = [];
@@ -37,7 +39,7 @@ export const appendNotification = createActionAsync('APPEND_NOTIFICATION', local
   ok: {
     callback: (dispatch, getState, ...args) => {
       dispatch(loading.setLoaded());
-      dispatch(setNotifications(...args))
+      dispatch(saveNotification(...args))
     }
   },
   error: {
@@ -56,7 +58,7 @@ export const editNotification = createActionAsync('EDIT_NOTIFICATION', localStor
   ok: {
     callback: (dispatch, getState, ...args) => {
       dispatch(loading.setLoaded());
-      dispatch(setNotifications(...args))
+      dispatch(saveNotification(...args))
     }
   },
   error: {
@@ -68,6 +70,7 @@ export const editNotification = createActionAsync('EDIT_NOTIFICATION', localStor
 
 export function modifyNotifications(notification, index) {
   return async (dispatch) => {
+    dispatch(toNotifications());
     if (typeof index === 'number') {
       dispatch(editNotification(notification, index));
     } else {
