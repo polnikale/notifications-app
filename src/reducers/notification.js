@@ -26,7 +26,7 @@ export const reducer = createReducer({
       ...state,
       current: {
         ...state.current,
-        [payload.type]: payload.value
+        [payload.target.name]: payload.target.value
       }
   }),
 
@@ -138,5 +138,6 @@ export const getPreviousIndex = (state) => {
 };
 
 export const getCurrentNotification = (state) => {
+  console.log(state);
   return state.modifyNotification.current
 };
