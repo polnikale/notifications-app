@@ -12,14 +12,14 @@ class Page extends React.Component {
 
   handleBack() {
     const { back } = this.props;
-    
+
     back();
   }
 
   render() {
     const { children, renderControls, title, backAvailable } = this.props;
 
-    return(
+    return (
       <Fragment>
         <Header 
           title={title}
