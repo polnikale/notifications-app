@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NotificationModify from '../../containers/NotificationModify';
 import Notifications from '../../containers/Notifications';
@@ -6,23 +7,31 @@ import './Main.css';
 
 
 class Main extends React.Component {
+  static propTypes = {
+    currentRoute: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }
+
   renderMain() {
     const { currentRoute } = this.props;
 
-    switch(currentRoute) {
+    switch (currentRoute) {
       case '':
-        return <Notifications />
+        return <Notifications />;
       case 'modify':
-        return <NotificationModify />
+        return <NotificationModify />;
       default:
-        return <p>Sorry i don't know what to do</p>
+        return (
+          <p>
+            {'Sorry i don\'t know what to do'}
+          </p>
+        );
     }
   }
 
   render() {
     const pageToRender = this.renderMain();
-    
-    return(
+
+    return (
       <main>
         {pageToRender}
       </main>
