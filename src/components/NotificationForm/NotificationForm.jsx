@@ -1,27 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import strings from '../../strings';
 import defaultSvg from './default.svg';
 import './NotificationForm.css';
 
+const SUPPORTED_IMAGE_FORMATS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'bmp', 'BMP', 'gif', 'GIF', 'svg', 'SVG', 'tiff', 'TIFF', 'png', 'PNG'];
+
 class NotificationForm extends React.Component {
+  static propTypes = {
+    onAddPhoto: PropTypes.func.isRequired,
+    onRemovePhoto: PropTypes.func.isRequired,
+    onInputChange: PropTypes.func.isRequired,
+    currentNotification: {
+      heading: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string),
+    },
+  }
+
+  static defaultProps = {
+    currentNotification: {
+      heading: '',
+      description: '',
+      pictures: [],
+    },
+  }
+
   constructor(props) {
     super(props);
 
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
-    this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
-  }
-
-  renderPhotos(pictures) {
-    return (
-      <ul className="photos">
-        {pictures.map((picture, index) => {
-          return this.renderUserPhoto(picture, index)
-        })}
-        {this.renderDefaultPhoto()}
-      </ul>
-    )
   }
 
   addPhoto(photo) {
@@ -41,15 +51,20 @@ class NotificationForm extends React.Component {
     this.addPhoto(photo);
   }
 
-
-  handleDragOver(event) {
-    event.preventDefault();
-
-  }
-
   handleDrop(event) {
     event.preventDefault();
     this.addPhoto(event.dataTransfer.files[0]);
+  }
+
+  renderPhotos(pictures) {
+    return (
+      <ul className="photos">
+        {pictures.map((picture, index) => {
+          return this.renderUserPhoto(picture, index)
+        })}
+        {this.renderDefaultPhoto()}
+      </ul>
+    )
   }
 
   renderUserPhoto(picture) {
@@ -70,8 +85,7 @@ class NotificationForm extends React.Component {
   }
   renderDefaultPhoto() {
     return (
-      <li 
-        onDragOver={this.handleDragOver}
+      <li
         onDrop={this.handleDrop}
       >
         <img 
@@ -122,7 +136,5 @@ class NotificationForm extends React.Component {
     )
   }
 }
-
-const SUPPORTED_IMAGE_FORMATS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'bmp', 'BMP', 'gif', 'GIF', 'svg', 'SVG', 'tiff', 'TIFF', 'png', 'PNG'];
 
 export default NotificationForm;
