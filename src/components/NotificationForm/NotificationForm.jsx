@@ -59,12 +59,10 @@ class NotificationForm extends React.Component {
   renderPhotos(pictures) {
     return (
       <ul className="photos">
-        {pictures.map((picture, index) => {
-          return this.renderUserPhoto(picture, index)
-        })}
+        {pictures.map((picture, index) => this.renderUserPhoto(picture, index))}
         {this.renderDefaultPhoto()}
       </ul>
-    )
+    );
   }
 
   renderUserPhoto(picture) {
@@ -72,68 +70,78 @@ class NotificationForm extends React.Component {
 
     return (
       <li key={picture}>
-        <img 
-          src={picture} 
-          alt={picture} 
+        <img
+          src={picture}
+          alt={picture}
         />
-        <span 
-          className="rubbish-svg" 
+        <span
+          className="rubbish-svg"
+          role="button"
+          tabIndex="0"
           onClick={() => onRemovePhoto(picture)}
         />
       </li>
-    )
+    );
   }
+
   renderDefaultPhoto() {
     return (
       <li
         onDrop={this.handleDrop}
       >
-        <img 
-          src={defaultSvg} 
-          className="default-svg" 
+        <img
+          src={defaultSvg}
+          className="default-svg"
           alt="default"
         />
-        <label 
-          alt="add new svg" 
-          htmlFor="newImage" 
+        <label
+          alt="add new svg"
+          htmlFor="newImage"
           className="plus-svg"
         />
-        <input 
-          type="file" 
-          id="newImage" 
-          accept="image/x-png,image/gif,image/jpeg" 
+        <input
+          type="file"
+          id="newImage"
+          accept="image/x-png,image/gif,image/jpeg"
           onChange={this.handleAddPhoto}
         />
       </li>
-    )
+    );
   }
+
   render() {
     const { currentNotification, onInputChange } = this.props;
-    
+
     const { heading, description, pictures } = currentNotification;
 
     const photos = this.renderPhotos(pictures);
     return (
       <div className="new-notification">
-        <h4>{strings.notificationForm.heading}</h4>
-        <input 
-          type="text" 
-          name="heading" 
-          value={heading} 
-          onChange={onInputChange} 
+        <h4>
+          {strings.notificationForm.heading}
+        </h4>
+        <input
+          type="text"
+          name="heading"
+          value={heading}
+          onChange={onInputChange}
         />
-        <h4>{strings.notificationForm.description}</h4>
-        <textarea 
-          type="text" 
-          rows="6" 
-          name="description" 
-          value={description} 
-          onChange={onInputChange} 
+        <h4>
+          {strings.notificationForm.description}
+        </h4>
+        <textarea
+          type="text"
+          rows="6"
+          name="description"
+          value={description}
+          onChange={onInputChange}
         />
-        <h4 className="photos">{strings.notificationForm.pictures}</h4>
-          {photos}
+        <h4 className="photos">
+          {strings.notificationForm.pictures}
+        </h4>
+        {photos}
       </div>
-    )
+    );
   }
 }
 
