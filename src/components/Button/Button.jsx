@@ -1,8 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Button.css';
 
 class Button extends React.Component {
+  static propTypes = {
+    disabled: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+    children: PropTypes.children.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -25,21 +33,23 @@ class Button extends React.Component {
 
     if (disabled === true) return false;
     onPress();
+    return false;
   }
 
   render() {
     const { children } = this.props;
 
     const classes = this.computeClasses();
-    console.log(classes);
+
     return (
-      <button 
-        className={classes} 
+      <button
+        type="submit"
+        className={classes}
         onClick={this.handleClick}
       >
         {children}
       </button>
-    )
+    );
   }
 }
 

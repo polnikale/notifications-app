@@ -6,8 +6,8 @@ import Main from '../../containers/Main';
 function App() {
   return (
     <div className="wrapper">
-      <aside/>
-      <Main/>
+      <aside />
+      <Main />
     </div>
   );
 }

@@ -86,8 +86,8 @@ class Notifications extends React.Component {
         renderControls={() => {
           return (
             <div className="controls">
-              <Button type="new-btn" onPress={this.handleNewCard}>
-                <img src={plusSvg} alt="plus" /> 
+              <Button type="new-btn" onPress={this.handleNewCard} disabled={false}>
+                <img src={plusSvg} alt="plus" />
                 <span>Создать</span>
               </Button>
             </div>

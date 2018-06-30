@@ -21,7 +21,7 @@ class Page extends React.Component {
 
     return (
       <Fragment>
-        <Header 
+        <Header
           title={title}
           onBack={backAvailable && this.handleBack}
         >
