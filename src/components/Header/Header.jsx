@@ -12,8 +12,8 @@ class Header extends React.Component {
     ]).isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.element),
+      PropTypes.element,
     ]).isRequired,
   }
 
