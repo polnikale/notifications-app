@@ -32,6 +32,7 @@ class NotificationForm extends React.Component {
 
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
+    this.handlePressRemovePhoto = this.handlePressRemovePhoto.bind(this);
   }
 
   addPhoto(photo) {
@@ -54,6 +55,14 @@ class NotificationForm extends React.Component {
   handleDrop(event) {
     event.preventDefault();
     this.addPhoto(event.dataTransfer.files[0]);
+  }
+
+  handlePressRemovePhoto(picture, event) {
+    const { onRemovePhoto } = this.props;
+
+    if (event.key === 'Enter') {
+      onRemovePhoto(picture);
+    }
   }
 
   renderPhotos(pictures) {
@@ -79,6 +88,7 @@ class NotificationForm extends React.Component {
           role="button"
           tabIndex="0"
           onClick={() => onRemovePhoto(picture)}
+          onKeyPress={event => this.handlePressRemovePhoto(picture, event)}
         />
       </li>
     );
@@ -97,6 +107,7 @@ class NotificationForm extends React.Component {
         <label
           alt="add new svg"
           htmlFor="newImage"
+          tabIndex="0"
           className="plus-svg"
         />
         <input

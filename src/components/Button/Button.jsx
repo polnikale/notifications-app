@@ -8,7 +8,10 @@ class Button extends React.Component {
     disabled: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
-    children: PropTypes.children.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
   }
 
   constructor(props) {

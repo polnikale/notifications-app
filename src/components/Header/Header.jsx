@@ -8,7 +8,10 @@ class Header extends React.Component {
   static propTypes = {
     onBack: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    children: PropTypes.children.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
   }
 
   renderControls() {
