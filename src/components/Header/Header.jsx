@@ -6,7 +6,10 @@ import leftArrow from './leftArrow.svg';
 
 class Header extends React.Component {
   static propTypes = {
-    onBack: PropTypes.func.isRequired,
+    onBack: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.func,
+    ]).isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),

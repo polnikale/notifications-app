@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Page from '../../containers/Page';
 import './NotificationModify.css';
@@ -9,20 +10,30 @@ import NotificationForm from '../../containers/NotificationForm';
 
 
 class NotificationCreate extends React.Component {
+  static propTypes = {
+    heading: PropTypes.oneOfType([
+      PropTypes.undefined,
+      PropTypes.string,
+    ]),
+    valid: PropTypes.func.isRequired,
+    changed: PropTypes.func.isRequired,
+    current: PropTypes.shape({
+      heading: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+    save: PropTypes.func.isRequired,
+    index: PropTypes.number.isRequired,
+  }
+
+  static defaultProps = {
+    heading: undefined,
+  }
+
   constructor(props) {
     super(props);
 
     this.handleSave = this.handleSave.bind(this);
-  }
-
-  renderHeaderText() {
-    const { heading } = this.props;
-
-    if (heading === undefined) {
-      return strings.header.newTitle;
-    } else {
-      return strings.header.editTitle;
-    }
   }
 
   disabled() {
@@ -37,30 +48,38 @@ class NotificationCreate extends React.Component {
     save(current, index);
   }
 
+  renderHeaderText() {
+    const { heading } = this.props;
+
+    if (heading === undefined) {
+      return strings.header.newTitle;
+    }
+    return strings.header.editTitle;
+  }
+
   render() {
     const headerTitle = this.renderHeaderText();
     const buttonDisabled = this.disabled();
 
-    return(
-      <Page 
-        renderControls={() => {
-          return (
-            <div className="controls">
-              <Button type="save-btn" onPress={this.handleSave} disabled={buttonDisabled}>Сохранить</Button>
-            </div>
-          )
-        }} 
+    return (
+      <Page
+        renderControls={() => (
+          <div className="controls">
+            <Button type="save-btn" onPress={this.handleSave} disabled={buttonDisabled}>
+              Сохранить
+            </Button>
+          </div>
+        )}
         title={headerTitle}
       >
         <div className="notificationCreate-wrapper">
-          <Phone/>
+          <Phone />
           <NotificationForm />
         </div>
       </Page>
-    )
+    );
   }
 }
-
 
 
 export default NotificationCreate;

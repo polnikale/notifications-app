@@ -12,11 +12,11 @@ class NotificationForm extends React.Component {
     onAddPhoto: PropTypes.func.isRequired,
     onRemovePhoto: PropTypes.func.isRequired,
     onInputChange: PropTypes.func.isRequired,
-    currentNotification: {
+    currentNotification: PropTypes.shape({
       heading: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       pictures: PropTypes.arrayOf(PropTypes.string),
-    },
+    }),
   }
 
   static defaultProps = {
@@ -32,7 +32,7 @@ class NotificationForm extends React.Component {
 
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
-    this.handlePressRemovePhoto = this.handlePressRemovePhoto.bind(this);
+    this.handlePress = this.handlePress.bind(this);
   }
 
   addPhoto(photo) {
@@ -57,11 +57,9 @@ class NotificationForm extends React.Component {
     this.addPhoto(event.dataTransfer.files[0]);
   }
 
-  handlePressRemovePhoto(picture, event) {
-    const { onRemovePhoto } = this.props;
-
+  handlePress(event, handler, ...args) {
     if (event.key === 'Enter') {
-      onRemovePhoto(picture);
+      handler(...args);
     }
   }
 
@@ -88,7 +86,7 @@ class NotificationForm extends React.Component {
           role="button"
           tabIndex="0"
           onClick={() => onRemovePhoto(picture)}
-          onKeyPress={event => this.handlePressRemovePhoto(picture, event)}
+          onKeyPress={event => this.handlePress(event, onRemovePhoto, picture)}
         />
       </li>
     );
@@ -107,7 +105,6 @@ class NotificationForm extends React.Component {
         <label
           alt="add new svg"
           htmlFor="newImage"
-          tabIndex="0"
           className="plus-svg"
         />
         <input

@@ -8,7 +8,7 @@ import './Main.css';
 
 class Main extends React.Component {
   static propTypes = {
-    currentRoute: PropTypes.arrayOf(PropTypes.string).isRequired,
+    currentRoute: PropTypes.string.isRequired,
   }
 
   renderMain() {
