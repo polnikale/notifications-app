@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   toNotification: notification => dispatch(toNotification(notification)),
-  addNotificationInfoToEdit: (notification) => dispatch(addNotificationInfo(notification)),
+  addNotificationInfoToEdit: notification => dispatch(addNotificationInfo(notification)),
 });
 
 export default connect(

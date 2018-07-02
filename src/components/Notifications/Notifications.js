@@ -42,7 +42,7 @@ class Notifications extends React.Component {
     }
   }
 
-  handleEditNotification(notification, index) {
+  handleEditNotification(notification) {
     const { addNotificationInfoToEdit, toNotification } = this.props;
 
     addNotificationInfoToEdit(notification);
@@ -66,7 +66,7 @@ class Notifications extends React.Component {
         key={index}
         tabIndex="0"
         onClick={() => this.handleEditNotification(notification, index)}
-        onKeyPress={(event) => (
+        onKeyPress={event => (
           this.handlePress(event, this.handleEditNotification, notification, index)
         )}
       >
@@ -114,8 +114,6 @@ class Notifications extends React.Component {
 
   render() {
     const notificationsList = this.renderNotifications();
-
-    console.log('PROPS', this.props);
 
     return (
       <Page

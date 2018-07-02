@@ -5,7 +5,6 @@ import { NOTIFICATION_SAVE } from '../actions/common';
 const initialState = {};
 
 export const reducer = (state = initialState, action) => {
-  console.log(action.notification);
   switch (action.type) {
     case NOTIFICATION_SAVE:
       return (typeof action.notification.id === 'string')
