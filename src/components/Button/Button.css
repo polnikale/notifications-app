@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.new-btn:focus, .save-btn:focus {
+  box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.55);
+}
+
 .new-btn {
   display: flex;
   align-items: center;

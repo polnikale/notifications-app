@@ -18,6 +18,7 @@ class Button extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handlePress = this.handlePress.bind(this);
   }
 
   computeClasses() {
@@ -39,6 +40,12 @@ class Button extends React.Component {
     return false;
   }
 
+  handlePress(event, handler, ...args) {
+    if (event.key === 'Enter') {
+      handler(...args);
+    }
+  }
+
   render() {
     const { children } = this.props;
 
@@ -48,7 +55,9 @@ class Button extends React.Component {
       <button
         type="submit"
         className={classes}
+        tabIndex="0"
         onClick={this.handleClick}
+        onKeyPress={event => this.handlePress(event, this.handleClick)}
       >
         {children}
       </button>
