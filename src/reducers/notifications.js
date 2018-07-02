@@ -3,19 +3,16 @@ import { NOTIFICATION_SAVE } from '../actions/common';
 const initialState = [];
 
 export const reducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case NOTIFICATION_SAVE:
       return (typeof action.index === 'number')
-      ? state.map((notification, index) => 
-        index === action.index 
+        ? state.map((notification, index) => (index === action.index
           ? action.notification
-          : notification)
-      : [...state, action.notification];
+          : notification))
+        : [...state, action.notification];
     default:
-      return state;  
+      return state;
   }
-}
+};
 
-export const getAllNotifications = (state) => {
-  return state.notifications;
-}
+export const getAllNotifications = state => state.notifications;

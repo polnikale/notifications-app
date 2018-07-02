@@ -2,7 +2,7 @@ import {
   CHANGE_NOTIFICATION_INPUT,
   REMOVE_PHOTO,
   ADD_PHOTO,
-  ADD_NOTIFICATION_INFO
+  ADD_NOTIFICATION_INFO,
 } from '../actions/notification';
 
 import { RETURN_BACK, NOTIFICATION_SAVE } from '../actions/common';
@@ -11,18 +11,18 @@ const initialState = {
   current: {
     heading: '',
     description: '',
-    pictures: []
+    pictures: [],
   },
 };
 
 export const reducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case CHANGE_NOTIFICATION_INPUT:
       return {
         ...state,
         current: {
           ...state.current,
-          [action.input]: action.value
+          [action.input]: action.value,
         },
       };
     case REMOVE_PHOTO:
@@ -30,17 +30,17 @@ export const reducer = (state = initialState, action) => {
         ...state,
         current: {
           ...state.current,
-          pictures: state.current.pictures.filter((picture) => picture !== action.pictureSrc),
-        }
-      }
+          pictures: state.current.pictures.filter(picture => picture !== action.pictureSrc),
+        },
+      };
     case ADD_PHOTO:
       return {
         ...state,
         current: {
           ...state.current,
-          pictures: [...state.current.pictures, action.pictureSrc]
-        }
-      }
+          pictures: [...state.current.pictures, action.pictureSrc],
+        },
+      };
     case RETURN_BACK:
     case NOTIFICATION_SAVE:
       return initialState;
@@ -49,54 +49,42 @@ export const reducer = (state = initialState, action) => {
         ...action.notification,
         index: action.index,
         current: {
-          ...action.notification
-        }
-      }
+          ...action.notification,
+        },
+      };
     default:
       return state;
   }
 };
 
-export const getIsValid = (state) => {
-  return state.modifyNotification.current.heading !== '';
+export const getIsValid = state => state.modifyNotification.current.heading !== '';
+
+export const checkForIdentity = (notif1, notif2) => {
+  const picturesAreEqual = notif1.pictures.length !== notif2.pictures.length
+    ? false
+    : notif1.pictures.filter((elem, index) => (
+      notif1.pictures[index] !== notif2.pictures[index])).length === 0;
+  return ((notif1.heading === notif2.heading)
+        && (notif1.description === notif2.description)
+        && picturesAreEqual);
 };
 
 export const getIsChanged = (state) => {
   const { modifyNotification } = state;
-  return modifyNotification.heading !== undefined 
+  return modifyNotification.heading !== undefined
     ? !checkForIdentity({
       heading: modifyNotification.heading,
       description: modifyNotification.description,
       pictures: modifyNotification.pictures,
     }, modifyNotification.current)
-    : true
+    : true;
 };
+export const getPreviousHeading = state => state.modifyNotification.heading;
 
-export const checkForIdentity = (notif1, notif2) => {
-  let picturesAreEqual;
-  if (notif1.pictures.length !== notif2.pictures.length) {
-    picturesAreEqual = false;
-  } else {
-    picturesAreEqual = notif1.pictures.filter((elem, index) => {
-      return notif1.pictures[index] !== notif2.pictures[index];
-    }).length === 0;
-  }
-  return notif1.heading === notif2.heading && notif1.description === notif2.description && picturesAreEqual;
-};
+export const getPreviousDescription = state => state.modifyNotification.description;
 
-export const getPreviousHeading = (state) => {
-  return state.modifyNotification.heading;
-};
-export const getPreviousDescription = (state) => {
-  return state.modifyNotification.description;
-};
-export const getPreviousPictures = (state) => {
-  return state.modifyNotification.pictures;
-};
-export const getPreviousIndex = (state) => {
-  return state.modifyNotification.index;
-};
+export const getPreviousPictures = state => state.modifyNotification.pictures;
 
-export const getCurrentNotification = (state) => {
-  return state.modifyNotification.current
-};
+export const getPreviousIndex = state => state.modifyNotification.index;
+
+export const getCurrentNotification = state => state.modifyNotification.current;
