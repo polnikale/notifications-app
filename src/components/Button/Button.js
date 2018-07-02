@@ -55,7 +55,6 @@ class Button extends React.Component {
       <button
         type="submit"
         className={classes}
-        tabIndex="0"
         onClick={this.handleClick}
         onKeyPress={event => this.handlePress(event, this.handleClick)}
       >

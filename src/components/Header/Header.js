@@ -17,11 +17,25 @@ class Header extends React.Component {
     ]).isRequired,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.handlePress = this.handlePress.bind(this);
+  }
+
+  handlePress(event, handler, ...args) {
+    console.log(event);
+    if (event.key === 'Enter') {
+      handler(...args);
+    }
+  }
+
   renderControls() {
     const { onBack } = this.props;
 
     return onBack && (
       <button
+        onKeyPress={event => this.handlePress(event, onBack)}
         onClick={onBack}
         className="back"
         type="button"
