@@ -6,11 +6,12 @@ import { createStore } from 'redux';
 import reducer from './reducers/index';
 import App from './components/App/App';
 
-
-const store = createStore(reducer);
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root'),
-);
+export default function () {
+  const store = createStore(reducer);
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root'),
+  );
+}

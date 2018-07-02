@@ -1,5 +1,6 @@
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import './main.jsx';
+import Main from './main.jsx';
 
+Main();
 registerServiceWorker();
