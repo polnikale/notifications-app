@@ -1,4 +1,5 @@
 import uuidv1 from 'uuid/v1';
+import { createSelector } from 'reselect';
 
 import { NOTIFICATION_SAVE } from '../actions/common';
 
@@ -28,9 +29,14 @@ export const reducer = (state = initialState, action) => {
   }
 };
 
-export const getAllNotifications = state => Object.values(state.notifications).map((
+const getNotificationsAsArray = state => Object.values(state.notifications).map((
   (notification, index) => ({
     ...notification,
     id: Object.keys(state.notifications)[index],
   })
-)).sort((arr1, arr2) => arr1.time < arr2.time);
+));
+
+export const getAllNotifications = createSelector(
+  getNotificationsAsArray,
+  array => array.sort((notification1, notification2) => notification1.time > notification2.time),
+);
