@@ -32,6 +32,7 @@ class NotificationForm extends React.Component {
 
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
     this.handlePress = this.handlePress.bind(this);
   }
 
@@ -50,6 +51,10 @@ class NotificationForm extends React.Component {
     const photo = event.target.files[0];
 
     this.addPhoto(photo);
+  }
+
+  handleDragOver(event) {
+    event.preventDefault();
   }
 
   handleDrop(event) {
@@ -96,6 +101,7 @@ class NotificationForm extends React.Component {
     return (
       <li
         onDrop={this.handleDrop}
+        onDragOver={this.handleDragOver}
       >
         <img
           src={defaultSvg}
