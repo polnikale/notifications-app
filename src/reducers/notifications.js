@@ -1,3 +1,5 @@
+import uuidv1 from 'uuid/v1';
+
 import { NOTIFICATION_SAVE } from '../actions/common';
 
 const initialState = [];
@@ -5,11 +7,15 @@ const initialState = [];
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case NOTIFICATION_SAVE:
-      return (typeof action.index === 'number')
+      return (typeof action.notification.id === 'string')
         ? state.map((notification, index) => (index === action.index
           ? action.notification
           : notification))
-        : [...state, action.notification];
+        : [...state, {
+          ...action.notification,
+          id: uuidv1(),
+          time: Date.now(),
+        }];
     default:
       return state;
   }

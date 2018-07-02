@@ -14,9 +14,10 @@ class Notifications extends React.Component {
     toNotification: PropTypes.func.isRequired,
     addNotificationInfoToEdit: PropTypes.func.isRequired,
     notifications: PropTypes.arrayOf(PropTypes.shape({
-      heading: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      heading: PropTypes.string,
+      description: PropTypes.string,
       pictures: PropTypes.arrayOf(PropTypes.string),
+      id: PropTypes.string,
     })).isRequired,
 
   }
@@ -44,7 +45,7 @@ class Notifications extends React.Component {
   handleEditNotification(notification, index) {
     const { addNotificationInfoToEdit, toNotification } = this.props;
 
-    addNotificationInfoToEdit(notification, index);
+    addNotificationInfoToEdit(notification);
     toNotification();
   }
 
@@ -113,6 +114,8 @@ class Notifications extends React.Component {
 
   render() {
     const notificationsList = this.renderNotifications();
+
+    console.log('PROPS', this.props);
 
     return (
       <Page
