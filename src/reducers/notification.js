@@ -79,12 +79,15 @@ export const getIsChanged = (state) => {
     }, modifyNotification.current)
     : true;
 };
-export const getPreviousHeading = state => state.modifyNotification.heading;
 
-export const getPreviousDescription = state => state.modifyNotification.description;
+export const getPreviousNotification = state => state.modifyNotification;
 
-export const getPreviousPictures = state => state.modifyNotification.pictures;
+export const getPreviousHeading = state => getPreviousNotification(state).heading;
 
-export const getPreviousIndex = state => state.modifyNotification.index;
+export const getPreviousDescription = state => getPreviousNotification(state).description;
+
+export const getPreviousPictures = state => getPreviousNotification(state).pictures;
+
+export const getPreviousIndex = state => getPreviousNotification(state).index;
 
 export const getCurrentNotification = state => state.modifyNotification.current;
