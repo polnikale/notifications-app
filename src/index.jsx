@@ -9,11 +9,11 @@ import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 
-let store = createStore(reducer);
-console.log(store.getState());
+const store = createStore(reducer);
 ReactDOM.render(
   <Provider store={store}>
-    <App /> 
+    <App />
   </Provider>,
-  document.getElementById('root'));
+  document.getElementById('root'),
+);
 registerServiceWorker();
