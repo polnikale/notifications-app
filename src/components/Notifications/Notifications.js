@@ -14,9 +14,9 @@ class Notifications extends React.Component {
     toNotification: PropTypes.func.isRequired,
     addNotificationInfoToEdit: PropTypes.func.isRequired,
     notifications: PropTypes.arrayOf(PropTypes.shape({
-      heading: PropTypes.string,
-      description: PropTypes.string,
-      pictures: PropTypes.arrayOf(PropTypes.string),
+      heading: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
       id: PropTypes.string,
     })).isRequired,
 

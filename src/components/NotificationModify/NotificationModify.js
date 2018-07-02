@@ -11,8 +11,8 @@ import NotificationForm from '../../containers/NotificationForm';
 
 class NotificationCreate extends React.Component {
   static propTypes = {
-    heading: PropTypes.oneOfType([
-      PropTypes.undefined,
+    heading: PropTypes.oneOf([
+      undefined,
       PropTypes.string,
     ]),
     valid: PropTypes.bool.isRequired,
