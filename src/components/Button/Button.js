@@ -24,7 +24,6 @@ class Button extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
-    this.handlePress = this.handlePress.bind(this);
   }
 
   computeClasses() {

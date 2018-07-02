@@ -33,7 +33,6 @@ class Notifications extends React.Component {
 
     this.handleNewCard = this.handleNewCard.bind(this);
     this.handleEditNotification = this.handleEditNotification.bind(this);
-    this.handlePress = this.handlePress.bind(this);
   }
 
   handleNewCard() {

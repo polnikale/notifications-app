@@ -6,6 +6,10 @@
   grid-gap: 20px;
 }
 
+.notifications ul div {
+  height: 100%;
+}
+
 .notifications figure {
   overflow: hidden;
   margin: 0;

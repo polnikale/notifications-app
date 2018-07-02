@@ -42,8 +42,6 @@ class NotificationForm extends React.Component {
 
     this.handleAddPhoto = this.handleAddPhoto.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
-    this.handleDragOver = this.handleDragOver.bind(this);
-    this.handlePress = this.handlePress.bind(this);
   }
 
   addPhoto(photo) {

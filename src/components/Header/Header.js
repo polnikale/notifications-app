@@ -23,12 +23,6 @@ class Header extends React.Component {
     ]).isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.handlePress = this.handlePress.bind(this);
-  }
-
   renderControls() {
     const { onBack } = this.props;
 
