@@ -1,9 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import defaultSvg from './default.svg';
 import './Phone.css';
 
 class Phone extends React.Component {
+  static propTypes = {
+    currentNotification: PropTypes.shape({
+      heading: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string),
+    }),
+  }
+
+  static defaultProps = {
+    currentNotification: {
+      heading: '',
+      description: '',
+      pictures: [],
+    },
+  }
+
   renderText() {
     const { currentNotification } = this.props;
     const { description } = currentNotification;

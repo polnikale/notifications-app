@@ -15,19 +15,20 @@ class NotificationCreate extends React.Component {
       PropTypes.undefined,
       PropTypes.string,
     ]),
-    valid: PropTypes.func.isRequired,
-    changed: PropTypes.func.isRequired,
+    valid: PropTypes.bool.isRequired,
+    changed: PropTypes.bool.isRequired,
     current: PropTypes.shape({
       heading: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       pictures: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     save: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired,
+    index: PropTypes.number,
   }
 
   static defaultProps = {
     heading: undefined,
+    index: undefined,
   }
 
   constructor(props) {

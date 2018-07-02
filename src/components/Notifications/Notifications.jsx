@@ -83,7 +83,7 @@ class Notifications extends React.Component {
 
   renderPicture(picture) {
     return picture ? (
-      <div className="image chosenImage" style={{ backgroundImage:`url(${picture})` }} />
+      <div className="image chosenImage" style={{ backgroundImage: `url(${picture})` }} />
     ) : (
       <div className="image defaultImage">
         <img src={defaultSvg} alt={defaultSvg} />

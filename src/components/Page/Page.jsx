@@ -1,8 +1,20 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from '../Header/Header';
 
 class Page extends React.Component {
+  static propTypes = {
+    back: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    renderControls: PropTypes.func.isRequired,
+    backAvailable: PropTypes.bool.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -17,7 +29,12 @@ class Page extends React.Component {
   }
 
   render() {
-    const { children, renderControls, title, backAvailable } = this.props;
+    const {
+      children,
+      renderControls,
+      title,
+      backAvailable,
+    } = this.props;
 
     return (
       <Fragment>
@@ -30,7 +47,7 @@ class Page extends React.Component {
 
         {children}
       </Fragment>
-    )
+    );
   }
 }
 
