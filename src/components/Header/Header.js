@@ -5,6 +5,12 @@ import './Header.css';
 import leftArrow from './leftArrow.svg';
 
 class Header extends React.Component {
+  static handlePress(event, handler, ...args) {
+    if (event.key === 'Enter') {
+      handler(...args);
+    }
+  }
+
   static propTypes = {
     onBack: PropTypes.oneOfType([
       PropTypes.bool,
@@ -23,19 +29,12 @@ class Header extends React.Component {
     this.handlePress = this.handlePress.bind(this);
   }
 
-  handlePress(event, handler, ...args) {
-    console.log(event);
-    if (event.key === 'Enter') {
-      handler(...args);
-    }
-  }
-
   renderControls() {
     const { onBack } = this.props;
 
     return onBack && (
       <button
-        onKeyPress={event => this.handlePress(event, onBack)}
+        onKeyPress={event => this.constructor.handlePress(event, onBack)}
         onClick={onBack}
         className="back"
         type="button"

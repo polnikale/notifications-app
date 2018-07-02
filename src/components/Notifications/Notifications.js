@@ -10,6 +10,12 @@ import strings from '../../strings';
 import './Notifications.css';
 
 class Notifications extends React.Component {
+  static handlePress(event, handler, ...args) {
+    if (event.key === 'Enter') {
+      handler(...args);
+    }
+  }
+
   static propTypes = {
     toNotification: PropTypes.func.isRequired,
     addNotificationInfoToEdit: PropTypes.func.isRequired,
@@ -36,17 +42,21 @@ class Notifications extends React.Component {
     toNotification();
   }
 
-  handlePress(event, handler, ...args) {
-    if (event.key === 'Enter') {
-      handler(...args);
-    }
-  }
-
   handleEditNotification(notification) {
     const { addNotificationInfoToEdit, toNotification } = this.props;
 
     addNotificationInfoToEdit(notification);
     toNotification();
+  }
+
+  static renderPicture(picture) {
+    return picture ? (
+      <div className="image chosenImage" style={{ backgroundImage: `url(${picture})` }} />
+    ) : (
+      <div className="image defaultImage">
+        <img src={defaultSvg} alt={defaultSvg} />
+      </div>
+    );
   }
 
   renderNotifications() {
@@ -62,52 +72,47 @@ class Notifications extends React.Component {
 
   renderNotificationCard(notification, index) {
     return (
-      <li
-        key={index}
-        tabIndex="0"
-        onClick={() => this.handleEditNotification(notification, index)}
-        onKeyPress={event => (
-          this.handlePress(event, this.handleEditNotification, notification, index)
-        )}
-      >
-        <figure>
-          {this.renderPicture(notification.pictures[0])}
-          <figcaption>
-            <h5>
-              {notification.heading}
-            </h5>
-          </figcaption>
-        </figure>
+      <li key={index}>
+        <div
+          role="button"
+          tabIndex="0"
+          onClick={() => this.handleEditNotification(notification, index)}
+          onKeyPress={event => (
+            this.handlePress(event, this.handleEditNotification, notification, index)
+          )}
+        >
+          <figure>
+            {this.constructor.renderPicture(notification.pictures[0])}
+            <figcaption>
+              <h5>
+                {notification.heading}
+              </h5>
+            </figcaption>
+          </figure>
+        </div>
       </li>
-    );
-  }
-
-  renderPicture(picture) {
-    return picture ? (
-      <div className="image chosenImage" style={{ backgroundImage: `url(${picture})` }} />
-    ) : (
-      <div className="image defaultImage">
-        <img src={defaultSvg} alt={defaultSvg} />
-      </div>
     );
   }
 
   renderCreateNewCard() {
     return (
-      <li
-        className="plus"
-        tabIndex="0"
-        onClick={this.handleNewCard}
-        onKeyPress={event => this.handlePress(event, this.handleNewCard)}
-      >
-        <figure>
-          <img src={plusBigSvg} alt="newNotification" />
-          <figcaption>
-            <h6>
-              {strings.notifications.newNotification}
-            </h6>
-          </figcaption>
-        </figure>
+      <li>
+        <div
+          className="plus"
+          role="button"
+          tabIndex="0"
+          onClick={this.handleNewCard}
+          onKeyPress={event => this.constructor.handlePress(event, this.handleNewCard)}
+        >
+          <figure>
+            <img src={plusBigSvg} alt="newNotification" />
+            <figcaption>
+              <h6>
+                {strings.notifications.newNotification}
+              </h6>
+            </figcaption>
+          </figure>
+        </div>
       </li>
     );
   }

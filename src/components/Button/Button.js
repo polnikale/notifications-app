@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import './Button.css';
 
 class Button extends React.Component {
+  static handlePress(event, handler, ...args) {
+    if (event.key === 'Enter') {
+      handler(...args);
+    }
+  }
+
   static propTypes = {
     disabled: PropTypes.bool.isRequired,
     type: PropTypes.string.isRequired,
@@ -40,12 +46,6 @@ class Button extends React.Component {
     return false;
   }
 
-  handlePress(event, handler, ...args) {
-    if (event.key === 'Enter') {
-      handler(...args);
-    }
-  }
-
   render() {
     const { children } = this.props;
 
@@ -56,7 +56,7 @@ class Button extends React.Component {
         type="submit"
         className={classes}
         onClick={this.handleClick}
-        onKeyPress={event => this.handlePress(event, this.handleClick)}
+        onKeyPress={event => this.constructor.handlePress(event, this.handleClick)}
       >
         {children}
       </button>

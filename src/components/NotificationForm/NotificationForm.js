@@ -8,6 +8,16 @@ import './NotificationForm.css';
 const SUPPORTED_IMAGE_FORMATS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'bmp', 'BMP', 'gif', 'GIF', 'svg', 'SVG', 'tiff', 'TIFF', 'png', 'PNG'];
 
 class NotificationForm extends React.Component {
+  static handlePress(event, handler, ...args) {
+    if (event.key === 'Enter') {
+      handler(...args);
+    }
+  }
+
+  static handleDragOver(event) {
+    event.preventDefault();
+  }
+
   static propTypes = {
     onAddPhoto: PropTypes.func.isRequired,
     onRemovePhoto: PropTypes.func.isRequired,
@@ -53,19 +63,9 @@ class NotificationForm extends React.Component {
     this.addPhoto(photo);
   }
 
-  handleDragOver(event) {
-    event.preventDefault();
-  }
-
   handleDrop(event) {
     event.preventDefault();
     this.addPhoto(event.dataTransfer.files[0]);
-  }
-
-  handlePress(event, handler, ...args) {
-    if (event.key === 'Enter') {
-      handler(...args);
-    }
   }
 
   renderPhotos(pictures) {
@@ -91,7 +91,7 @@ class NotificationForm extends React.Component {
           role="button"
           tabIndex="0"
           onClick={() => onRemovePhoto(picture)}
-          onKeyPress={event => this.handlePress(event, onRemovePhoto, picture)}
+          onKeyPress={event => this.constructor.handlePress(event, onRemovePhoto, picture)}
         />
       </li>
     );
@@ -101,7 +101,7 @@ class NotificationForm extends React.Component {
     return (
       <li
         onDrop={this.handleDrop}
-        onDragOver={this.handleDragOver}
+        onDragOver={this.constructor.handleDragOver}
       >
         <img
           src={defaultSvg}
@@ -112,13 +112,14 @@ class NotificationForm extends React.Component {
           alt="add new svg"
           htmlFor="newImage"
           className="plus-svg"
-        />
-        <input
-          type="file"
-          id="newImage"
-          accept="image/x-png,image/gif,image/jpeg"
-          onChange={this.handleAddPhoto}
-        />
+        >
+          <input
+            type="file"
+            id="newImage"
+            accept="image/x-png,image/gif,image/jpeg"
+            onChange={this.handleAddPhoto}
+          />
+        </label>
       </li>
     );
   }
