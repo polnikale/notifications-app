@@ -81,7 +81,7 @@ class Notifications extends React.Component {
           )}
         >
           <figure>
-            {this.constructor.renderPicture(notification.pictures[0])}
+            {Notifications.renderPicture(notification.pictures[0])}
             <figcaption>
               <h5>
                 {notification.heading}
@@ -101,7 +101,7 @@ class Notifications extends React.Component {
           role="button"
           tabIndex="0"
           onClick={this.handleNewCard}
-          onKeyPress={event => this.constructor.handlePress(event, this.handleNewCard)}
+          onKeyPress={event => Notifications.handlePress(event, this.handleNewCard)}
         >
           <figure>
             <img src={plusBigSvg} alt="newNotification" />

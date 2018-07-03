@@ -28,7 +28,7 @@ class Header extends React.Component {
 
     return onBack && (
       <button
-        onKeyPress={event => this.constructor.handlePress(event, onBack)}
+        onKeyPress={event => Header.handlePress(event, onBack)}
         onClick={onBack}
         className="back"
         type="button"

@@ -59,15 +59,17 @@ export const reducer = (state = initialState, action) => {
 
 export const getIsValid = state => state.modifyNotification.current.heading !== '';
 
-export const checkForIdentity = (notif1, notif2) => {
-  const picturesAreEqual = notif1.pictures.length !== notif2.pictures.length
+export const compareArrays = (array1, array2) => (
+  array1.length !== array2.length
     ? false
-    : notif1.pictures.filter((elem, index) => (
-      notif1.pictures[index] !== notif2.pictures[index])).length === 0;
-  return ((notif1.heading === notif2.heading)
-        && (notif1.description === notif2.description)
-        && picturesAreEqual);
-};
+    : array1.every((value, index) => value === array2[index])
+);
+
+export const checkForIdentity = (notification1, notification2) => (
+  (notification1.heading === notification2.heading)
+  && (notification1.description === notification2.description)
+  && compareArrays(notification1.pictures, notification2.pictures)
+);
 
 export const getIsChanged = (state) => {
   const { modifyNotification } = state;
@@ -80,14 +82,14 @@ export const getIsChanged = (state) => {
     : true;
 };
 
-export const getPreviousNotification = state => state.modifyNotification;
+export const getModifyNotification = state => state.modifyNotification;
 
-export const getPreviousHeading = state => getPreviousNotification(state).heading;
+export const getPreviousHeading = state => getModifyNotification(state).heading;
 
-export const getPreviousDescription = state => getPreviousNotification(state).description;
+export const getPreviousDescription = state => getModifyNotification(state).description;
 
-export const getPreviousPictures = state => getPreviousNotification(state).pictures;
+export const getPreviousPictures = state => getModifyNotification(state).pictures;
 
-export const getPreviousIndex = state => getPreviousNotification(state).index;
+export const getPreviousIndex = state => getModifyNotification(state).index;
 
-export const getCurrentNotification = state => state.modifyNotification.current;
+export const getCurrentNotification = state => getModifyNotification(state).current;

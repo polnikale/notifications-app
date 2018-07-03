@@ -89,7 +89,7 @@ class NotificationForm extends React.Component {
           role="button"
           tabIndex="0"
           onClick={() => onRemovePhoto(picture)}
-          onKeyPress={event => this.constructor.handlePress(event, onRemovePhoto, picture)}
+          onKeyPress={event => NotificationForm.handlePress(event, onRemovePhoto, picture)}
         />
       </li>
     );
@@ -99,7 +99,7 @@ class NotificationForm extends React.Component {
     return (
       <li
         onDrop={this.handleDrop}
-        onDragOver={this.constructor.handleDragOver}
+        onDragOver={NotificationForm.handleDragOver}
       >
         <img
           src={defaultSvg}

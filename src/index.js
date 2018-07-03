@@ -1,6 +1,12 @@
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
-import Main from './main.jsx';
+import { createStore } from 'redux';
 
-Main();
+import registerServiceWorker from './registerServiceWorker';
+import reducer from './reducers/index';
+import './index.css';
+import App from './components/App/App';
+
+const store = createStore(reducer);
+
 registerServiceWorker();
+
+App(store);
